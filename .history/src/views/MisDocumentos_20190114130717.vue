@@ -30,7 +30,7 @@
                         <button class="btn btn-secondary btn-sm" type="button"><i class="fa fa-cogs" aria-hidden="true"></i> Configurar</button>
                     </td>
                     <td>
-                        <button @click="deleteDocment(documento)" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> borrar </button>
+                        <button @click="deleteDocument(documento)" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> borrar </button>
                     </td>
                 </tr>
             </tbody>

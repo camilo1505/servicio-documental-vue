@@ -30,7 +30,7 @@
                         <button class="btn btn-secondary btn-sm" type="button"><i class="fa fa-cogs" aria-hidden="true"></i> Configurar</button>
                     </td>
                     <td>
-                        <button @click="deleteDocment(documento)" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> borrar </button>
+                        <button class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> borrar </button>
                     </td>
                 </tr>
             </tbody>
@@ -56,13 +56,6 @@ export default {
         axios
         .get("http://localhost:8080/api/v1/documento/misDocumentos?autor=" + this.usuario)
         .then(Response => (this.documentos = Response.data))
-    },
-    methods: {
-        deleteDocment(documento) {
-            axios
-            .delete("http://localhost:8080/api/v1/documento/eliminarDocumento", documento)
-            .then(Response => (this.respuesta = Response.data))
-        }
     },
 }
 </script>
