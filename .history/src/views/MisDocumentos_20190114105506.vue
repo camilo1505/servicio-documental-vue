@@ -57,10 +57,6 @@ export default {
         .get("http://localhost:8080/api/v1/documento/misDocumentos?autor=" + this.usuario)
         .then(Response => (this.documentos = Response.data))
     },
-    verArchivos function () {
-   // Using the server bus
-   serverBus.$emit('serverSelected', this.server);
-  }
 }
 </script>
 

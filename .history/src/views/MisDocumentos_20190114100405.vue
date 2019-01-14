@@ -3,34 +3,34 @@
         <div>
             <h1>Mis Documentos : {{$route.params.usuario}}</h1> 
         </div>
-        <table class="table table-hover">
+        <table class="table">
             <thead class="thead-light">
                 <tr>
-                    <th scope="col"></th>
+                    <th scope="col">Icon</th>
                     <th scope="col">Nombre Documento</th>
                     <th scope="col">Descripcion</th>
                     <th scope="col">Estado Documento</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
+                    <th scope="col">Ver</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="documento in documentos" :key="documento.nombre">
                     <td scope="row">
-                        <i class="fa fa-folder" aria-hidden="true"></i>
+                        <img class="folder" src="@/assets/img/folder-icon.png" alt="Icon">
                     </td>
-                    <td> {{ documento.nombre }} </td>
+                    <td > {{ documento.nombre }} </td>
                     <td> {{ documento.descripcion }} </td>
                     <td> {{documento.estado}} </td>
                     <td>
-                        <button  class="btn btn-secondary btn-sm" v-on:click="verArchivos(documento)" type="button"><i class="fa fa-archive" aria-hidden="true"></i> Ver los archivos</button>
+                        <button type="button">Ver</button>
                     </td>
                     <td>
-                        <button class="btn btn-secondary btn-sm" type="button"><i class="fa fa-cogs" aria-hidden="true"></i> Configurar</button>
+                        <button type="button">Edit</button>
                     </td>
                     <td>
-                        <button class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> borrar </button>
+                        <button type="button">Delete</button>
                     </td>
                 </tr>
             </tbody>
@@ -39,9 +39,6 @@
 </template>
 
 <script>
-
-
-import { mdbBtnGroup } from 'mdbvue';
 import axios from "axios";
 
 export default {  
@@ -57,10 +54,6 @@ export default {
         .get("http://localhost:8080/api/v1/documento/misDocumentos?autor=" + this.usuario)
         .then(Response => (this.documentos = Response.data))
     },
-    verArchivos function () {
-   // Using the server bus
-   serverBus.$emit('serverSelected', this.server);
-  }
 }
 </script>
 
@@ -69,5 +62,4 @@ export default {
     height: 30px;
     width: 30px;
 }
-
 </style>
