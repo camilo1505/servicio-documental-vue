@@ -30,7 +30,7 @@
                         <button class="btn btn-secondary btn-sm" type="button"><i class="fa fa-cogs" aria-hidden="true"></i> Configurar</button>
                     </td>
                     <td>
-                        <button @click="deleteDocument(documento)" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> Borrar </button>
+                        <button @click="" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> Borrar </button>
                     </td>
                 </tr>
             </tbody>
@@ -49,8 +49,7 @@ export default {
     data(){
         return {
             usuario: this.$route.params.usuario,
-            documentos: null,
-            respuesta: null
+            documentos: null
         }
     },
     mounted(){
@@ -60,10 +59,8 @@ export default {
     },
     methods: {
         deleteDocument(documento) {
-            axios
-            .delete("http://localhost:8080/api/v1/documento/eliminarDocumento", documento)
-            .then(Response => (this.respuesta = Response.data))
-        },
+
+        }
     }
 }
 </script>
