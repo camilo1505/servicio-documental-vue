@@ -24,13 +24,13 @@
                     <td> {{ documento.descripcion }} </td>
                     <td> {{documento.estado}} </td>
                     <td>
-                        <button  class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-archive" aria-hidden="true"></i> Ver los archivos</button>
+                        <button  class="btn btn-secondary btn-sm" v-on:click="verArchivos(documento)" type="button"><i class="fa fa-archive" aria-hidden="true"></i> Ver</button>
                     </td>
                     <td>
                         <button class="btn btn-secondary btn-sm" type="button"><i class="fa fa-cogs" aria-hidden="true"></i> Configurar</button>
                     </td>
                     <td>
-                        <button class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> borrar </button>
+                        <button class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> Borrar </button>
                     </td>
                 </tr>
             </tbody>
