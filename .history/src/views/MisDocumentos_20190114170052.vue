@@ -33,64 +33,64 @@
                         <button @click="deleteDocumento(documento)" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> Borrar </button>
                     </td>
                     <div v-if="archivos">
-                        <transition name="modal">
-                            <div class="modal-mask">
-                            <div class="modal-wrapper">
-                                <div class="modal-container">
+            <transition name="modal">
+                <div class="modal-mask">
+                <div class="modal-wrapper">
+                    <div class="modal-container">
 
-                                <div class="modal-header">
-                                    <slot name="header">
-                                    Archivos del documento
-                                    </slot>
-                                </div>
+                    <div class="modal-header">
+                        <slot name="header">
+                        Archivos del documento
+                        </slot>
+                    </div>
 
-                                <div class="modal-body">
-                                    <slot name="body">
-                                        <table class="table table-hover">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col"></th>
-                                                <th scope="col">Nombre Archivo</th>
-                                                <th scope="col">Tipo de archivo</th>
-                                                <th scope="col">Url del archivo</th>
-                                                <th scope="col"></th>
-                                                <th scope="col"></th>
-                                                <th scope="col"></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr v-for="archivo in archivos" :key="archivo.nombreArchivo">
-                                                <td scope="row">
-                                                    <i class="fa fa-folder" aria-hidden="true"></i>
-                                                </td>
-                                                <td> {{ archivo.nombreArchivo }} </td>
-                                                <td> {{ archivo.type }} </td>
-                                                <td> {{ archivo.url }} </td>
-                                                <td>
-                                                    <button class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-archive" aria-hidden="true"></i> Ver Archivos</button>
-                                                </td>
-                                                <td>
-                                                    <button class="btn btn-secondary btn-sm" type="button"><i class="fa fa-cogs" aria-hidden="true"></i> Editar</button>
-                                                </td>
-                                                <td>
-                                                    <button @click="eliminarArchivo(documento,archivo.url)" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> Borrar </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>                
-                                    </slot>
-                                </div>
-                                <div class="modal-footer">
-                                    <slot name="footer">
-                                    <button class="modal-default-button" @click="archivos=null">
-                                        OK
-                                    </button>
-                                    </slot>
-                                </div>
-                                </div>
-                            </div>
-                            </div>
-                        </transition>
+                    <div class="modal-body">
+                        <slot name="body">
+                            <table class="table table-hover">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">Nombre Archivo</th>
+                                    <th scope="col">Tipo de archivo</th>
+                                    <th scope="col">Url del archivo</th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="archivo in archivos" :key="archivo.nombreArchivo">
+                                    <td scope="row">
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                    </td>
+                                    <td> {{ archivo.nombreArchivo }} </td>
+                                    <td> {{ archivo.type }} </td>
+                                    <td> {{ archivo.url }} </td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-archive" aria-hidden="true"></i> Ver Archivos</button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-secondary btn-sm" type="button"><i class="fa fa-cogs" aria-hidden="true"></i> Editar</button>
+                                    </td>
+                                    <td>
+                                        <button @click="eliminarArchivo(documento,archivo.url)" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> Borrar </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>                
+                        </slot>
+                    </div>
+                    <div class="modal-footer">
+                        <slot name="footer">
+                        <button class="modal-default-button" @click="archivos=null">
+                            OK
+                        </button>
+                        </slot>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </transition>
         </div>
                 </tr>
             </tbody>
@@ -108,6 +108,7 @@ export default {
     name: 'MisDocumentos',
     data(){
         return {
+            
             showModal: false,
             usuario: this.$route.params.usuario,
             documentos: null,
@@ -125,7 +126,6 @@ export default {
             axios
             .post("http://localhost:8080/api/v1/documento/eliminarDocumento", documento)
             .then(Response => (this.respuesta = Response.data))
-            
         },
         verArchivos(documento) {
             this.archivos = documento.archivo
@@ -134,11 +134,6 @@ export default {
             axios
             .post("http://localhost:8080/api/v1/documento/eliminarArchivo?archivo="+archivo,documento)
             .then(Response => (this.respuesta = Response.data))
-        },
-        recargarPagina(){
-            axios
-            .get("http://localhost:8080/api/v1/documento/misDocumentos?autor=" + this.usuario)
-            .then(Response => (this.documentos = Response.data))
         }
     },
     

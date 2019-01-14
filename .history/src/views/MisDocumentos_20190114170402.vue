@@ -108,6 +108,7 @@ export default {
     name: 'MisDocumentos',
     data(){
         return {
+            
             showModal: false,
             usuario: this.$route.params.usuario,
             documentos: null,
@@ -125,7 +126,7 @@ export default {
             axios
             .post("http://localhost:8080/api/v1/documento/eliminarDocumento", documento)
             .then(Response => (this.respuesta = Response.data))
-            
+            recargarPagina()
         },
         verArchivos(documento) {
             this.archivos = documento.archivo

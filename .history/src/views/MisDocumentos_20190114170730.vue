@@ -108,6 +108,7 @@ export default {
     name: 'MisDocumentos',
     data(){
         return {
+            
             showModal: false,
             usuario: this.$route.params.usuario,
             documentos: null,

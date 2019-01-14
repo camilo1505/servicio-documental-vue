@@ -108,6 +108,7 @@ export default {
     name: 'MisDocumentos',
     data(){
         return {
+            
             showModal: false,
             usuario: this.$route.params.usuario,
             documentos: null,
@@ -125,7 +126,6 @@ export default {
             axios
             .post("http://localhost:8080/api/v1/documento/eliminarDocumento", documento)
             .then(Response => (this.respuesta = Response.data))
-            
         },
         verArchivos(documento) {
             this.archivos = documento.archivo
@@ -134,11 +134,6 @@ export default {
             axios
             .post("http://localhost:8080/api/v1/documento/eliminarArchivo?archivo="+archivo,documento)
             .then(Response => (this.respuesta = Response.data))
-        },
-        recargarPagina(){
-            axios
-            .get("http://localhost:8080/api/v1/documento/misDocumentos?autor=" + this.usuario)
-            .then(Response => (this.documentos = Response.data))
         }
     },
     
