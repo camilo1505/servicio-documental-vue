@@ -40,7 +40,8 @@
 
 <script>
 
-import { mdbBtnGroup } from 'mdbvue';
+
+import mdbvue from 'mdbvue';
 import axios from "axios";
 
 export default {  
