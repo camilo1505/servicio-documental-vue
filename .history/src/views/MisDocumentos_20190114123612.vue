@@ -41,7 +41,7 @@
 <script>
 
 
-import 'mdbvue';
+import hola from 'mdbvue';
 import axios from "axios";
 
 export default {  
