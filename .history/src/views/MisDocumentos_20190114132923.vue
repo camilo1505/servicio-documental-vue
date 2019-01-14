@@ -22,20 +22,21 @@
                     </td>
                     <td> {{ documento.nombre }} </td>
                     <td> {{ documento.descripcion }} </td>
-                    <td> {{ documento.estado }} </td>
+                    <td> {{documento.estado}} </td>
                     <td>
-                        <button @click="verArchivos(documento)" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-archive" aria-hidden="true"></i> Ver Archivos</button>
+                        <button @click="verArchivos(docuemento)" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-archive" aria-hidden="true"></i> Ver Archivos</button>
                     </td>
                     <td>
                         <button class="btn btn-secondary btn-sm" type="button"><i class="fa fa-cogs" aria-hidden="true"></i> Editar</button>
                     </td>
                     <td>
-                        <button @click="deleteDocumento(documento)" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> Borrar </button>
+                        <button @click="deleteDocument(documento)" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> Borrar </button>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <div v-if="archivos">
+
+        <div>
             {{archivos}}
         </div>
     </div>    
@@ -62,7 +63,7 @@ export default {
         .then(Response => (this.documentos = Response.data))
     },
     methods: {
-        deleteDocumento(documento) {
+        deleteDocument(documento) {
             axios
             .delete("http://localhost:8080/api/v1/documento/eliminarDocumento", documento)
             .then(Response => (this.respuesta = Response.data))
@@ -70,7 +71,7 @@ export default {
 
         verArchivos(documento) {
             this.archivos = documento.archivo
-        },
+        }
     },
 }
 </script>

@@ -24,7 +24,8 @@
                     <td> {{ documento.descripcion }} </td>
                     <td> {{ documento.estado }} </td>
                     <td>
-                        <button @click="verArchivos(documento)" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-archive" aria-hidden="true"></i> Ver Archivos</button>
+                        <button @click="verArchivos(docuemento)" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-archive" aria-hidden="true"></i> Ver Archivos</button>
+                        {{docuemento}}
                     </td>
                     <td>
                         <button class="btn btn-secondary btn-sm" type="button"><i class="fa fa-cogs" aria-hidden="true"></i> Editar</button>
@@ -35,9 +36,6 @@
                 </tr>
             </tbody>
         </table>
-        <div v-if="archivos">
-            {{archivos}}
-        </div>
     </div>    
 </template>
 

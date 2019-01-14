@@ -35,9 +35,6 @@
                 </tr>
             </tbody>
         </table>
-        <div v-if="archivos">
-            {{archivos}}
-        </div>
     </div>    
 </template>
 

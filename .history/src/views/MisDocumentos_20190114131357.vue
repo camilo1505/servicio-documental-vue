@@ -22,22 +22,19 @@
                     </td>
                     <td> {{ documento.nombre }} </td>
                     <td> {{ documento.descripcion }} </td>
-                    <td> {{ documento.estado }} </td>
+                    <td> {{documento.estado}} </td>
                     <td>
-                        <button @click="verArchivos(documento)" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-archive" aria-hidden="true"></i> Ver Archivos</button>
+                        <button  class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-archive" aria-hidden="true"></i> Ver los archivos</button>
                     </td>
                     <td>
                         <button class="btn btn-secondary btn-sm" type="button"><i class="fa fa-cogs" aria-hidden="true"></i> Editar</button>
                     </td>
                     <td>
-                        <button @click="deleteDocumento(documento)" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> Borrar </button>
+                        <button @click="deleteDocment(documento)" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> borrar </button>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <div v-if="archivos">
-            {{archivos}}
-        </div>
     </div>    
 </template>
 
@@ -52,8 +49,7 @@ export default {
         return {
             usuario: this.$route.params.usuario,
             documentos: null,
-            respuesta: null,
-            archivos: null,
+            respuesta: null
         }
     },
     mounted(){
@@ -62,15 +58,14 @@ export default {
         .then(Response => (this.documentos = Response.data))
     },
     methods: {
-        deleteDocumento(documento) {
+        deleteDocment(documento) {
             axios
             .delete("http://localhost:8080/api/v1/documento/eliminarDocumento", documento)
             .then(Response => (this.respuesta = Response.data))
-        },
-
+        }
         verArchivos(documento) {
-            this.archivos = documento.archivo
-        },
+
+        }
     },
 }
 </script>
