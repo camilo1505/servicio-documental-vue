@@ -12,7 +12,7 @@
                     <input type="text" class="form-control" placeholder="Autor" v-model="autor">
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control" placeholder="Tags: fisica,ingles,tesis,..." v-model="etiquetas">
+                    <tags-input :tags="tags" type="text" class="form-control" placeholder="Tags: fisica,ingles,tesis,..." v-model="etiquetas">
                 </div>
                 <div class="col">
                     <button @click="filtrarDocumentos(nombreDocumento,autor,etiquetas)" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-search" aria-hidden="true"></i> Buscar</button>
