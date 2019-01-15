@@ -33,16 +33,16 @@
 
                                             <div class="modal-body">
                                                 <slot name="body">
-                                                    <div><input v-model="nuevoNombre" type="text" placeholder="nombre del documento" ></div>
-                                                    <div><input v-model="etiquetas" type="text" placeholder="etiquetas" ></div>
-                                                    <div><input v-model="descripcion" type="text" placeholder="descripcion" ></div>
-                                                    <div><input v-model="estado" type="checkbox" placeholder="Estado del documento" ></div>
+                                                    <input v-model="nuevoNombre" placeholder="nombre del documento" >
+                                                    <input v-model="nuevoNombre" placeholder="etiquetas" >
+                                                    <input v-model="nuevoNombre" placeholder="descripcion" >
+                                                    <input v-model="nuevoNombre" placeholder="Estado del documento" >
 
                                                 </slot>
                                             </div>
                                             <div class="modal-footer">
                                                 <slot name="footer">
-                                                <button class="modal-default-button" @click="showEditarDocumento=false">
+                                                <button class="modal-default-button" @click="showBorrarDocumento=false">
                                                     cancelar
                                                 </button>
                                                 <button class="modal-default-button" @click="deleteDocumento()">
@@ -55,7 +55,7 @@
                                 </div>
                         </transition>
                     </div>
-                    <td><button @click="showEditarDocumento=true,EditarDocumento=documento" class="btn btn-secondary btn-sm" type="button"><i class="fa fa-cogs" aria-hidden="true"></i> Editar</button></td>
+                    <td><button @click="showEditarDocumento" class="btn btn-secondary btn-sm" type="button"><i class="fa fa-cogs" aria-hidden="true"></i> Editar</button></td>
                     <div v-if="showBorrarDocumento">
                         <transition name="BorrarDocumento">
                                 <div class="modal-mask">
@@ -77,7 +77,7 @@
                                                 <button class="modal-default-button" @click="showBorrarDocumento=false">
                                                     cancelar
                                                 </button>
-                                                <button class="modal-default-button" @click="EditarDocumento()">
+                                                <button class="modal-default-button" @click="deleteDocumento()">
                                                     acepto
                                                 </button>
                                                 </slot>
@@ -165,7 +165,6 @@ export default {
         return {
             showModal: false,
             showBorrarDocumento: false,
-            showEditarDocumento: false,
             usuario: this.$route.params.usuario,
             documentos: null,
             respuesta: null,
@@ -174,11 +173,6 @@ export default {
             archivoEliminar: null,
             archivoEditar: null,
             archivos: null,
-            nuevoNombre:null,
-            etiquetas:null,
-            descripcion:null,
-            estado:null
-
         }
     },
     mounted(){
@@ -201,9 +195,10 @@ export default {
             .then(Response => (this.respuesta = Response.data))
             
         },
-        editarDocumentos(){
-
-
+        recargarPagina(){
+            axios
+            .get("http://localhost:8080/api/v1/documento/misDocumentos?autor=" + this.usuario)
+            .then(Response => (this.documentos = Response.data))
         }
     },
     

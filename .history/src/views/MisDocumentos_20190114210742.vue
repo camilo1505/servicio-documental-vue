@@ -42,7 +42,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <slot name="footer">
-                                                <button class="modal-default-button" @click="showEditarDocumento=false">
+                                                <button class="modal-default-button" @click="showBorrarDocumento=false">
                                                     cancelar
                                                 </button>
                                                 <button class="modal-default-button" @click="deleteDocumento()">

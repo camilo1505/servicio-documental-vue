@@ -33,16 +33,16 @@
 
                                             <div class="modal-body">
                                                 <slot name="body">
-                                                    <div><input v-model="nuevoNombre" type="text" placeholder="nombre del documento" ></div>
-                                                    <div><input v-model="etiquetas" type="text" placeholder="etiquetas" ></div>
-                                                    <div><input v-model="descripcion" type="text" placeholder="descripcion" ></div>
-                                                    <div><input v-model="estado" type="checkbox" placeholder="Estado del documento" ></div>
+                                                    <input v-model="nuevoNombre" type="text" placeholder="nombre del documento" >
+                                                    <input v-model="etiquetas" type="text" placeholder="etiquetas" >
+                                                    <input v-model="descripcion" type="text" placeholder="descripcion" >
+                                                    <input v-model="estado" type="checkbox" placeholder="Estado del documento" >
 
                                                 </slot>
                                             </div>
                                             <div class="modal-footer">
                                                 <slot name="footer">
-                                                <button class="modal-default-button" @click="showEditarDocumento=false">
+                                                <button class="modal-default-button" @click="showBorrarDocumento=false">
                                                     cancelar
                                                 </button>
                                                 <button class="modal-default-button" @click="deleteDocumento()">
@@ -174,11 +174,6 @@ export default {
             archivoEliminar: null,
             archivoEditar: null,
             archivos: null,
-            nuevoNombre:null,
-            etiquetas:null,
-            descripcion:null,
-            estado:null
-
         }
     },
     mounted(){
@@ -202,7 +197,6 @@ export default {
             
         },
         editarDocumentos(){
-
 
         }
     },
