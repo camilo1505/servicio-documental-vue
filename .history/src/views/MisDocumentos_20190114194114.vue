@@ -23,6 +23,7 @@
                     <td><button class="btn btn-secondary btn-sm" type="button"><i class="fa fa-cogs" aria-hidden="true"></i> Editar</button></td>
                     <td><button @click="showBorrarDocumento=true" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> Borrar </button></td>
                     <div v-if="archivos">
+                        <script type="text/x-template" id="modal-template">
                         <transition name="modal">
                         <div class="modal-mask">
                             <div class="modal-wrapper">
@@ -81,6 +82,7 @@
                             </div>
                         </div>
                         </transition>
+                        </script>
                     </div>
                 </tr>
             </tbody>

@@ -22,6 +22,38 @@
                     <td><button @click="verArchivos(documento),showModal=true" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-archive" aria-hidden="true"></i> Ver Archivos</button></td>
                     <td><button class="btn btn-secondary btn-sm" type="button"><i class="fa fa-cogs" aria-hidden="true"></i> Editar</button></td>
                     <td><button @click="showBorrarDocumento=true" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> Borrar </button></td>
+                    <div v-if="showBorrarDocumento">
+                        <transition name="BorrarDocumento">
+                                <div class="modal-mask">
+                                    <div class="modal-wrapper">
+                                        <div class="modal-container">
+
+                                            <div class="modal-header">
+                                                <slot name="header">
+                                                Borrar un Documento
+                                                </slot>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <slot name="body">
+                                                    Esta usted seguro de borrar este documento?                
+                                                </slot>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <slot name="footer">
+                                                <button class="modal-default-button" @click="showBorrarDocumento=false">
+                                                    cancelar
+                                                </button>
+                                                <button class="modal-default-button" @click="deleteDocumento(documento)">
+                                                    acepto
+                                                </button>
+                                                </slot>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </transition>
+                    </div>
                     <div v-if="archivos">
                         <transition name="modal">
                         <div class="modal-mask">

@@ -136,6 +136,10 @@ export default {
 </script>
 
 <style>
+.folder {
+    height: 30px;
+    width: 30px;
+}
 .modal-mask {
   position: fixed;
   z-index: 9998;
