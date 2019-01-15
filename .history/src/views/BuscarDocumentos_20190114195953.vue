@@ -11,12 +11,8 @@
                 <div class="col">
                     <input type="text" class="form-control" placeholder="Autor">
                 </div>
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Descripcion">
-                </div>
             </div>
-        </form>
-        <br>
+</form>
         <table class="table table-hover">
             <thead class="thead-light">
                 <tr>

@@ -6,17 +6,13 @@
         <form>
             <div class="row">
                 <div class="col">
-                    <input type="text" class="form-control" placeholder="Nombre Documento">
+                    <input type="text" class="form-control" placeholder="First name">
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control" placeholder="Autor">
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Descripcion">
+                    <input type="text" class="form-control" placeholder="Last name">
                 </div>
             </div>
-        </form>
-        <br>
+</form>
         <table class="table table-hover">
             <thead class="thead-light">
                 <tr>

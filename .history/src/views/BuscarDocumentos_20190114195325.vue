@@ -3,20 +3,10 @@
         <div>
             <h1>Documentos</h1> 
         </div>
-        <form>
-            <div class="row">
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Nombre Documento">
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Autor">
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Descripcion">
-                </div>
-            </div>
-        </form>
-        <br>
+        <div class="form-group">
+            <label for="usr">Nombre:</label>
+            <input type="text" class="form-control">
+        </div>
         <table class="table table-hover">
             <thead class="thead-light">
                 <tr>
