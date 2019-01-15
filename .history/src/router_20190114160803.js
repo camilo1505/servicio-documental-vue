@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import MisDocumentos from './views/MisDocumentos.vue'
-import BuscarDocumentos from './views/BuscarDocumentos.vue'
 
 Vue.use(Router)
 
@@ -29,9 +28,9 @@ export default new Router({
       component: MisDocumentos
     },
     {
-      path: '/buscarDocumentos',
-      name: 'BuscarDocumentos',
-      component: BuscarDocumentos
+      path: '/misDocumentos/:usuario',
+      name: 'MisDocumentos',
+      component: MisDocumentos
     }
   ]
 })
