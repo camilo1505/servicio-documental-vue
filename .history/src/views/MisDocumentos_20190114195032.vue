@@ -14,7 +14,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="documento in documentos" :key="documento.id.counter">
+                <tr v-for="documento in documentos" :key="documento.id.machineIdentifier">
                     <td scope="row"><i class="fa fa-folder" aria-hidden="true"></i></td>
                     <td> {{ documento.nombre }} </td>
                     <td> {{ documento.descripcion }} </td>

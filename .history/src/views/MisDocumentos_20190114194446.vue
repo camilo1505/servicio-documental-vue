@@ -14,47 +14,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="documento in documentos" :key="documento.id.counter">
+                <tr v-for="documento in documentos" :key="documento.id.machineIdentifier">
                     <td scope="row"><i class="fa fa-folder" aria-hidden="true"></i></td>
                     <td> {{ documento.nombre }} </td>
                     <td> {{ documento.descripcion }} </td>
                     <td> {{ documento.estado }} </td>
                     <td><button @click="verArchivos(documento),showModal=true" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-archive" aria-hidden="true"></i> Ver Archivos</button></td>
                     <td><button class="btn btn-secondary btn-sm" type="button"><i class="fa fa-cogs" aria-hidden="true"></i> Editar</button></td>
-                    <div v-if="showBorrarDocumento">
-                        <transition name="BorrarDocumento">
-                                <div class="modal-mask">
-                                    <div class="modal-wrapper">
-                                        <div class="modal-container">
-
-                                            <div class="modal-header">
-                                                <slot name="header">
-                                                Borrar un Documento
-                                                </slot>
-                                            </div>
-
-                                            <div class="modal-body">
-                                                <slot name="body">
-                                                    Esta usted seguro de borrar este documento?                
-                                                </slot>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <slot name="footer">
-                                                <button class="modal-default-button" @click="showBorrarDocumento=false">
-                                                    cancelar
-                                                </button>
-                                                <button class="modal-default-button" @click="deleteDocumento(documento)">
-                                                    acepto
-                                                </button>
-                                                </slot>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                        </transition>
-                    </div>
-                    <td><button @click="showBorrarDocumento=true" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> Borrar </button></td>
-                    
+                    <td><button @click="showBorrarDocumento=true,eliminarDocumento(documento,false)" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> Borrar </button></td>
                     <div v-if="archivos">
                         <transition name="modal">
                         <div class="modal-mask">
@@ -169,10 +136,6 @@ export default {
 </script>
 
 <style>
-.folder {
-    height: 30px;
-    width: 30px;
-}
 .modal-mask {
   position: fixed;
   z-index: 9998;
