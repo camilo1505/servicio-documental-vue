@@ -43,7 +43,7 @@
                                                 <button class="modal-default-button" @click="showBorrarDocumento=false">
                                                     cancelar
                                                 </button>
-                                                <button class="modal-default-button" @click="deleteDocumento()">
+                                                <button class="modal-default-button" @click="deleteDocumento(documento)">
                                                     acepto
                                                 </button>
                                                 </slot>
@@ -53,7 +53,8 @@
                                 </div>
                         </transition>
                     </div>
-                    <td><button @click="showBorrarDocumento=true,documentoEliminar=documento" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> Borrar </button></td>
+                    <td><button @click="showBorrarDocumento=true" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> Borrar </button></td>
+                    
                     <div v-if="archivos">
                         <transition name="modal">
                         <div class="modal-mask">
@@ -134,7 +135,6 @@ export default {
             usuario: this.$route.params.usuario,
             documentos: null,
             respuesta: null,
-            documentoEliminar: null,
             archivos: null,
         }
     },
@@ -144,10 +144,10 @@ export default {
         .then(Response => (this.documentos = Response.data))
     },
     methods: {
-        deleteDocumento() {
+        deleteDocumento(documento) {
             axios
-            .post("http://localhost:8080/api/v1/documento/eliminarDocumento", this.documentoEliminar)
-            this.showBorrarDocumento=false
+            .post("http://localhost:8080/api/v1/documento/eliminarDocumento", documento)
+            
         },
         verArchivos(documento) {
             this.archivos = documento.archivo
@@ -156,7 +156,6 @@ export default {
             axios
             .post("http://localhost:8080/api/v1/documento/eliminarArchivo?archivo="+archivo,documento)
             .then(Response => (this.respuesta = Response.data))
-            
         },
         recargarPagina(){
             axios

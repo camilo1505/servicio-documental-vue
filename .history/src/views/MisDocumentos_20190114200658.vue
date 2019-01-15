@@ -53,7 +53,8 @@
                                 </div>
                         </transition>
                     </div>
-                    <td><button @click="showBorrarDocumento=true,documentoEliminar=documento" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> Borrar </button></td>
+                    <td><button @click="showBorrarDocumento=true,this.documento=documento" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> Borrar </button></td>
+                    
                     <div v-if="archivos">
                         <transition name="modal">
                         <div class="modal-mask">
@@ -134,7 +135,7 @@ export default {
             usuario: this.$route.params.usuario,
             documentos: null,
             respuesta: null,
-            documentoEliminar: null,
+            documento: null,
             archivos: null,
         }
     },
@@ -146,7 +147,7 @@ export default {
     methods: {
         deleteDocumento() {
             axios
-            .post("http://localhost:8080/api/v1/documento/eliminarDocumento", this.documentoEliminar)
+            .post("http://localhost:8080/api/v1/documento/eliminarDocumento", this.documento)
             this.showBorrarDocumento=false
         },
         verArchivos(documento) {

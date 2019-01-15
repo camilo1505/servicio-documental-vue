@@ -53,7 +53,9 @@
                                 </div>
                         </transition>
                     </div>
-                    <td><button @click="showBorrarDocumento=true,documentoEliminar=documento" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> Borrar </button></td>
+                    <td><button @click="showBorrarDocumento=true,documentoEl=documento" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> Borrar </button></td>
+                    
+                    
                     <div v-if="archivos">
                         <transition name="modal">
                         <div class="modal-mask">
