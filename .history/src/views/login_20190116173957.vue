@@ -11,8 +11,8 @@
                     <input type="password" class="form-control" placeholder="Contraseña" v-model="password">
                 </div>
                 <button class="btn btn-primary form-control" @click="consultarUsuario(nombreUsuario, password)">Login</button>
+                <button v-if="consultaValida(respuesta)" type="button" class="btn btn-success" @click="redireccionar(nombreUsuario)">Acceder</button>
             </div>
-            <button v-if="consultaValida(respuesta)" type="button" class="btn btn-success" @click="redireccionar(nombreUsuario)">Acceder</button>
         </div>
         <div class="col-lg-4"></div>
     </div>
@@ -46,7 +46,7 @@ export default {
         },
         redireccionar(nombreUsuario){
             console.log("Redireccionar")
-            this.$router.push({name:'MisDocumentos', params:{usuario:nombreUsuario}})
+            this.$router.push({name:'misDocumentos', params:{usuario:nombreUsuario}})
         }
     }
 }

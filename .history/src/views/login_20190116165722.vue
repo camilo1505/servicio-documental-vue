@@ -10,9 +10,9 @@
                 <div class="form-group">
                     <input type="password" class="form-control" placeholder="Contraseña" v-model="password">
                 </div>
-                <button class="btn btn-primary form-control" @click="consultarUsuario(nombreUsuario, password)">Login</button>
+                <button class="btn btn-primary form-control" @click="consultarUsuario(nombreUsuario, password)">Entrar</button>
+                <h1 v-if="respuesta">{{respuesta}}</h1>
             </div>
-            <button v-if="consultaValida(respuesta)" type="button" class="btn btn-success" @click="redireccionar(nombreUsuario)">Acceder</button>
         </div>
         <div class="col-lg-4"></div>
     </div>
@@ -34,20 +34,8 @@ export default {
             axios
             .get("http://localhost:8080/api/v1/usuario/consultarUsuario?nombreUsuario=" + nombreUsuario + "&password=" + password)
             .then(Response => (this.respuesta = Response.status))
-            this.consultaValida()
-            console.log("pasando la solicitud");
-        },
-        consultaValida(respuesta) {
-            if(respuesta == 200) {
-                console.log("Valida")
-                return true
-            }
-            return false
-        },
-        redireccionar(nombreUsuario){
-            console.log("Redireccionar")
-            this.$router.push({name:'MisDocumentos', params:{usuario:nombreUsuario}})
         }
+
     }
 }
 </script>

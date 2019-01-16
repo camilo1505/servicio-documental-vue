@@ -11,8 +11,8 @@
                     <input type="password" class="form-control" placeholder="Contraseña" v-model="password">
                 </div>
                 <button class="btn btn-primary form-control" @click="consultarUsuario(nombreUsuario, password)">Login</button>
+                <button v-if="consultaValida(respuesta)">{{respuesta}}</button>
             </div>
-            <button v-if="consultaValida(respuesta)" type="button" class="btn btn-success" @click="redireccionar(nombreUsuario)">Acceder</button>
         </div>
         <div class="col-lg-4"></div>
     </div>
@@ -38,15 +38,12 @@ export default {
             console.log("pasando la solicitud");
         },
         consultaValida(respuesta) {
+            console.log("si fui llamada")
+            console.log(respuesta)
             if(respuesta == 200) {
-                console.log("Valida")
                 return true
             }
             return false
-        },
-        redireccionar(nombreUsuario){
-            console.log("Redireccionar")
-            this.$router.push({name:'MisDocumentos', params:{usuario:nombreUsuario}})
         }
     }
 }
