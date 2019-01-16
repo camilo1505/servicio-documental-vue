@@ -13,7 +13,7 @@ export default new Router({
     {
       path: '/',
       name: 'login',
-      component: login
+      component: Home
     },
     {
       path: '/misDocumentos/:usuario',

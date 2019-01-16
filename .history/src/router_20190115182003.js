@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import login from './views/login.vue'
+import Home from './views/Home.vue'
 import MisDocumentos from './views/MisDocumentos.vue'
 import BuscarDocumentos from './views/BuscarDocumentos.vue'
 
@@ -12,8 +12,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'login',
-      component: login
+      name: 'home',
+      component: Home
     },
     {
       path: '/misDocumentos/:usuario',
