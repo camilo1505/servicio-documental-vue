@@ -210,7 +210,7 @@ export default {
         },
         eliminarArchivo(urlArchivo){
             axios
-            .post("http://localhost:8080/api/v1/documento/eliminarArchivo?archivo="+urlArchivo,this.verDocumento)
+            .post("http://localhost:8080/api/v1/documento/eliminarArchivo?archivo="+urlArchivo,this.Documento)
             .then(Response => (this.respuesta = Response.data))
             
         },

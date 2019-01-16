@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import login from './views/login.vue'
+import Home from './views/Home.vue'
 import MisDocumentos from './views/MisDocumentos.vue'
 import BuscarDocumentos from './views/BuscarDocumentos.vue'
-import archivosEjemplo from './views/archivosEjemplo'
 
 Vue.use(Router)
 
@@ -13,8 +12,16 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'login',
-      component: login
+      name: 'home',
+      component: Home
+    },
+    {
+      path: '/about',
+      name: 'about',
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     {
       path: '/misDocumentos/:usuario',
@@ -28,8 +35,7 @@ export default new Router({
     },
     {
       path: '/archivosEjemplo',
-      name: 'archivosEjemplo',
-      component: archivosEjemplo
+      name: 'archivosEjemplo'
     }
   ]
 })
