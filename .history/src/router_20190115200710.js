@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import MisDocumentos from './views/MisDocumentos.vue'
 import BuscarDocumentos from './views/BuscarDocumentos.vue'
-import archivosEjemplo from './views/archivosEjemplo'
 
 Vue.use(Router)
 

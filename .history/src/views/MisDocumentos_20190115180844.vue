@@ -19,7 +19,7 @@
                     <td> {{ documento.nombre }} </td>
                     <td> {{ documento.descripcion }} </td>
                     <td> {{ documento.estado }} </td>
-                    <td><button @click="verArchivos(documento),verDocumento=documento,showModal=true" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-archive" aria-hidden="true"></i> Ver Archivos</button></td>
+                    <td><button @click="verArchivos(documento),showModal=true" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-archive" aria-hidden="true"></i> Ver Archivos</button></td>
                     <div v-if="showEditarDocumento">
                         <transition name="EditarDocumento">
                                 <div class="modal-mask">
@@ -141,7 +141,7 @@
                                                         <button class="btn btn-secondary btn-sm" type="button"><i class="fa fa-cogs" aria-hidden="true"></i> Editar</button>
                                                     </td>
                                                     <td>
-                                                        <button @click="eliminarArchivo(archivo.url),eliminarArchivo=archivo" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> Borrar </button>
+                                                        <button @click="eliminarArchivo(),eliminarArchivo=archivo" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-trash" aria-hidden="true"></i> Borrar </button>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -186,7 +186,6 @@ export default {
             archivoEliminar: null,
             archivoEditar: null,
             archivos: null,
-            verDocumento:null,
             nuevoNombre:null,
             etiquetas:null,
             descripcion:null,
@@ -210,7 +209,7 @@ export default {
         },
         eliminarArchivo(urlArchivo){
             axios
-            .post("http://localhost:8080/api/v1/documento/eliminarArchivo?archivo="+urlArchivo,this.verDocumento)
+            .post("http://localhost:8080/api/v1/documento/eliminarArchivo?archivo="+,this.documento)
             .then(Response => (this.respuesta = Response.data))
             
         },
