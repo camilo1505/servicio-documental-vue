@@ -20,7 +20,7 @@
                     <td scope="row"><i class="fa fa-folder" aria-hidden="true"></i></td>
                     <td class="celdaNombre"> {{ documento.nombre }} </td>
                     <td class="celdaDescripcion"> <p>{{ documento.descripcion }}</p> </td>
-                    <td class="celdaEstado"> {{ documento.estado }} </td>
+                    <td class="estado"> {{ documento.estado }} </td>
                     <td><button @click="verArchivos(documento),verDocumento=documento,showModal=true" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-archive" aria-hidden="true"></i> Ver Archivos</button></td>
                     <div v-if="showEditarDocumento">
                         <transition name="EditarDocumento">
@@ -316,14 +316,14 @@ table td {
 }
 
 #NDocumento {
-    margin-top: 15px;
+    margin-top: 7px;
     position: absolute;
-    right: 10px;
+    right: 0px;
 }
 #Actualizar {
-    margin-top: 15px;
+    margin-top: 7px;
     position: absolute;
-    right: 200px;
+    right: 150px;
 }
 
 .celdaNombre {
@@ -338,7 +338,7 @@ table td {
 }
 .celdaEstado {
     height: auto;
-    width: 150px;
+    width: 50px;
     text-align: center;
 }
 

@@ -1,8 +1,7 @@
 <template>
     <div v-if="documentos">
         <div><h1>Mis Documentos : {{$route.params.usuario}}</h1></div>
-        <button type="button" class="btn btn-success" id="NDocumento" @click="crearDocumento(usuario)">Nuevo Documento</button>
-        <button type="button" class="btn btn-success" id="Actualizar" @click="recargarDocumentos()">Actualizar</button>
+        <button type="button" class="btn btn-success" id="NDocumento">Nuevo Documento</button>
         <table class="table table-hover">
             <thead class="thead-light">
                 <tr>
@@ -18,9 +17,9 @@
             <tbody>
                 <tr v-for="documento in documentos" :key="documento.id.counter">
                     <td scope="row"><i class="fa fa-folder" aria-hidden="true"></i></td>
-                    <td class="celdaNombre"> {{ documento.nombre }} </td>
-                    <td class="celdaDescripcion"> <p>{{ documento.descripcion }}</p> </td>
-                    <td class="celdaEstado"> {{ documento.estado }} </td>
+                    <td> {{ documento.nombre }} </td>
+                    <td> {{ documento.descripcion }} </td>
+                    <td> {{ documento.estado }} </td>
                     <td><button @click="verArchivos(documento),verDocumento=documento,showModal=true" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-archive" aria-hidden="true"></i> Ver Archivos</button></td>
                     <div v-if="showEditarDocumento">
                         <transition name="EditarDocumento">
@@ -202,11 +201,6 @@ export default {
         .then(Response => (this.documentos = Response.data))
     },
     methods: {
-        recargarDocumentos() {
-            axios
-            .get("http://localhost:8080/api/v1/documento/misDocumentos?autor=" + this.usuario)
-            .then(Response => (this.documentos = Response.data))
-        },
         deleteDocumento() {
             axios
             .post("http://localhost:8080/api/v1/documento/eliminarDocumento", this.documentoEliminar)
@@ -233,9 +227,6 @@ export default {
               axios
             .put("http://localhost:8080/api/v1/documento/editarDocumento",this.editarDocumento)
             .then(Response => (this.respuesta = Response.data))
-        },
-        crearDocumento(nombreUsuario){
-            this.$router.push({name:'CrearDocumento', params: {usuario: nombreUsuario}})
         }
     },
     
@@ -313,33 +304,6 @@ export default {
 
 table td {
   text-align: left;
-}
-
-#NDocumento {
-    margin-top: 15px;
-    position: absolute;
-    right: 10px;
-}
-#Actualizar {
-    margin-top: 15px;
-    position: absolute;
-    right: 200px;
-}
-
-.celdaNombre {
-    height: auto;
-    width: 100px;
-    text-align: justify;
-}
-.celdaDescripcion {
-    height: auto;
-    width: 200px;
-    text-align: justify;
-}
-.celdaEstado {
-    height: auto;
-    width: 150px;
-    text-align: center;
 }
 
 </style>

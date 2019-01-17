@@ -35,7 +35,7 @@ export default new Router({
     {
       path: '/crearDocumento/:usuario',
       name: 'CrearDocumento',
-      component: CrearDocumento
+      component: MisDocumentos
     },
   ]
 })

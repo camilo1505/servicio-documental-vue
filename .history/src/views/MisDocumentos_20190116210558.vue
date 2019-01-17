@@ -316,12 +316,12 @@ table td {
 }
 
 #NDocumento {
-    margin-top: 15px;
+    margin-top: 7px;
     position: absolute;
-    right: 10px;
+    right: 0px;
 }
 #Actualizar {
-    margin-top: 15px;
+    margin-top: 7px;
     position: absolute;
     right: 200px;
 }

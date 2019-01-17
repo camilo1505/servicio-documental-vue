@@ -316,14 +316,14 @@ table td {
 }
 
 #NDocumento {
-    margin-top: 15px;
+    margin-top: 7px;
     position: absolute;
-    right: 10px;
+    right: 0px;
 }
 #Actualizar {
-    margin-top: 15px;
+    margin-top: 7px;
     position: absolute;
-    right: 200px;
+    right: 150px;
 }
 
 .celdaNombre {
@@ -338,7 +338,7 @@ table td {
 }
 .celdaEstado {
     height: auto;
-    width: 150px;
+    width: 100px;
     text-align: center;
 }
 
