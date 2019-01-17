@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-sm-5">
+                        <div class="col-sm-4">
                             <input type="text" class="form-control" placeholder="Etiqueta" v-model="etiqueta">
                         </div>
                         <div class="col-sm-2">
@@ -90,10 +90,6 @@ export default {
 </script>
 
 <style>
-.container  {
-    margin-top: 0px;
-    margin-left: 300px;
-}
 #publicado {
     margin-left: 3px;
 }

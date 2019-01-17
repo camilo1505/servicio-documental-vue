@@ -91,8 +91,7 @@ export default {
 
 <style>
 .container  {
-    margin-top: 0px;
-    margin-left: 300px;
+    margin-top: 400px;
 }
 #publicado {
     margin-left: 3px;

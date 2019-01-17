@@ -53,9 +53,5 @@ export default {
 </script>
 
 <style>
-.container {
-    margin: 100px auto;
-    margin-left: 400px;
-    width: 100%;
-}
+
 </style>

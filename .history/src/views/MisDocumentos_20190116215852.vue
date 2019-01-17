@@ -316,12 +316,12 @@ table td {
 }
 
 #NDocumento {
-    margin-top: 7px;
+    margin-top: 15px;
     position: absolute;
     right: 10px;
 }
 #Actualizar {
-    margin-top: 7px;
+    margin-top: 15px;
     position: absolute;
     right: 200px;
 }
@@ -339,9 +339,8 @@ table td {
     text-align: justify;
 }
 .celdaEstado {
-    word-wrap: break-word;
-    max-width:150px; 
-    width:200px;
+    height: auto;
+    width: 150px;
     text-align: center;
 }
 

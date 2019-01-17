@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-sm-5">
+                        <div class="col-sm-4">
                             <input type="text" class="form-control" placeholder="Etiqueta" v-model="etiqueta">
                         </div>
                         <div class="col-sm-2">
@@ -35,14 +35,7 @@
                     <input type="radio" id="publicado" value="publicado" name="estado" v-model="documentoDTO.estado">
                     <label for="publicado">Publicado</label>
                 </div>
-                <div class="row">
-                        <div class="col-sm-5">
-                            <button class="btn btn-primary form-control" @click="crearDocumento(documentoDTO)">Guardar</button>
-                        </div>
-                        <div class="col-sm-5">
-                            <button class="btn btn-warning form-control" @click="redireccionar()">Cancelar</button>
-                        </div>
-                    </div>
+                <button class="btn btn-primary form-control" @click="crearDocumento(documentoDTO)">Guardar</button>
             </div>
         </div>
         <div class="col-lg-4"></div>
@@ -76,24 +69,16 @@ export default {
             axios
             .post("http://localhost:8080/api/v1/documento/crearDocumento", documento)
             .then(Response => (this.respuesta = Response.data))
-            this.redireccionar()
+            this.$router.push({name:'MisDocumentos', params:{usuario:this.documentoDTO.autor}})
         },
         addEtiqueta(etiqueta) {
             this.documentoDTO.etiquetas.push(etiqueta)
-            this.etiqueta = null
-        },
-        redireccionar() {
-            this.$router.push({name:'MisDocumentos', params:{usuario:this.documentoDTO.autor}})
         }
     }
 }
 </script>
 
 <style>
-.container  {
-    margin-top: 0px;
-    margin-left: 300px;
-}
 #publicado {
     margin-left: 3px;
 }

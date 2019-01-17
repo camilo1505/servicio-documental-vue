@@ -90,10 +90,6 @@ export default {
 </script>
 
 <style>
-.container  {
-    margin-top: 0px;
-    margin-left: 300px;
-}
 #publicado {
     margin-left: 3px;
 }

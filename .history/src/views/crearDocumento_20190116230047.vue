@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group">
                     <div class="row">
-                        <div class="col-sm-5">
+                        <div class="col-sm-4">
                             <input type="text" class="form-control" placeholder="Etiqueta" v-model="etiqueta">
                         </div>
                         <div class="col-sm-2">
@@ -36,11 +36,11 @@
                     <label for="publicado">Publicado</label>
                 </div>
                 <div class="row">
-                        <div class="col-sm-5">
+                        <div class="col-sm-4">
                             <button class="btn btn-primary form-control" @click="crearDocumento(documentoDTO)">Guardar</button>
                         </div>
-                        <div class="col-sm-5">
-                            <button class="btn btn-warning form-control" @click="redireccionar()">Cancelar</button>
+                        <div class="col-sm-2">
+                            <button class="btn btn-primary form-control" @click="crearDocumento(documentoDTO)">Guardar</button>
                         </div>
                     </div>
             </div>
@@ -90,10 +90,6 @@ export default {
 </script>
 
 <style>
-.container  {
-    margin-top: 0px;
-    margin-left: 300px;
-}
 #publicado {
     margin-left: 3px;
 }

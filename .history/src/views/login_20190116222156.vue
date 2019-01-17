@@ -1,4 +1,4 @@
-<template>
+<template scope>
     <div class="container">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
@@ -53,9 +53,5 @@ export default {
 </script>
 
 <style>
-.container {
-    margin: 100px auto;
-    margin-left: 400px;
-    width: 100%;
-}
+
 </style>
