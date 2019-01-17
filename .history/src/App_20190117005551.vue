@@ -1,6 +1,9 @@
 <template>
   <div id="app">
     <div id="nav" v-if="['login'].indexOf($route.name)">
+      <router-link to="/misDocumentos">Mis Documentos</router-link> |
+      <router-link to="/buscarDocumentos">Buscar Documentos</router-link> |
+      <router-link to="/archivosEjemplo">Archivos Ejemplo</router-link>
     </div>
     <router-view/>
   </div>

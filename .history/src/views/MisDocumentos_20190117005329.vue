@@ -163,6 +163,7 @@
                         </transition>
                     </div>
                 </tr>
+                </div>    
             </tbody>
         </table>
         </div>
@@ -341,6 +342,6 @@ table td {
 
 .icon th{
     max-width: 10px;
+    padding:
 }
-
 </style>

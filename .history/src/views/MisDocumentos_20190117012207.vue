@@ -341,6 +341,7 @@ table td {
 
 .icon th{
     max-width: 10px;
+    padding:
 }
 
 </style>

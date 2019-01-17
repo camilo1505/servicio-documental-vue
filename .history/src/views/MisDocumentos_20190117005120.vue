@@ -6,7 +6,6 @@
         <table class="table table-hover">
             <thead class="thead-light">
                 <tr>
-                    <th></th>
                     <th scope="col">Nombre Documento</th>
                     <th scope="col">Descripcion</th>
                     <th scope="col">Estado Documento</th>
@@ -15,8 +14,9 @@
                     <th scope="col"></th>
                 </tr>
             </thead>
-            <tbody v-if="documentos">
-                <tr  v-for="documento in documentos" :key="documento.id.counter">
+            <tbody>
+                <div v-if="documentos">
+                <tr v-for="documento in documentos" :key="documento.id.counter">
                     <td scope="row"><i class="fa fa-folder" aria-hidden="true"></i></td>
                     <td class="celdaNombre"> {{ documento.nombre }} </td>
                     <td class="celdaDescripcion"> <p>{{ documento.descripcion }}</p> </td>
@@ -163,6 +163,7 @@
                         </transition>
                     </div>
                 </tr>
+                </div>    
             </tbody>
         </table>
         </div>
@@ -341,6 +342,6 @@ table td {
 
 .icon th{
     max-width: 10px;
+    padding:
 }
-
 </style>

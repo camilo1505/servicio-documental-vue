@@ -6,7 +6,7 @@
         <table class="table table-hover">
             <thead class="thead-light">
                 <tr>
-                    <th></th>
+                    <th scope="col"></th>
                     <th scope="col">Nombre Documento</th>
                     <th scope="col">Descripcion</th>
                     <th scope="col">Estado Documento</th>
@@ -15,8 +15,10 @@
                     <th scope="col"></th>
                 </tr>
             </thead>
-            <tbody v-if="documentos">
-                <tr  v-for="documento in documentos" :key="documento.id.counter">
+            
+                <div v-if="documentos">
+            <tbody>
+                <tr v-for="documento in documentos" :key="documento.id.counter">
                     <td scope="row"><i class="fa fa-folder" aria-hidden="true"></i></td>
                     <td class="celdaNombre"> {{ documento.nombre }} </td>
                     <td class="celdaDescripcion"> <p>{{ documento.descripcion }}</p> </td>
@@ -164,8 +166,10 @@
                     </div>
                 </tr>
             </tbody>
+            
+                </div>
         </table>
-        </div>
+    </div>
 </template>
 
 <script>
@@ -311,9 +315,6 @@ export default {
   transform: scale(1.1);
 }
 
-table td {
-  text-align: left;
-}
 
 #NDocumento {
     margin-top: 7px;
@@ -328,19 +329,21 @@ table td {
 
 .celdaNombre {
     word-wrap: break-word;
+    max-width:200px; 
+    width:200px;
     text-align: justify;
 }
 .celdaDescripcion {
     word-wrap: break-word;
+    max-width:200px; 
+    width:200px;
     text-align: justify;
 }
 .celdaEstado {
     word-wrap: break-word;
-    text-align: center;
-}
-
-.icon th{
-    max-width: 10px;
+    max-width:150px; 
+    width:200px;
+    text-align: left;
 }
 
 </style>

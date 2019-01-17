@@ -1,12 +1,12 @@
 <template>
-    <div>
+    
         <div><h1>Mis Documentos : {{$route.params.usuario}}</h1></div>
         <button type="button" class="btn btn-success" id="NDocumento" @click="crearDocumento(usuario)">Nuevo Documento</button>
         <button type="button" class="btn btn-success" id="Actualizar" @click="recargarDocumentos()">Actualizar</button>
         <table class="table table-hover">
             <thead class="thead-light">
                 <tr>
-                    <th></th>
+                    <th scope="col"></th>
                     <th scope="col">Nombre Documento</th>
                     <th scope="col">Descripcion</th>
                     <th scope="col">Estado Documento</th>
@@ -15,8 +15,9 @@
                     <th scope="col"></th>
                 </tr>
             </thead>
-            <tbody v-if="documentos">
-                <tr  v-for="documento in documentos" :key="documento.id.counter">
+            <tbody>
+                <div v-if="documentos">
+                <tr v-for="documento in documentos" :key="documento.id.counter">
                     <td scope="row"><i class="fa fa-folder" aria-hidden="true"></i></td>
                     <td class="celdaNombre"> {{ documento.nombre }} </td>
                     <td class="celdaDescripcion"> <p>{{ documento.descripcion }}</p> </td>
@@ -163,6 +164,7 @@
                         </transition>
                     </div>
                 </tr>
+                </div>    
             </tbody>
         </table>
         </div>
@@ -328,19 +330,21 @@ table td {
 
 .celdaNombre {
     word-wrap: break-word;
+    max-width:200px; 
+    width:200px;
     text-align: justify;
 }
 .celdaDescripcion {
     word-wrap: break-word;
+    max-width:200px; 
+    width:200px;
     text-align: justify;
 }
 .celdaEstado {
     word-wrap: break-word;
+    max-width:150px; 
+    width:200px;
     text-align: center;
-}
-
-.icon th{
-    max-width: 10px;
 }
 
 </style>
