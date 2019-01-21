@@ -46,13 +46,13 @@
 import VueTagsInput from '@johmun/vue-tags-input';
 
 export default {
-    name:'CrearDocumento',
-    components: {
-        VueTagsInput
-    },
-    data() {
-        return {
-            documentoDTO: {
+    name:'CrearDocumento'
+  components: {
+    VueTagsInput,
+  },
+  data() {
+    return {
+        documentoDTO: {
                 nombre: null,
                 etiquetas: [],
                 descripcion: null,
@@ -62,9 +62,9 @@ export default {
             },
             etiqueta: null,
             respuesta: null,
-            tag: '',
-            tags: [],
-        }
-    }
-}
+      tag: '',
+      tags: [],
+    };
+  },
+};
 </script>

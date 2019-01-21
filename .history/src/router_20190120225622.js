@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Documentos from './views/Documentos.vue'
-import CrearDocumento from './views/crearDocumento.vue'
+import CrearDocumento from './views/crearDocumentos.vue'
 
 Vue.use(Router)
 

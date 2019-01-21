@@ -48,7 +48,7 @@ import VueTagsInput from '@johmun/vue-tags-input';
 export default {
     name:'CrearDocumento',
     components: {
-        VueTagsInput
+        VueTagsInput,
     },
     data() {
         return {

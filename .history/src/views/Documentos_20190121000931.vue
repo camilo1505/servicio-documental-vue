@@ -8,10 +8,10 @@
                     <input type="text" class="form-control" placeholder="Buscar en Documentos" v-model="parametroBusqueda">
                 </div>
                 <div class="col-sm-1">
-                    <toggle-button :labels="{checked: 'Mios', unchecked: 'Todos'}" @change="cambioBusqueda()"/>
+                    <button type="button" class="btn btn-primary" @click="buscarDocumentos()">Buscar</button>
                 </div>
                 <div class="col-sm-2">
-                    <button type="button" class="btn btn-primary" @click="buscarDocumentos()">Buscar</button>
+                    <toggle-button :labels="{checked: 'Mios', unchecked: 'Todos'}" @change="cambioBusqueda()"/>
                 </div>
                 <div class="col-sm-3">
                     <button type="button" class="btn btn-primary" @click="nuevoDocumento()">Nuevo Documento</button>

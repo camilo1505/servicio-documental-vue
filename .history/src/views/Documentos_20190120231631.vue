@@ -8,13 +8,13 @@
                     <input type="text" class="form-control" placeholder="Buscar en Documentos" v-model="parametroBusqueda">
                 </div>
                 <div class="col-sm-1">
-                    <toggle-button :labels="{checked: 'Mios', unchecked: 'Todos'}" @change="cambioBusqueda()"/>
-                </div>
-                <div class="col-sm-2">
                     <button type="button" class="btn btn-primary" @click="buscarDocumentos()">Buscar</button>
                 </div>
-                <div class="col-sm-3">
-                    <button type="button" class="btn btn-primary" @click="nuevoDocumento()">Nuevo Documento</button>
+                <div class="col-sm-2">
+                    <toggle-button :labels="{checked: 'Mios', unchecked: 'Todos'}" @change="cambioBusqueda()"/>
+                </div>
+                <div class="col-md-push-6">
+                    <button type="button" class="btn btn-primary" @click="buscarDocumentos()">Nuevo Documento</button>
                 </div>
             </div>
         </form>
@@ -34,7 +34,7 @@
                             <div class="row">
                                 <div class="col-sm-2">
                                     <h3>Autor:</h3>
-                                    <h4>{{documento.usuario}}</h4>
+                                    <h4>{{documento.autor}}</h4>
                                 </div>
                                 <div class="col-sm-4">
                                     <h3>Etiquetas: </h3>
@@ -69,13 +69,13 @@ export default {
             documentos: null,
             usuario: null,
             misDocumentos: false,
-            parametroBusqueda: "",
+            parametroBusqueda: null,
             estadoSolicitud: null
         }
     },
     mounted() {
         Axios
-        .get("http://localhost:8080/api/v1/documento/consultarDocumento?consulta=")
+        .get("http://localhost:8080/api/v1/documento/consultarDocumento?nombreDocumento=&autor=&etiquetas=")
         .then(Response => (this.documentos = Response.data))
 
         if(localStorage.user) {
@@ -89,12 +89,12 @@ export default {
         buscarDocumentos() {
             if(this.misDocumentos) {
                 Axios
-                .get("http://localhost:8080/api/v1/documento/consultarDocumento?consulta=" + this.usuario)
+                .get("http://localhost:8080/api/v1/documento/consultarDocumento?nombreDocumento=&autor="+ this.usuario +"&etiquetas=")
                 .then(Response => (this.documentos = Response.data))
             }
             else {
                 Axios
-                .get("http://localhost:8080/api/v1/documento/consultarDocumento?consulta=" + this.parametroBusqueda)
+                .get("http://localhost:8080/api/v1/documento/consultarDocumento?nombreDocumento=&autor=&etiquetas=")
                 .then(Response => (this.documentos = Response.data))
             }
         },
@@ -107,7 +107,7 @@ export default {
             }
         },
         propietario(documento) {
-            if(documento.usuario == this.usuario) {
+            if(documento.autor == this.usuario) {
                 return true;
             }
             else {
@@ -129,9 +129,6 @@ export default {
             else {
                 documentoActual.estado = true;
             }
-        },
-        nuevoDocumento() {
-            this.$router.push({name:'crearDocumento', params:{user:this.usuario}})
         }
     }
 }
