@@ -16,8 +16,8 @@
                 </div>
                 <div class="form-group">
                     <table>
-                        <tr class="row"><td><i class="fa fa-lock" aria-hidden="true"></i>Borrador  <input type="radio" id="borrador" value="borrador" name="estado" v-model="documentoDTO.estado"></td></tr>
-                        <tr class="row"><td><i class="fa fa-unlock" aria-hidden="true"></i>Publicado  <input type="radio" id="publicado" value="publicado" name="estado" v-model="documentoDTO.estado"></td></tr>
+                        <tr><td><i class="fa fa-lock" aria-hidden="true"></i>Borrador  <input type="radio" id="borrador" value="borrador" name="estado" v-model="documentoDTO.estado"></td></tr>
+                        <tr><td><i class="fa fa-unlock" aria-hidden="true"></i>Publicado  <input type="radio" id="publicado" value="publicado" name="estado" v-model="documentoDTO.estado"></td></tr>
                     </table>
                 </div>
                 <div class="row">
@@ -28,16 +28,17 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <button class="btn btn-primary form-control" @click="crearDocumento(documentoDTO)">Guardar</button>
-                </div>
-                <div class="col-sm-6">
-                    <button class="btn btn-warning form-control" @click="redireccionar()">Cancelar</button>
-                </div>
+                <div class="row">
+                        <div class="col-sm-6">
+                            <button class="btn btn-primary form-control" @click="crearDocumento(documentoDTO)">Guardar</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button class="btn btn-warning form-control" @click="redireccionar()">Cancelar</button>
+                        </div>
+                    </div>
             </div>
         </div>
+        <div class="col-lg-4"></div>
     </div>
 </center>
 </template>
