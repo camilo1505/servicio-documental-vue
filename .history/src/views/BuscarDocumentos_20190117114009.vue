@@ -36,7 +36,7 @@
                     <td scope="row">
                         <i class="fa fa-folder" aria-hidden="true"></i>
                     </td>
-                    <td class="celdaNombre">{{documento.nombre}} </td>
+                    <td class="celdaNombre">{ documento.nombre }} </td>
                     <td> {{ documento.autor }} </td>
                     <td class="celdaDescripcion"> {{ documento.descripcion }} </td>
                     <td> {{ documento.etiquetas }} </td>

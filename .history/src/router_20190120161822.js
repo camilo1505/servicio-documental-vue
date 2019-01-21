@@ -11,7 +11,7 @@ export default new Router({
     {
       path: '/',
       name: 'documentos',
-      component: Documentos
+      component: Documenntos
     },
   ]
 })

@@ -36,10 +36,10 @@
                     <td scope="row">
                         <i class="fa fa-folder" aria-hidden="true"></i>
                     </td>
-                    <td class="celdaNombre">{{documento.nombre}} </td>
+                    <td class="celdaNombre">{ documento.nombre }} </td>
                     <td> {{ documento.autor }} </td>
                     <td class="celdaDescripcion"> {{ documento.descripcion }} </td>
-                    <td> {{ documento.etiquetas }} </td>
+                    <td class="celdaDescripcion"> {{ documento.etiquetas }} </td>
                     <td>
                         <button @click="verArchivos(documento)" class="btn btn-secondary btn-sm"  type="button"><i class="fa fa-archive" aria-hidden="true"></i> Ver Archivos</button>
                     </td>
