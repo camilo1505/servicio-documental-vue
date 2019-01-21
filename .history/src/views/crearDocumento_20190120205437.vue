@@ -28,13 +28,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <button class="btn btn-primary form-control" @click="crearDocumento(documentoDTO)">Guardar</button>
-                </div>
-                <div class="col-sm-6">
-                    <button class="btn btn-warning form-control" @click="redireccionar()">Cancelar</button>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button class="btn btn-primary form-control" @click="crearDocumento(documentoDTO)">Guardar</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button class="btn btn-warning form-control" @click="redireccionar()">Cancelar</button>
+                    </div>
                 </div>
             </div>
         </div>
