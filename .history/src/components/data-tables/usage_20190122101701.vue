@@ -4,93 +4,14 @@
     <link href='https://fonts.googleapis.com/css?family=Material+Icons' rel="stylesheet" type="text/css">
     <v-toolbar flat color="white">
       <v-toolbar-title>Documentos</v-toolbar-title>
-      
       <v-divider
         class="mx-2"
         inset
         vertical
       ></v-divider>
       
-      
-    </v-toolbar>
-    <v-data-table
-      :headers="headers"
-      :items="documentos"
-      class="elevation-1"
-      item-key="counter"
-    >
-      <template slot="items" slot-scope="props"  item>
-        <td > {{props.item.id.counter}} </td>
-        <td>
-        <v-edit-dialog
-            :return-value.sync="props.item.nombre"
-            lazy
-            @save="save"
-            @cancel="cancel"
-            @open="open"
-            @close="close"
-          > {{ props.item.nombre }}
-            <v-text-field
-              slot="input"
-              v-model="props.item.nombre"
-              label="Edit"
-              single-line
-              counter
-            ></v-text-field>
-          </v-edit-dialog>
-        </td>
-        <td>
-        <v-edit-dialog
-            :return-value.sync="props.item.descripcion"
-            lazy
-            @save="save"
-            @cancel="cancel"
-            @open="open"
-            @close="close"
-          > {{ props.item.descripcion }}
-            <v-text-field
-              slot="input"
-              v-model="props.item.descripcion"
-              label="Edit"
-              single-line
-              counter
-            ></v-text-field>
-          </v-edit-dialog>
-        </td>
-        <td class="text-xs-right">{{ props.item.usuario }}</td>
-        <td>
-        <v-edit-dialog
-            :return-value.sync="props.item.etiquetas"
-            lazy
-            @save="save"
-            @cancel="cancel"
-            @open="open"
-            @close="close"
-          > {{ props.item.etiquetas }}
-            <v-text-field
-              slot="input"
-              v-model="props.item.etiquetas"
-              label="Edit"
-              single-line
-              counter
-            ></v-text-field>
-          </v-edit-dialog>
-        </td>
-        <td class="justify-center layout px-0">
-          <v-icon
-            small
-            @click="deleteItem(props.item)"
-          >
-            delete
-          </v-icon>
-        </td>
-      </template>
-      
-      <template slot="no-data">
-        <v-btn color="primary" @click="cargarDocumentos">Reset</v-btn>
-      </template>
-    </v-data-table>
-    <v-dialog v-model="dialog" max-width="500px">
+      <v-spacer></v-spacer>
+      <v-dialog v-model="dialog" max-width="500px">
         <v-btn slot="activator" color="primary" dark class="mb-2">Nuevo Documento</v-btn>
         <v-card>
           <v-card-title>
@@ -132,11 +53,93 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-    
-    <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
-      {{ snackText }}
-      <v-btn flat @click="snack = false">Close</v-btn>
-    </v-snackbar>
+    </v-toolbar>
+    <v-data-table
+      :headers="headers"
+      :items="documentos"
+      class="elevation-1"
+      item-key="counter"
+    >
+      <template slot="items" slot-scope="props"  item>
+        <td > {{props.item.id.counter}} </td>
+        <td>
+        <v-edit-dialog
+            :return-value.sync="props.item.nombre"
+            lazy
+            @save="save"
+            @cancel="cancel"
+            @open="open"
+            @close="close"
+          > {{ props.item.nombre }}
+            <v-text-field
+              slot="input"
+              v-model="props.item.nombre"
+              :rules="[max25chars]"
+              label="Edit"
+              single-line
+              counter
+            ></v-text-field>
+          </v-edit-dialog>
+        </td>
+        <td>
+        <v-edit-dialog
+            :return-value.sync="props.item.descripcion"
+            lazy
+            @save="save"
+            @cancel="cancel"
+            @open="open"
+            @close="close"
+          > {{ props.item.descripcion }}
+            <v-text-field
+              slot="input"
+              v-model="props.item.descripcion"
+              label="Edit"
+              single-line
+              counter
+            ></v-text-field>
+          </v-edit-dialog>
+        </td>
+        <td class="text-xs-right">{{ props.item.usuario }}</td>
+        <td>
+        <v-edit-dialog
+            :return-value.sync="props.item.etiquetas"
+            lazy
+            @save="save"
+            @cancel="cancel"
+            @open="open"
+            @close="close"
+          > {{ props.item.etiquetas }}
+            <v-text-field
+              slot="input"
+              v-model="props.item.etiquetas"
+              :rules="[max25chars]"
+              label="Edit"
+              single-line
+              counter
+            ></v-text-field>
+          </v-edit-dialog>
+        </td>
+        <td class="justify-center layout px-0">
+          <v-icon
+            small
+            class="mr-2"
+            @click="editItem(props.item)"
+          >
+            edit
+          </v-icon>
+          <v-icon
+            small
+            @click="deleteItem(props.item)"
+          >
+            delete
+          </v-icon>
+        </td>
+      </template>
+      
+      <template slot="no-data">
+        <v-btn color="primary" @click="cargarDocumentos">Reset</v-btn>
+      </template>
+    </v-data-table>
   </div>
 </template>
 
@@ -156,9 +159,6 @@ import VueTagsInput from '@johmun/vue-tags-input';
         imageName: '',
         imageUrl: '',
         imageFile: '',
-        snack: false,
-        snackColor: '',
-        snackText: '',
         documentos: null,
       headers: [
         {
@@ -223,6 +223,22 @@ import VueTagsInput from '@johmun/vue-tags-input';
         confirm('Are you sure you want to delete this item?') && this.desserts.splice(index, 1)
       },
 
+      close () {
+        this.dialog = false
+        setTimeout(() => {
+          this.editedItem = Object.assign({}, this.defaultItem)
+          this.editedIndex = -1
+        }, 300)
+      },
+
+      save () {
+        if (this.editedIndex > -1) {
+          Object.assign(this.desserts[this.editedIndex], this.editedItem)
+        } else {
+          this.desserts.push(this.editedItem)
+        }
+        this.close()
+      },
       pickFile () {
             this.$refs.image.click ()
         },
@@ -257,25 +273,7 @@ import VueTagsInput from '@johmun/vue-tags-input';
         else {
             this.usuario = "";
         }
-    },
-    save () {
-        this.snack = true
-        this.snackColor = 'success'
-        this.snackText = 'Data saved'
-      },
-      cancel () {
-        this.snack = true
-        this.snackColor = 'error'
-        this.snackText = 'Canceled'
-      },
-      open () {
-        this.snack = true
-        this.snackColor = 'info'
-        this.snackText = 'Dialog opened'
-      },
-      close () {
-        console.log('Dialog closed')
-      }
+    }
     }
   }
 </script>
