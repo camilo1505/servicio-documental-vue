@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Documentos from './views/Documentos.vue'
 import CrearDocumento from './views/crearDocumento.vue'
 import tabla from './components/data-tables/usage.vue'
-import PruebasDesigne from './components/data-tables/pruebasDesigne'
+import pruebasDesigne
 
 Vue.use(Router)
 
