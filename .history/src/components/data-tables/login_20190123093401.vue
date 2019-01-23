@@ -1,7 +1,7 @@
 <template>
     <v-form>
-        <v-container dark class="indigo lighten-4" align-center=true>
-            <v-img :src="`https://pngimage.net/wp-content/uploads/2018/06/user-login-images-png-5.png`" width=200 position="center"></v-img>
+        <v-container dark class="indigo lighten-4">
+            <v-img :src="`@assets/img/login`"></v-img>
             <v-layout justify-center>
                 <v-flex xs12 md4>
                     <v-text-field v-model="user" label="Usuario" required></v-text-field>
