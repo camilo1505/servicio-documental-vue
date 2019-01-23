@@ -91,21 +91,22 @@
       class="elevation-1"
       hide-actions
       item-key="id.counter"
-      
     >
       
       <template slot="items" slot-scope="props">
-        <td v-if="props.item.estado"><v-btn color="blue lighten-5" @click="props.item.estado=false">Publico <v-icon>lock_open</v-icon></v-btn></td>
-        <td v-else-if="!props.item.estado && propietario(props.item)" @click="props.item.estado=true"> <v-btn  color="lime lighten-5">Privado <v-icon>lock</v-icon></v-btn> </td>
+        <td v-if="props.item.estado" >
+         <v-btn color="blue lighten-5" v-model="estadoEdit" @click="props.item.estado=false,estadoEdit=false">Publico <v-icon>lock_open</v-icon></v-btn> 
+          </td>
+        <td  v-else-if="props.item.estado===false && propietario(props.item)" @click="props.item.estado=true,estadoEdit=true"> <v-btn v-model="estadoEdit" color="lime lighten-5">Privado <v-icon>lock</v-icon></v-btn> </td>
         <td v-if="props.item.estado || propietario(props.item)">
         <v-edit-dialog
             :return-value.sync="props.item.nombre"
             lazy
-            @save="save(props.item)"
+            @save="save"
             @cancel="cancel"
             @open="open"
             @close="close"
-            v-model="editedItem.nombreEdit"
+            v-model="nombreEdit"
             
           > {{ props.item.nombre }}
             <v-text-field
@@ -122,11 +123,10 @@
         <v-edit-dialog
             :return-value.sync="props.item.descripcion"
             lazy
-            @save="save(props.item)"
+            @save="save"
             @cancel="cancel"
             @open="open"
             @close="close"
-            v-model="editedItem.descripcionEdit"
           > {{ props.item.descripcion }}
             <v-text-field
               slot="input"
@@ -142,7 +142,7 @@
           <v-chip 
             v-for="tag in props.item.etiquetas" 
             :key="tag.id" 
-            v-model="editedItem.etiquetasEdit"
+            v-model="tag.isOpen"
           >
             {{tag}}
           </v-chip>
@@ -194,6 +194,7 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
           text: '',
           align: 'left',
           sortable: false,
+          value: ''
         },
         { text: 'Nombre del documento', value: 'Nombre del documento' },
         { text: 'Descripcion', value: 'Descripcion' },
@@ -211,7 +212,6 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
         autor:null
       },
       editedItem:{
-        id:null,
         nombreEdit:'',
         descripcionEdit:'',
         estadoEdit:false,
@@ -316,14 +316,10 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
             this.usuario = "";
         }
     },
-    save (documento) {
+    save () {
         this.snack = true
         this.snackColor = 'success'
         this.snackText = 'Data saved'
-        this.editedItem.archivo = documento.archivo
-        this.editedItem.etiquetasEdit = documento.etiquetas
-        this.editedItem.id = documento.id
-        this.editarDocumento()
       },
       cancel () {
         this.snack = true
@@ -341,13 +337,6 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
       },
       close () {
         console.log('Dialog closed')
-      },
-      editarDocumento(){
-        var documentoActual = this.editedItem
-            Axios
-            .put("http://localhost:8080/api/v1/documento/editarDocumento", documentoActual)
-            .then(Response => (this.estadoSolicitud = Response.status))
-            this.cargarDocumentos()
       }
     }
   }

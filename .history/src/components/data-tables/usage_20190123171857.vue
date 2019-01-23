@@ -211,7 +211,6 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
         autor:null
       },
       editedItem:{
-        id:null,
         nombreEdit:'',
         descripcionEdit:'',
         estadoEdit:false,

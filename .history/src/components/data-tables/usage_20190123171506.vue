@@ -211,7 +211,6 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
         autor:null
       },
       editedItem:{
-        id:null,
         nombreEdit:'',
         descripcionEdit:'',
         estadoEdit:false,
@@ -322,7 +321,6 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
         this.snackText = 'Data saved'
         this.editedItem.archivo = documento.archivo
         this.editedItem.etiquetasEdit = documento.etiquetas
-        this.editedItem.id = documento.id
         this.editarDocumento()
       },
       cancel () {
