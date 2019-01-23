@@ -14,11 +14,11 @@
             <div class="uploadBoxMain" v-else>
                 <p><strong>{{fileNameMessage}}</strong></p>
                 <ol>
-                    <li v-for="name in itemsNames" :key="name">{{name}}</li>
+                    <li v-for="name in itemsNames">{{name}}</li>
                 </ol>
                 <p><strong>{{fileSizeMessage}}</strong></p>
                 <ol>
-                    <li v-for="size in itemsSizes" :key="size">{{size}}</li>
+                    <li v-for="size in itemsSizes">{{size}}</li>
                 </ol>
                 <p><strong>{{totalFileMessage}}</strong> {{itemsAdded}}</p>
                 <p><strong>{{totalUploadSizeMessage}}</strong> {{itemsTotalSize}}</p>
@@ -45,7 +45,8 @@
 
 <script>
 require('es6-promise').polyfill();
-import axios from "axios"
+
+component: {axios}
 export default {
     props: {
         postURL: {

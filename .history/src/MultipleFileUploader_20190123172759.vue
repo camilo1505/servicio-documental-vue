@@ -45,7 +45,7 @@
 
 <script>
 require('es6-promise').polyfill();
-import axios from "axios"
+
 export default {
     props: {
         postURL: {

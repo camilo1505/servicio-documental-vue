@@ -18,7 +18,7 @@
                 </ol>
                 <p><strong>{{fileSizeMessage}}</strong></p>
                 <ol>
-                    <li v-for="size in itemsSizes" :key="size">{{size}}</li>
+                    <li v-for="size in itemsSizes" :key="name">{{size}}</li>
                 </ol>
                 <p><strong>{{totalFileMessage}}</strong> {{itemsAdded}}</p>
                 <p><strong>{{totalUploadSizeMessage}}</strong> {{itemsTotalSize}}</p>
@@ -45,7 +45,7 @@
 
 <script>
 require('es6-promise').polyfill();
-import axios from "axios"
+
 export default {
     props: {
         postURL: {
