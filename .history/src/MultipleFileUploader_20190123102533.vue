@@ -104,7 +104,7 @@ export default {
         },
         fileSizeMessage: {
           type: String,
-          default: 'Tamaño de los archivos subidos '
+          default: 'Tamaño: '
         },
         totalFileMessage: {
           type: String,
@@ -136,11 +136,11 @@ export default {
         },
         maxFilesErrorMessage:  {
           type: String,
-          default: 'No se pueden añadir mas archivos, añada el resto despues'
+          default: 'Maximum files that can be added to uploader'
         },
         retryErrorMessage: {
           type: String,
-          default: 'Por favor remueva los archivos o intente de nuevo.'
+          default: 'Please remove the files and try again.'
         },
         httpMethodErrorMessage: {
           type: String,

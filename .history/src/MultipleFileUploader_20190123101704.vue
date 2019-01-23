@@ -28,11 +28,10 @@
                 </div>
             </div>
             <div>
-                <!-- botones de subir o bajar la informacion -->
                 <button type="submit" class="btn btn-primary btn-black btn-round" :disabled="itemsAdded < minItems || itemsAdded > maxItems">
-                
+                    {{uploadButtonMessage}}
                 </button>
-                <button type="button" class="btn btn-default btn-round" @click="removeItems"></button>
+                <button type="button" class="btn btn-default btn-round" @click="removeItems">{{cancelButtonMessage}}</button>
             </div>
             <br>
             <div class="successMsg" v-if="successMsg !== ''">{{successMsg}}</div>
@@ -104,19 +103,19 @@ export default {
         },
         fileSizeMessage: {
           type: String,
-          default: 'Tamaño de los archivos subidos '
+          default: 'Sizes'
         },
         totalFileMessage: {
           type: String,
-          default: 'Total de archivos:'
+          default: 'Total files:'
         },
         totalUploadSizeMessage: {
           type: String,
-          default: 'Total tamaño de subida:'
+          default: 'Total upload size:'
         },
         removeFileMessage: {
           type: String,
-          default: 'Eliminar los archivos subidos'
+          default: 'Remove files'
         },
         uploadButtonMessage: {
           type: String,
@@ -128,19 +127,19 @@ export default {
         },
         fileUploadErrorMessage: {
           type: String,
-          default: 'A ocurrido un error'
+          default: 'An error has occurred'
         },
         minFilesErrorMessage: {
           type: String,
-          default: 'Debes añadir un archivo por lo menos'
+          default: 'Minimum files that need to be added to uploader'
         },
         maxFilesErrorMessage:  {
           type: String,
-          default: 'No se pueden añadir mas archivos, añada el resto despues'
+          default: 'Maximum files that can be added to uploader'
         },
         retryErrorMessage: {
           type: String,
-          default: 'Por favor remueva los archivos o intente de nuevo.'
+          default: 'Please remove the files and try again.'
         },
         httpMethodErrorMessage: {
           type: String,
@@ -269,11 +268,11 @@ export default {
 .uploadBox .dropArea {
     position: relative;
     width: 100%;
-    height: 210px;
+    height: 300px;
     border: 1px dashed #00ADCE;
     text-align: center;
     font-size: 2em;
-    padding-top: 30px;
+    padding-top: 80px;
 }
 
 .uploadBox .dropArea input {
@@ -306,8 +305,8 @@ export default {
     border: 3px sol;
     border-top: 3px solid #00ADCE;
     border-radius: 20%;
-    width: 80px;
-    height: 30px;
+    width: 70px;
+    height: 70px;
     animation: spin 1s linear infinite;
 }
 

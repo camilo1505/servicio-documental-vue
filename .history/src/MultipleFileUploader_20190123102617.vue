@@ -104,7 +104,7 @@ export default {
         },
         fileSizeMessage: {
           type: String,
-          default: 'Tamaño de los archivos subidos '
+          default: 'Tamaño: '
         },
         totalFileMessage: {
           type: String,
@@ -140,7 +140,7 @@ export default {
         },
         retryErrorMessage: {
           type: String,
-          default: 'Por favor remueva los archivos o intente de nuevo.'
+          default: 'Por favor remueva los archivos e intente de nuevo.'
         },
         httpMethodErrorMessage: {
           type: String,

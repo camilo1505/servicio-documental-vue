@@ -82,8 +82,9 @@
       :headers="headers"
       :items="documentos"
       class="elevation-1"
+      item-key="counter"
     >
-      <template slot="items" slot-scope="props">
+      <template slot="items" slot-scope="props" v-if="documentos">
         <td class="publico" v-if="props.item.estado" >Publico <v-icon small color="black">lock_open</v-icon></td>
         <td class="privado" v-else>Privado <v-icon small>lock</v-icon></td>
         
