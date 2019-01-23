@@ -145,6 +145,16 @@
           >
             {{tag}}
           </v-chip>
+          <v-combobox
+                    v-model="chips"
+                    :items="items"
+                    label="Aqui todas las etiquetas que quieras!"
+                    chips
+                    clearable
+                    prepend-icon="filter_list"
+                    solo
+                    multiple
+          >
         </td>
         <td v-if="props.item.estado || propietario(props.item)" class="text-xs-left">
           <v-icon

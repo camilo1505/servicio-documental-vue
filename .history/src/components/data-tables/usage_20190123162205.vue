@@ -142,6 +142,7 @@
             v-for="tag in props.item.etiquetas" 
             :key="tag.id" 
             v-model="tag.isOpen"
+            close="tag.id=false"
           >
             {{tag}}
           </v-chip>

@@ -145,6 +145,7 @@
           >
             {{tag}}
           </v-chip>
+          <v-btn> </v-btn>
         </td>
         <td v-if="props.item.estado || propietario(props.item)" class="text-xs-left">
           <v-icon

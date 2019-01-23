@@ -142,9 +142,30 @@
             v-for="tag in props.item.etiquetas" 
             :key="tag.id" 
             v-model="tag.isOpen"
+
           >
             {{tag}}
           </v-chip>
+          <v-combobox
+                    v-model="chips"
+                    :items="props.item.etiquetas"
+                    label="Aqui todas las etiquetas que quieras!"
+                    chips
+                    clearable
+                    prepend-icon="filter_list"
+                    solo
+                    multiple
+                  >
+                    <template slot="selection" slot-scope="data">
+                      <v-chip
+                        :selected="data.selected"
+                        close
+                        @input="remove(data.item)"
+                      >
+                        <strong>{{ data.item }}</strong>&nbsp;
+                      </v-chip>
+                    </template>
+                  </v-combobox>
         </td>
         <td v-if="props.item.estado || propietario(props.item)" class="text-xs-left">
           <v-icon

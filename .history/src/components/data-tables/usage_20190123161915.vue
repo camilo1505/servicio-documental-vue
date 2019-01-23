@@ -142,9 +142,13 @@
             v-for="tag in props.item.etiquetas" 
             :key="tag.id" 
             v-model="tag.isOpen"
+            close
+
+
           >
             {{tag}}
           </v-chip>
+          <v-btn> </v-btn>
         </td>
         <td v-if="props.item.estado || propietario(props.item)" class="text-xs-left">
           <v-icon

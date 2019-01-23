@@ -95,8 +95,14 @@
       
       <template slot="items" slot-scope="props">
         <td v-if="props.item.estado">
-         <v-btn color="blue lighten-5" @click="props.item.estado=false">Publico <v-icon>lock_open</v-icon></v-btn> 
-          </td>
+          <v-edit-dialog
+            :return-value.sync="props.item.estado"
+            lazy
+            @save="save"
+            @cancel="cancel"
+            @open="open"
+            @close="close"
+          > <v-btn color="blue lighten-5" @click="props.item.estado=false">Publico <v-icon>lock_open</v-icon></v-btn> </td>
         <td v-else-if="props.item.estado===false && propietario(props.item)" @click="props.item.estado=true"> <v-btn color="lime lighten-5">Privado <v-icon>lock</v-icon></v-btn> </td>
         <td v-if="props.item.estado || propietario(props.item)">
         <v-edit-dialog

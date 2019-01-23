@@ -156,17 +156,6 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
         this.snack = true
         this.snackColor = 'info'
         this.snackText = 'Dialog opened'
-      },
-      close () {
-        console.log('Dialog closed')
-      },  
-      propietario(documento) {
-        if(documento.usuario == this.usuario) {
-            return true;
-        }
-        else {
-            return false;
-        }
       }
     }
   }

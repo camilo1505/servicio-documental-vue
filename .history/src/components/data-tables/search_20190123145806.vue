@@ -95,6 +95,7 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
         MultipleFileUploader
     },
     data: () => ({
+      return {
         search: '',
         documentos:[],
         usuario:null,
@@ -116,8 +117,9 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
         descripcion: '',
         estado: "privado",
         autor:null
+      },
       }
-    }),
+    },
     created() {
       this.initialize();
         
@@ -137,37 +139,7 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
         else {
             this.usuario = "";
         }
-      },
-      save () {
-        this.snack = true
-        this.snackColor = 'success'
-        this.snackText = 'Data saved'
-      },
-      cancel () {
-        this.snack = true
-        this.snackColor = 'error'
-        this.snackText = 'Canceled'
-      },
-      remove (item) {
-        this.chips.splice(this.chips.indexOf(item), 1)
-        this.chips = [...this.chips]
-      },
-      open () {
-        this.snack = true
-        this.snackColor = 'info'
-        this.snackText = 'Dialog opened'
-      },
-      close () {
-        console.log('Dialog closed')
-      },  
-      propietario(documento) {
-        if(documento.usuario == this.usuario) {
-            return true;
-        }
-        else {
-            return false;
-        }
-      }
+
     }
   }
 </script>

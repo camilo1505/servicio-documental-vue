@@ -138,13 +138,17 @@
         </td>
         <td v-if="props.item.estado || propietario(props.item)" class="text-xs-right">{{ props.item.usuario }}</td>
         <td v-if="props.item.estado || propietario(props.item)">
-          <v-chip 
-            v-for="tag in props.item.etiquetas" 
-            :key="tag.id" 
-            v-model="tag.isOpen"
+
+          <v-combobox
+                    v-model="chips"
+                    :items="props.item.etiquetas"
+                    label="Aqui todas las etiquetas que quieras!"
+                    chips
+                    clearable
+                    prepend-icon="filter_list"
+                    solo
+                    multiple
           >
-            {{tag}}
-          </v-chip>
         </td>
         <td v-if="props.item.estado || propietario(props.item)" class="text-xs-left">
           <v-icon

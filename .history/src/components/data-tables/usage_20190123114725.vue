@@ -10,11 +10,10 @@
         vertical
       >
       </v-divider>
-      <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
         append-icon="search"
-        label="Buscas un documento?"
+        label="Search"
         single-line
         hide-details
       ></v-text-field>
@@ -84,20 +83,19 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-            
     <v-data-table
       :headers="headers"
       :items="documentos"
       class="elevation-1"
       hide-actions
       item-key="id.counter"
+      :search="search"
     >
       
       <template slot="items" slot-scope="props">
-        <td v-if="props.item.estado">
-         <v-btn color="blue lighten-5" @click="props.item.estado=false">Publico <v-icon>lock_open</v-icon></v-btn> 
-          </td>
-        <td v-else-if="props.item.estado===false && propietario(props.item)" @click="props.item.estado=true"> <v-btn color="lime lighten-5">Privado <v-icon>lock</v-icon></v-btn> </td>
+        <td class="publico" v-if="props.item.estado" >Publico <v-icon small color="black">lock_open</v-icon></td>
+        <td class="privado" v-else-if="props.item.estado===false && propietario(props.item)">Privado <v-icon small>lock</v-icon></td>
+        
         <td v-if="props.item.estado || propietario(props.item)">
         <v-edit-dialog
             :return-value.sync="props.item.nombre"
@@ -331,6 +329,18 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
       },
       close () {
         console.log('Dialog closed')
+      },
+      toggleAll () {
+        if (this.selected.length) this.selected = []
+        else this.selected = this.desserts.slice()
+      },
+      changeSort (column) {
+        if (this.pagination.sortBy === column) {
+          this.pagination.descending = !this.pagination.descending
+        } else {
+          this.pagination.sortBy = column
+          this.pagination.descending = false
+        }
       }
     }
   }

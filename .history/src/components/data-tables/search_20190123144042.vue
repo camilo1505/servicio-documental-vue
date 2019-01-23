@@ -94,7 +94,8 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
     components: {
         MultipleFileUploader
     },
-    data: () => ({
+    data () {
+      return {
         search: '',
         documentos:[],
         usuario:null,
@@ -116,58 +117,11 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
         descripcion: '',
         estado: "privado",
         autor:null
+      },
       }
-    }),
-    created() {
-      this.initialize();
-        
     },
     methods:{
-      initialize(){
-        Axios
-        .get("http://localhost:8080/api/v1/documento/consultarDocumento?consulta=")
-        .then((response) => {
-          console.log("GET Response")
-          console.log(response.data)
-          this.documentos = response.data
-        })
-        if(localStorage.user) {
-            this.usuario = localStorage.user;
-        }
-        else {
-            this.usuario = "";
-        }
-      },
-      save () {
-        this.snack = true
-        this.snackColor = 'success'
-        this.snackText = 'Data saved'
-      },
-      cancel () {
-        this.snack = true
-        this.snackColor = 'error'
-        this.snackText = 'Canceled'
-      },
-      remove (item) {
-        this.chips.splice(this.chips.indexOf(item), 1)
-        this.chips = [...this.chips]
-      },
-      open () {
-        this.snack = true
-        this.snackColor = 'info'
-        this.snackText = 'Dialog opened'
-      },
-      close () {
-        console.log('Dialog closed')
-      },  
-      propietario(documento) {
-        if(documento.usuario == this.usuario) {
-            return true;
-        }
-        else {
-            return false;
-        }
-      }
+      
     }
   }
 </script>

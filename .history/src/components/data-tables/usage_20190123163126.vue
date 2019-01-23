@@ -142,6 +142,7 @@
             v-for="tag in props.item.etiquetas" 
             :key="tag.id" 
             v-model="tag.isOpen"
+            @click="borrarChip(tag)"
           >
             {{tag}}
           </v-chip>
@@ -331,6 +332,12 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
       },
       close () {
         console.log('Dialog closed')
+      },
+      borrarChip(tag){
+        this.chips.splice(this.chips.indexOf(tag), 1)
+        this.chips = [...this.chips]
+        console.log("elimine: " +tag)
+        console.log("la lista quedo: " + this.chips)
       }
     }
   }

@@ -142,9 +142,11 @@
             v-for="tag in props.item.etiquetas" 
             :key="tag.id" 
             v-model="tag.isOpen"
+
           >
             {{tag}}
           </v-chip>
+          <v-btn> añadir etiquetas?</v-btn>
         </td>
         <td v-if="props.item.estado || propietario(props.item)" class="text-xs-left">
           <v-icon
