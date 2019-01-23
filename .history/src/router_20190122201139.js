@@ -3,8 +3,7 @@ import Router from 'vue-router'
 import Documentos from './views/Documentos.vue'
 import CrearDocumento from './views/crearDocumento.vue'
 import tabla from './components/data-tables/usage.vue'
-import MultipleFileUpload from './components/data-tables/sort.vue'
-
+import PruebasDesigne from './components/data-tables/pruebasDesigne'
 import Login from './components/data-tables/login.vue'
 
 Vue.use(Router)
@@ -29,15 +28,14 @@ export default new Router({
       component: tabla
     },
     {
-      path: '/crud',
-      name: 'crud',
-      component: MultipleFileUpload,
+      path: '/pruebasDesigne',
+      name: 'pruebasDesigne',
+      component: PruebasDesigne
     },
     {
       path: '/login',
       name: 'login',
       component: Login
     }
-
   ]
 })
