@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Documentos from './views/Documentos.vue'
+import CrearDocumento from './views/crearDocumento.vue'
 import tabla from './components/data-tables/usage.vue'
 import MultipleFileUpload from './components/data-tables/sort.vue'
 import Registrarse from './components/data-tables/registrarse.vue'
@@ -14,8 +16,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'login',
-      component: Login
+      name: 'documentos',
+      component: Documentos
+    },
+    {
+      path: '/crearDocumento',
+      name: 'crearDocumento',
+      component: CrearDocumento
     },
     {
       path: '/tabla',
@@ -26,6 +33,11 @@ export default new Router({
       path: '/crud',
       name: 'crud',
       component: MultipleFileUpload,
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
     },
     {
       path: '/registrarse',

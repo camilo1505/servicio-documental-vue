@@ -3,22 +3,20 @@
         <v-container align-center=true>
             <v-layout row class="text-xs-center">
                 <v-flex xs3>
-                    <v-card height="500px" color="light-blue darken-4"></v-card>
+                    <img src="https://cdn.pixabay.com/photo/2014/09/23/15/03/background-457811_960_720.png" alt="login">
+                    <v-card height="500px" color="blue lighten-5"></v-card>
                 </v-flex>
-                    <v-flex xs4 class="grey lighten-2">
+                    <v-flex xs4 class="grey darken-1">
                         <v-container style="position: relative;top: 13%;" class="text-xs-center">
                             <v-card flat>
                                 <v-card-title primary-title>
-                                    <h4>Iniciar Secion</h4>
+                                    <h4>Login</h4>
                                 </v-card-title>
                                 <v-form>
-                                    <v-text-field v-model="user" prepend-icon="person" name="Username" label="Usuario"></v-text-field>
-                                    <v-text-field v-model="password" prepend-icon="lock" name="Password" label="Contraseña" type="password"></v-text-field>
+                                    <v-text-field prepend-icon="person" name="Username" label="Username"></v-text-field>
+                                    <v-text-field prepend-icon="lock" name="Password" label="Password" type="password"></v-text-field>
                                     <v-card-actions>
-                                        <v-btn primary large block @click="comprobarUsuario()">Iniciar</v-btn>
-                                        <v-btn primary large block @click="cerrarSecion()">Borrar</v-btn>
-                                        <p v-if="respuesta">{{usuario()}}</p>
-                                        <p v-if="respuesta == 200">{{redirigir()}}</p>
+                                        <v-btn primary large block>Login</v-btn>
                                     </v-card-actions>
                                 </v-form>
                             </v-card>

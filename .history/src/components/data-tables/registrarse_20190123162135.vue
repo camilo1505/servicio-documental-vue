@@ -12,12 +12,12 @@
                                     <h4>Registrarse</h4>
                                 </v-card-title>
                                 <v-form>
-                                    <v-text-field v-model="usuarioDTO.nombre" prepend-icon="edit" label="Nombre" required></v-text-field>
-                                    <v-text-field v-model="usuarioDTO.usuario" prepend-icon="person" label="Usuario" required></v-text-field>
-                                    <v-text-field v-model="usuarioDTO.password" prepend-icon="lock" label="Contraseña" type="password" required></v-text-field>
-                                    <v-text-field v-model="comprobarPass" prepend-icon="lock" label="Comprobar Contraseña" type="password" required></v-text-field>
+                                    <v-text-field v-model="usuarioDTO.nombre" prepend-icon="fas fa-edit" label="Nombre"></v-text-field>
+                                    <v-text-field v-model="usuarioDTO.usuario" prepend-icon="fas fa-edit" label="Usuario"></v-text-field>
+                                    <v-text-field v-model="usuarioDTO.password" prepend-icon="lock" label="Contraseña" type="password"></v-text-field>
+                                    <v-text-field v-model="comprobarPass" prepend-icon="lock" label="Comprovar Contraseña" type="password"></v-text-field>
                                     <v-card-actions>
-                                        <v-btn primary large block @click="guardarUsuario() " v-if="usuarioDTO.password == comprobarPass && usuarioDTO.nombre && usuarioDTO.password">Registrarse</v-btn>
+                                        <v-btn primary large block @click="guardarUsuario()">Guardar</v-btn>
                                         <v-btn primary large block @click="redirigir()">Cancelar</v-btn>
                                         <p v-if="respuesta">{{limpiarFormulario()}}</p>
                                     </v-card-actions>
@@ -37,9 +37,9 @@ export default {
     data() {
         return {
             usuarioDTO: {
-                nombre:null,
-                usuario:null,
-                password:null,
+                nombre:"",
+                usuario:"",
+                password:"",
                 tipoUsuario:false
             },
             comprobarPass: null,
@@ -56,10 +56,9 @@ export default {
             this.$router.push({name:'login'})
         },
         limpiarFormulario() {
-            this.usuarioDTO.nombre = null;
-            this.usuarioDTO.usuario = null;
-            this.usuarioDTO.password = null;
-            this.comprobarPass = null;
+            this.usuarioDTO.nombre = "";
+            this.usuarioDTO.usuario = "";
+            this.usuarioDTO.password = "";
             this.respuesta = null
         }
     }

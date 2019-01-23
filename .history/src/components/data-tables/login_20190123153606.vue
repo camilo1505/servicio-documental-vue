@@ -9,16 +9,14 @@
                         <v-container style="position: relative;top: 13%;" class="text-xs-center">
                             <v-card flat>
                                 <v-card-title primary-title>
-                                    <h4>Iniciar Secion</h4>
+                                    <h4>Login</h4>
                                 </v-card-title>
                                 <v-form>
-                                    <v-text-field v-model="user" prepend-icon="person" name="Username" label="Usuario"></v-text-field>
-                                    <v-text-field v-model="password" prepend-icon="lock" name="Password" label="Contraseña" type="password"></v-text-field>
+                                    <v-text-field v-model="user" prepend-icon="person" name="Username" label="Username"></v-text-field>
+                                    <v-text-field v-model="password" prepend-icon="lock" name="Password" label="Password" type="password"></v-text-field>
                                     <v-card-actions>
-                                        <v-btn primary large block @click="comprobarUsuario()">Iniciar</v-btn>
-                                        <v-btn primary large block @click="cerrarSecion()">Borrar</v-btn>
-                                        <p v-if="respuesta">{{usuario()}}</p>
-                                        <p v-if="respuesta == 200">{{redirigir()}}</p>
+                                        <v-btn primary large block>Iniciar</v-btn>
+                                        <v-btn primary large block>Cerrar Secion</v-btn>
                                     </v-card-actions>
                                 </v-form>
                             </v-card>
