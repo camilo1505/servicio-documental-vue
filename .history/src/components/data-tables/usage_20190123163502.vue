@@ -142,6 +142,8 @@
             v-for="tag in props.item.etiquetas" 
             :key="tag.id" 
             v-model="tag.isOpen"
+            
+        @click="borrarChip(tag)"
           >
             {{tag}}
           </v-chip>
@@ -187,6 +189,9 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
         snackText: '',
         documentos:[],
         usuario:null,
+      pagination: {
+        sortBy: 'nombre'
+      },
       selected: [],
       headers: [
         {

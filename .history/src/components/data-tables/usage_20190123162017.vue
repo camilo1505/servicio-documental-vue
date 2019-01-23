@@ -137,8 +137,10 @@
           </v-edit-dialog>
         </td>
         <td v-if="props.item.estado || propietario(props.item)" class="text-xs-right">{{ props.item.usuario }}</td>
+        <v-btn>
         <td v-if="props.item.estado || propietario(props.item)">
-          <v-chip 
+          
+            <v-chip 
             v-for="tag in props.item.etiquetas" 
             :key="tag.id" 
             v-model="tag.isOpen"
@@ -146,6 +148,7 @@
             {{tag}}
           </v-chip>
         </td>
+          </v-btn>
         <td v-if="props.item.estado || propietario(props.item)" class="text-xs-left">
           <v-icon
             small
@@ -187,6 +190,9 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
         snackText: '',
         documentos:[],
         usuario:null,
+      pagination: {
+        sortBy: 'nombre'
+      },
       selected: [],
       headers: [
         {

@@ -145,6 +145,7 @@
           >
             {{tag}}
           </v-chip>
+          <v-btn> </v-btn>
         </td>
         <td v-if="props.item.estado || propietario(props.item)" class="text-xs-left">
           <v-icon
@@ -187,6 +188,9 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
         snackText: '',
         documentos:[],
         usuario:null,
+      pagination: {
+        sortBy: 'nombre'
+      },
       selected: [],
       headers: [
         {

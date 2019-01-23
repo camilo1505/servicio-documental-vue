@@ -187,6 +187,9 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
         snackText: '',
         documentos:[],
         usuario:null,
+      pagination: {
+        sortBy: 'nombre'
+      },
       selected: [],
       headers: [
         {

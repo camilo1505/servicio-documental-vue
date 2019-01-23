@@ -138,13 +138,26 @@
         </td>
         <td v-if="props.item.estado || propietario(props.item)" class="text-xs-right">{{ props.item.usuario }}</td>
         <td v-if="props.item.estado || propietario(props.item)">
+         <v-btn
+        v-if="!chip1 && !chip2 && !chip3 && !chip4"
+        color="primary"
+        dark
+        @click="chip1 = true, chip2 = true, chip3 = true, chip4= true"
+      >
+        Reset Chips
+      </v-btn>
+    </div>
           <v-chip 
             v-for="tag in props.item.etiquetas" 
             :key="tag.id" 
             v-model="tag.isOpen"
+            close
+
+
           >
             {{tag}}
           </v-chip>
+          <v-btn> </v-btn>
         </td>
         <td v-if="props.item.estado || propietario(props.item)" class="text-xs-left">
           <v-icon
@@ -187,6 +200,9 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
         snackText: '',
         documentos:[],
         usuario:null,
+      pagination: {
+        sortBy: 'nombre'
+      },
       selected: [],
       headers: [
         {

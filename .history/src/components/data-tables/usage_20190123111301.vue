@@ -10,14 +10,7 @@
         vertical
       >
       </v-divider>
-      <v-spacer></v-spacer>
-      <v-text-field
-        v-model="search"
-        append-icon="search"
-        label="Buscas un documento?"
-        single-line
-        hide-details
-      ></v-text-field>
+          
     </v-toolbar>
     <v-dialog v-model="dialog" max-width="500px">
         <v-btn slot="activator" color="primary" dark class="mb-2">Nuevo Documento</v-btn>
@@ -84,20 +77,17 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-            
+    
     <v-data-table
       :headers="headers"
       :items="documentos"
       class="elevation-1"
-      hide-actions
-      item-key="id.counter"
+      hide-headers
     >
-      
       <template slot="items" slot-scope="props">
-        <td v-if="props.item.estado">
-         <v-btn color="blue lighten-5" @click="props.item.estado=false">Publico <v-icon>lock_open</v-icon></v-btn> 
-          </td>
-        <td v-else-if="props.item.estado===false && propietario(props.item)" @click="props.item.estado=true"> <v-btn color="lime lighten-5">Privado <v-icon>lock</v-icon></v-btn> </td>
+        <td class="publico" v-if="props.item.estado" >Publico <v-icon small color="black">lock_open</v-icon></td>
+        <td class="privado" v-else-if="props.item.estado===false && propietario(props.item)">Privado <v-icon small>lock</v-icon></td>
+        
         <td v-if="props.item.estado || propietario(props.item)">
         <v-edit-dialog
             :return-value.sync="props.item.nombre"
@@ -106,7 +96,6 @@
             @cancel="cancel"
             @open="open"
             @close="close"
-            
           > {{ props.item.nombre }}
             <v-text-field
               slot="input"
@@ -114,7 +103,6 @@
               label="Edit"
               single-line
               counter
-              v-if="propietario(props.item)"
             ></v-text-field>
           </v-edit-dialog>
         </td>
@@ -155,6 +143,9 @@
           </v-icon>
         </td>
       </template>
+      <template slot="no-data">
+        <v-btn color="primary" @click="cargarDocumentos">Reset</v-btn>
+      </template>
     </v-data-table>
 
     <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
@@ -187,15 +178,14 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
         snackText: '',
         documentos:[],
         usuario:null,
-      selected: [],
       headers: [
         {
-          text: '',
+          text: 'counter',
           align: 'left',
           sortable: false,
-          value: ''
+          value: 'counter'
         },
-        { text: 'Nombre del documento', value: 'Nombre del documento' },
+        { text: 'Nombre del Documento', value: 'Nombre del Documento' },
         { text: 'Descripcion', value: 'Descripcion' },
         { text: 'Autor', value: 'Autor' },
         { text: 'Etiquetas', align: 'center', value: 'Etiquetas' },
@@ -203,7 +193,6 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
       ],
       desserts: [],
       editedIndex: -1,
-      search: '',
       addItem: {
         nombre: '',
         descripcion: '',

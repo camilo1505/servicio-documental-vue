@@ -159,15 +159,7 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
       },
       close () {
         console.log('Dialog closed')
-      },  
-      propietario(documento) {
-        if(documento.usuario == this.usuario) {
-            return true;
-        }
-        else {
-            return false;
-        }
-      }
+      },
     }
   }
 </script>

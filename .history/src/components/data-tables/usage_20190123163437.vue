@@ -142,8 +142,10 @@
             v-for="tag in props.item.etiquetas" 
             :key="tag.id" 
             v-model="tag.isOpen"
+            
+        @click="borrarChip(tag)"
           >
-            {{tag}}
+            {{tag.id}}
           </v-chip>
         </td>
         <td v-if="props.item.estado || propietario(props.item)" class="text-xs-left">
@@ -187,6 +189,9 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
         snackText: '',
         documentos:[],
         usuario:null,
+      pagination: {
+        sortBy: 'nombre'
+      },
       selected: [],
       headers: [
         {
@@ -328,6 +333,12 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
       },
       close () {
         console.log('Dialog closed')
+      },
+      borrarChip(tag){
+        this.chips.splice(this.chips.indexOf(tag), 1)
+        this.chips = [...this.chips]
+        console.log("elimine: " +tag)
+        console.log("la lista quedo: " + this.chips)
       }
     }
   }
