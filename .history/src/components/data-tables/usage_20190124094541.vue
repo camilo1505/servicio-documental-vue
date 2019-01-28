@@ -320,7 +320,7 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
         this.editedItem.etiquetasEdit = documento.etiquetas
         console.log(this.editedItem.etiquetasEdit +"|" + documento.etiquetas + "\n")
         this.editedItem.id = documento.id
-        console.log(this.editedItem.id.counter +"|" + documento.id.counter + "\n")
+        console.log(this.editedItem.id +"|" + documento.id + "\n")
         if(this.editedItem.nombreEdit==''){
           this.editedItem.nombreEdit = documento.nombre
         }
@@ -352,12 +352,11 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
       },
       editarDocumento(){
         
-        console.log("esto es lo que se envia")
-        console.log(this.editedItem.id.counter +"|\n")
+        console.log(this.editedItem.archivo +"|\n")
+        console.log(this.editedItem.etiquetasEdit +"|\n")
+        console.log(this.editedItem.id +"|\n")
         console.log(this.editedItem.nombreEdit +"|\n")
         console.log(this.editedItem.descripcionEdit +"|\n")
-        console.log(this.editedItem.etiquetasEdit +"|\n")
-        console.log(this.editedItem.archivo +"|\n")
         console.log(this.editedItem.estadoEdit +"|\n")
         Axios
         .put("http://localhost:8080/api/v1/documento/editarDocumento", this.editedItem)

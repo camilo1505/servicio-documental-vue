@@ -320,7 +320,7 @@ import MultipleFileUploader from '../../MultipleFileUploader.vue'
         this.editedItem.etiquetasEdit = documento.etiquetas
         console.log(this.editedItem.etiquetasEdit +"|" + documento.etiquetas + "\n")
         this.editedItem.id = documento.id
-        console.log(this.editedItem.id.counter +"|" + documento.id.counter + "\n")
+        console.log(this.editedItem.id +"|" + documento.id + "\n")
         if(this.editedItem.nombreEdit==''){
           this.editedItem.nombreEdit = documento.nombre
         }
