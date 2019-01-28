@@ -49,7 +49,7 @@
           > {{ props.item.nombre }}
             <v-text-field
               slot="input"
-              v-model="editedItem.nombreEdit"
+              v-model="props.item.nombre"
               label="Edit"
               single-line
               counter
@@ -192,6 +192,11 @@ import NuevoDocumento from './nuevoDocumento.vue'
           this.addItem.estado = "Privado"
         }
       },
+      editItem (item) {
+        this.editedIndex = this.desserts.indexOf(item)
+        this.editedItem = Object.assign({}, item)
+        this.dialog = true
+      },
       cambioBusqueda() {
         if(this.addItem.estado) {
             this.addItem.estado = false;
@@ -253,21 +258,8 @@ import NuevoDocumento from './nuevoDocumento.vue'
         this.snackColor = 'success'
         this.snackText = 'Data saved'
         this.editedItem.archivo = documento.archivo
-        console.log(this.editedItem.archivo +"|" + documento.archivo + "\n")
         this.editedItem.etiquetasEdit = documento.etiquetas
-        console.log(this.editedItem.etiquetasEdit +"|" + documento.etiquetas + "\n")
         this.editedItem.id = documento.id
-        console.log(this.editedItem.id.counter +"|" + documento.id.counter + "\n")
-        if(this.editedItem.nombreEdit==''){
-          this.editedItem.nombreEdit = documento.nombre
-        }
-        console.log(this.editedItem.nombreEdit +"|" + documento.nombre + "\n")
-        if(this.editedItem.descripcionEdit==''){
-          this.editedItem.descripcionEdit= documento.descripcion
-        }
-        console.log(this.editedItem.descripcionEdit +"|" + documento.descripcion + "\n")
-        this.editedItem.estadoEdit = documento.estado
-        console.log(this.editedItem.estadoEdit +"|" + documento.estado + "\n")
         this.editarDocumento()
       },
       cancel () {
@@ -288,18 +280,11 @@ import NuevoDocumento from './nuevoDocumento.vue'
         console.log('Dialog closed')
       },
       editarDocumento(){
-        
-        console.log("esto es lo que se envia")
-        console.log(this.editedItem.id.counter +"|\n")
-        console.log(this.editedItem.nombreEdit +"|\n")
-        console.log(this.editedItem.descripcionEdit +"|\n")
-        console.log(this.editedItem.etiquetasEdit +"|\n")
-        console.log(this.editedItem.archivo +"|\n")
-        console.log(this.editedItem.estadoEdit +"|\n")
-        Axios
-        .put("http://localhost:8080/api/v1/documento/editarDocumento", this.editedItem)
-        .then(Response => (this.estadoSolicitud = Response.status))
-        this.cargarDocumentos()
+        var documentoActual = this.editedItem
+            Axios
+            .put("http://localhost:8080/api/v1/documento/editarDocumento", documentoActual)
+            .then(Response => (this.estadoSolicitud = Response.status))
+            this.cargarDocumentos()
       }
     }
   }
