@@ -20,8 +20,7 @@
       ></v-text-field>
     </v-toolbar>
     <v-dialog v-model="dialog" max-width="500px">
-      <v-btn slot="activator" color="primary" dark class="mb-2">Nuevo Documento</v-btn>
-      <nuevo-documento></nuevo-documento>
+      
     </v-dialog>
             
     <v-data-table
@@ -106,11 +105,7 @@
 
 <script>
 import Axios from 'axios';
-import NuevoDocumento from './nuevoDocumento.vue'
   export default {
-    components: {
-      NuevoDocumento
-    },
     data: () => ({
         dialog: false,
         chips: [],
