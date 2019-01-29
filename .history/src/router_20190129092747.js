@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import tabla from './components/documentos/usage.vue'
+import tabla from './components/usage.vue'
 import MultipleFileUpload from './components/sort.vue'
 import Registrarse from './components/registrarse.vue'
 
