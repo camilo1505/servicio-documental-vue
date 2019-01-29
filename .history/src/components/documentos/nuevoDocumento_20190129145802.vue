@@ -46,7 +46,6 @@
                     <v-btn color="blue darken-1" flat @click="dialogo = false">Cancelar</v-btn>
                     <v-btn color="blue darken-1" flat @click="guardarDocumento()">Guardar</v-btn>
                 </v-card-actions>
-                <p v-if="documentos">{{enviarDocumentos()}}</p>
             </v-card>
         </v-dialog>
     </div>
@@ -72,8 +71,7 @@ export default {
             chips: [],
             items: [],
             labelSwitch: "Privado",
-            dialogo: false,
-            documentos: null
+            dialogo: false
         }
     },
     methods: {
@@ -90,23 +88,12 @@ export default {
             }
         },
         guardarDocumento() {
-            var documento = this.nuevoDocumento;
-            documento.etiquetas = this.chips;
-            documento.autor = this.$localStorage.user;
+            var documento = this.nuevoDocumento
+            documento.etiquetas = this.chips
+            documento.autor = this.$localStorage.user
 
             Axios
-            .post("http://localhost:8080/api/v1/documento/crearDocumento",documento);
-
-            this.cargarDocumentos();
-        },
-        cargarDocumentos() {
-            Axios
-            .get("http://localhost:8080/api/v1/documento/consultarDocumento?consulta=")
-            .then(Response =>(this.documentos = Response.data));
-        },
-        enviarDocumentos() {
-            this.$emit('cambioMensage', this.documentos);
-            this.documentos = null;
+            .post("http://localhost:8080/api/v1/documento/crearDocumento",documento)
         }
     }
 }

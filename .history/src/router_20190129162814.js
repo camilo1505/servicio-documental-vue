@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import tabla from './components/documentos/usage.vue'
 import MultipleFileUpload from './components/sort.vue'
 import Registrarse from './components/registrarse.vue'
+import Tabla from './components/documentos/Tabla.vue'
 
 
 import Login from './components/login.vue'
@@ -32,6 +33,12 @@ export default new Router({
       path: '/registrarse',
       name: 'registrarse',
       component: Registrarse
+    },
+    {
+      path: '/tabla',
+      name: 'tabala',
+      component: Tabla
     }
+
   ]
 })

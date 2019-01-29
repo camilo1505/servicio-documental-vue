@@ -46,7 +46,6 @@
                     <v-btn color="blue darken-1" flat @click="dialogo = false">Cancelar</v-btn>
                     <v-btn color="blue darken-1" flat @click="guardarDocumento()">Guardar</v-btn>
                 </v-card-actions>
-                <p v-if="documentos">{{enviarDocumentos()}}</p>
             </v-card>
         </v-dialog>
     </div>
@@ -103,10 +102,6 @@ export default {
             Axios
             .get("http://localhost:8080/api/v1/documento/consultarDocumento?consulta=")
             .then(Response =>(this.documentos = Response.data));
-        },
-        enviarDocumentos() {
-            this.$emit('cambioMensage', this.documentos);
-            this.documentos = null;
         }
     }
 }

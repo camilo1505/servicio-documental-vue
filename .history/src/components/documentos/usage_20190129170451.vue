@@ -11,7 +11,6 @@
       >
       </v-divider>
       <v-spacer></v-spacer>
-      <!-- Buscar Documento -->
       <buscar-documentos @cambioMensage="documentos = $event"></buscar-documentos>
     </v-toolbar>
     <!-- Nuevo Documento -->
@@ -127,10 +126,10 @@ import BuscarDocumentos from './BuscarDocumentos.vue'
           align: 'left',
           sortable: false,
         },
-        { text: 'Nombre del documento', value: 'Nombre del documento', sortable: false },
-        { text: 'Descripcion', value: 'Descripcion', sortable: false },
-        { text: 'Autor', value: 'Autor', sortable: false },
-        { text: 'Etiquetas', align: 'center', value: 'Etiquetas', sortable: false },
+        { text: 'Nombre del documento', value: 'Nombre del documento' },
+        { text: 'Descripcion', value: 'Descripcion' },
+        { text: 'Autor', value: 'Autor' },
+        { text: 'Etiquetas', align: 'center', value: 'Etiquetas' },
         { text: 'Actions', value: 'name', sortable: false }
       ],
       desserts: [],

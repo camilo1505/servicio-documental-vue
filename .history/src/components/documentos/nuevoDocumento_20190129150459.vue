@@ -46,7 +46,7 @@
                     <v-btn color="blue darken-1" flat @click="dialogo = false">Cancelar</v-btn>
                     <v-btn color="blue darken-1" flat @click="guardarDocumento()">Guardar</v-btn>
                 </v-card-actions>
-                <p v-if="documentos">{{enviarDocumentos()}}</p>
+                <p v-if="documentos"></p>
             </v-card>
         </v-dialog>
     </div>

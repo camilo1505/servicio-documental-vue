@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import tabla from './components/documentos/usage.vue'
 import MultipleFileUpload from './components/sort.vue'
 import Registrarse from './components/registrarse.vue'
+import Tabla2 from './components/documentos/Tabla.vue'
 
 
 import Login from './components/login.vue'
