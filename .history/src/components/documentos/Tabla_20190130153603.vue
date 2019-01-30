@@ -1,6 +1,5 @@
 <template>
     <div>
-        <v-app>
          <v-data-table
         :headers="headers"
         :items="documentos"
@@ -10,9 +9,9 @@
         >
         
         <template slot="items" slot-scope="props">
-            <td v-if="props.item.estado"><v-btn color="blue lighten-5" @click="cambiarEstado(props.item)">Publico <v-icon>lock_open</v-icon></v-btn></td>
-            <td v-else @click="cambiarEstado(props.item)"> <v-btn  color="lime lighten-5">Privado <v-icon>lock</v-icon></v-btn> </td>
-            <td>
+            <td v-if="props.item.estado"><v-btn color="blue lighten-5" @click="props.item.estado=false">Publico <v-icon>lock_open</v-icon></v-btn></td>
+            <td v-else @click="props.item.estado=true"> <v-btn  color="lime lighten-5">Privado <v-icon>lock</v-icon></v-btn> </td>
+            <td v-if="props.item.estado">
             <v-edit-dialog
                 :return-value.sync="props.item.nombre"
                 lazy
@@ -24,7 +23,6 @@
                 
             > {{ props.item.nombre }}
                 <v-text-field
-                v-if="!props.item.estado"
                 slot="input"
                 v-model="props.item.nombre"
                 label="Edit"
@@ -33,7 +31,7 @@
                 ></v-text-field>
             </v-edit-dialog>
             </td>
-            <td>
+            <td v-if="props.item.estado">
             <v-edit-dialog
                 :return-value.sync="props.item.descripcion"
                 lazy
@@ -44,7 +42,6 @@
                 v-model="editedItem.descripcionEdit"
             > {{ props.item.descripcion }}
                 <v-text-field
-                v-if="!props.item.estado"
                 slot="input"
                 v-model="props.item.descripcion"
                 label="Edit"
@@ -53,8 +50,8 @@
                 ></v-text-field>
             </v-edit-dialog>
             </td>
-            <td class="text-xs-right">{{ props.item.usuario }}</td>
-            <td>
+            <td v-if="props.item.estado" class="text-xs-right">{{ props.item.usuario }}</td>
+            <td v-if="props.item.estado">
             <v-chip 
                 v-for="tag in props.item.etiquetas" 
                 :key="tag" 
@@ -62,11 +59,10 @@
                 {{tag}}
             </v-chip>
             </td>
-            <td class="text-xs-left">
+            <td v-if="props.item.estado" class="text-xs-left">
             <v-icon
-                v-if="props.item.usuario === usuario"
                 small
-                @click="eliminarDocumento(props.item)"
+                @click="deleteItem(props.item)"
             >
                 delete
             </v-icon>
@@ -78,8 +74,6 @@
             {{ snackText }}
             <v-btn flat @click="snack = false">Close</v-btn>
         </v-snackbar>
-        <p>{{actualizarDocumentos()}}</p>
-        </v-app>
     </div>
 </template>
 
@@ -114,12 +108,12 @@ export default {
             snackColor: '',
             snackText: '',
             documentos:[],
-            usuario: null,
-            estadoSolicitud: null
+            usuario: null
         }
     },
     created() {
       this.initialize();
+        
     },
     methods: {
         initialize(){
@@ -130,13 +124,13 @@ export default {
             console.log(response.data)
             this.documentos = response.data
             })
-            .catch(this.error(Response.status))
             if(localStorage.user) {
                 this.usuario = localStorage.user;
             }
             else {
                 this.usuario = "";
             }
+
         },
         editItem (item) {
             this.editedIndex = this.desserts.indexOf(item)
@@ -144,37 +138,22 @@ export default {
             this.dialog = true
         },
         save (documento) {
-            this.snack = true
-            this.snackColor = 'success'
-            this.snackText = 'Cambio Realizado'
-            console.log(documento)
-            this.editarDocumento(documento)
+        this.snack = true
+        this.snackColor = 'success'
+        this.snackText = 'Data saved'
+        this.editedItem.archivo = documento.archivo
+        this.editedItem.etiquetasEdit = documento.etiquetas
+        this.editedItem.id = documento.id
+        this.editarDocumento()
       },
       cancel () {
         this.snack = true
         this.snackColor = 'error'
         this.snackText = 'Canceled'
       },
-      borrar (documento) {
-        this.snack = true;
-        this.snackColor = 'success';
-        this.snackText = 'Documento Eliminado'
-        Axios
-        .delete("http://localhost:8080/api/v1/documento/eliminarDocumento?nombreDocumento=" + documento.nombre + "&usuario=" + localStorage.user)
-        .then(Response => (this.estadoSolicitud = Response.status))
-        .catch(this.error(Response.status))
-      },
-      error(estado) {
-          console.log(estado)
-          if(estado == 200) {
-              this.save()
-          }
-          else {
-            this.snack = true
-            this.snackColor = 'error'
-            this.snackText = 'Oops, Ha ocurrido un error'
-          }
-        
+      remove (item) {
+        this.chips.splice(this.chips.indexOf(item), 1)
+        this.chips = [...this.chips]
       },
       open () {
         this.snack = true
@@ -184,33 +163,14 @@ export default {
       close () {
         console.log('Dialog closed')
       },
-      editarDocumento(documento){
+      editarDocumento(){
+        var documentoActual = this.editedItem
             Axios
-            .put("http://localhost:8080/api/v1/documento/editarDocumento", documento)
+            .put("http://localhost:8080/api/v1/documento/editarDocumento", documentoActual)
             .then(Response => (this.estadoSolicitud = Response.status))
-            .catch(this.error(Response.status))
-        },
-        actualizarDocumentos() {
-            this.$emit('cambioDocumentos', this.documentos);
-        },
-        cambiarEstado(documento) {
-            if(documento.usuario == localStorage.user) {
-                if(documento.estado) {
-                    documento.estado = false;
-                }
-                else {
-                    documento.estado = true;
-                }
-                this.save(documento);
-            }
-        },
-        eliminarDocumento(documento) {
-            if(documento.usuario == localStorage.user) {
-                const index = this.documentos.indexOf(documento)
-                confirm("Esta seguro que quiere eliminar este Documento?") && this.documentos.splice(index,1);
-                this.borrar(documento)
-            }
-        }
+            this.cargarDocumentos()
+      }
+        
     },
 }
 </script>

@@ -66,8 +66,7 @@ export default {
             this.usuarioDTO.usuario = null;
             this.usuarioDTO.password = null;
             this.comprobarPass = null;
-            this.respuesta = null;
-            this.redirigir();
+            this.respuesta = null
         }
     }
 }

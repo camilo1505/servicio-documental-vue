@@ -13,7 +13,7 @@
         <buscar-documentos @cambioMensage="documentos = $event"></buscar-documentos>
       </v-toolbar>
       <!--Tabla con los documentos-->
-      <tabla @cambioDocumentos="documentos = $event"></tabla>
+      <tabla :docs="documentos"></tabla>
     </v-app>
   </div>
 </template>

@@ -114,8 +114,7 @@ export default {
             snackColor: '',
             snackText: '',
             documentos:[],
-            usuario: null,
-            estadoSolicitud: null
+            usuario: null
         }
     },
     created() {
@@ -130,7 +129,6 @@ export default {
             console.log(response.data)
             this.documentos = response.data
             })
-            .catch(this.error(Response.status))
             if(localStorage.user) {
                 this.usuario = localStorage.user;
             }
@@ -146,7 +144,7 @@ export default {
         save (documento) {
             this.snack = true
             this.snackColor = 'success'
-            this.snackText = 'Cambio Realizado'
+            this.snackText = 'Data saved'
             console.log(documento)
             this.editarDocumento(documento)
       },
@@ -155,26 +153,9 @@ export default {
         this.snackColor = 'error'
         this.snackText = 'Canceled'
       },
-      borrar (documento) {
-        this.snack = true;
-        this.snackColor = 'success';
-        this.snackText = 'Documento Eliminado'
-        Axios
-        .delete("http://localhost:8080/api/v1/documento/eliminarDocumento?nombreDocumento=" + documento.nombre + "&usuario=" + localStorage.user)
-        .then(Response => (this.estadoSolicitud = Response.status))
-        .catch(this.error(Response.status))
-      },
-      error(estado) {
-          console.log(estado)
-          if(estado == 200) {
-              this.save()
-          }
-          else {
-            this.snack = true
-            this.snackColor = 'error'
-            this.snackText = 'Oops, Ha ocurrido un error'
-          }
-        
+      remove (item) {
+        this.chips.splice(this.chips.indexOf(item), 1)
+        this.chips = [...this.chips]
       },
       open () {
         this.snack = true
@@ -188,7 +169,6 @@ export default {
             Axios
             .put("http://localhost:8080/api/v1/documento/editarDocumento", documento)
             .then(Response => (this.estadoSolicitud = Response.status))
-            .catch(this.error(Response.status))
         },
         actualizarDocumentos() {
             this.$emit('cambioDocumentos', this.documentos);
@@ -202,13 +182,6 @@ export default {
                     documento.estado = true;
                 }
                 this.save(documento);
-            }
-        },
-        eliminarDocumento(documento) {
-            if(documento.usuario == localStorage.user) {
-                const index = this.documentos.indexOf(documento)
-                confirm("Esta seguro que quiere eliminar este Documento?") && this.documentos.splice(index,1);
-                this.borrar(documento)
             }
         }
     },

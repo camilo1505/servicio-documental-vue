@@ -165,7 +165,6 @@ export default {
         .catch(this.error(Response.status))
       },
       error(estado) {
-          console.log(estado)
           if(estado == 200) {
               this.save()
           }

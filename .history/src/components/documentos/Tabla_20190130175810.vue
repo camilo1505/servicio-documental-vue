@@ -163,9 +163,9 @@ export default {
         .delete("http://localhost:8080/api/v1/documento/eliminarDocumento?nombreDocumento=" + documento.nombre + "&usuario=" + localStorage.user)
         .then(Response => (this.estadoSolicitud = Response.status))
         .catch(this.error(Response.status))
+        console.log(this.estadoSolicitud)
       },
       error(estado) {
-          console.log(estado)
           if(estado == 200) {
               this.save()
           }

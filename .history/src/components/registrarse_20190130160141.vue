@@ -22,7 +22,7 @@
                                         <v-card-actions>
                                             <v-btn primary large block @click="guardarUsuario() " v-if="usuarioDTO.password == comprobarPass && usuarioDTO.nombre && usuarioDTO.password">Registrarse</v-btn>
                                             <v-btn primary large block @click="redirigir()">Cancelar</v-btn>
-                                            <p v-if="respuesta == 200">{{limpiarFormulario()}}</p>
+                                            <p v-if="respuesta">{{limpiarFormulario()}}</p>
                                         </v-card-actions>
                                     </v-form>
                                 </v-card>
@@ -54,7 +54,7 @@ export default {
         guardarUsuario() {
             if(this.usuarioDTO.nombre && this.usuarioDTO.usuario && this.usuarioDTO.password) {
                 Axios.post("http://localhost:8080/api/v1/usuario/crearUsuario", this.usuarioDTO)
-                .then(Response => (this.respuesta = Response.status))
+                .then(Response => (this.respuesta = Response.data))
             }
         },
 
@@ -66,8 +66,7 @@ export default {
             this.usuarioDTO.usuario = null;
             this.usuarioDTO.password = null;
             this.comprobarPass = null;
-            this.respuesta = null;
-            this.redirigir();
+            this.respuesta = null
         }
     }
 }

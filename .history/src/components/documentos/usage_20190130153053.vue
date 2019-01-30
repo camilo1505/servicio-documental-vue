@@ -13,7 +13,7 @@
         <buscar-documentos @cambioMensage="documentos = $event"></buscar-documentos>
       </v-toolbar>
       <!--Tabla con los documentos-->
-      <tabla @cambioDocumentos="documentos = $event"></tabla>
+      <tabla></tabla>
     </v-app>
   </div>
 </template>
@@ -35,21 +35,12 @@ import Tabla from './Tabla.vue';
         error: null
       }
     },
-    created() {
-      this.inicializar();
-    },
     methods: {
       inicializar() {
         Axios
         .get("http://localhost:8080/api/v1/documento/documentos?usuario=" + localStorage.user)
         .then(Response =>(this.documentos = Response.data))
-        .catch(Response => (this.error = Response.error));
-        if(localStorage.user) {
-          this.usuario = localStorage.user;
-        }
-        else {
-          this.$router.push({name:'login'})
-        }
+        .catch(Response => (this.error = Response.error))
       }
     }
   }

@@ -130,7 +130,6 @@ export default {
             console.log(response.data)
             this.documentos = response.data
             })
-            .catch(this.error(Response.status))
             if(localStorage.user) {
                 this.usuario = localStorage.user;
             }
@@ -165,16 +164,12 @@ export default {
         .catch(this.error(Response.status))
       },
       error(estado) {
-          console.log(estado)
           if(estado == 200) {
-              this.save()
+              this.save
           }
-          else {
-            this.snack = true
-            this.snackColor = 'error'
-            this.snackText = 'Oops, Ha ocurrido un error'
-          }
-        
+        this.snack = true
+        this.snackColor = 'error'
+        this.snackText = 'Oops, Ha ocurrido un error'
       },
       open () {
         this.snack = true
@@ -188,7 +183,6 @@ export default {
             Axios
             .put("http://localhost:8080/api/v1/documento/editarDocumento", documento)
             .then(Response => (this.estadoSolicitud = Response.status))
-            .catch(this.error(Response.status))
         },
         actualizarDocumentos() {
             this.$emit('cambioDocumentos', this.documentos);
