@@ -21,6 +21,10 @@
 
     <tabla></tabla>
 
+    <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
+      {{ snackText }}
+      <v-btn flat @click="snack = false">Close</v-btn>
+    </v-snackbar>
     </v-app>
   </div>
 </template>
@@ -45,7 +49,10 @@ import Tabla from './Tabla.vue';
         imageUrl: '',
         imageFile: '',
         switch1: false,
-        
+        snack: false,
+        snackColor: '',
+        snackText: '',
+        documentos:[],
         usuario:null,
       selected: [],
       
@@ -58,8 +65,20 @@ import Tabla from './Tabla.vue';
         estado: "privado",
         autor:null
       },
-     
+      editedItem:{
+        id:null,
+        nombreEdit:'',
+        descripcionEdit:'',
+        estadoEdit:false,
+        etiquetasEdit:[],
+        archivo:[],
+        usuario:localStorage.user
+      }
     }),
+    created() {
+      this.initialize();
+        
+    },
 
     watch: {
       dialog (val) {
@@ -67,7 +86,22 @@ import Tabla from './Tabla.vue';
       }
     },
     methods: {
-      
+      initialize(){
+        Axios
+        .get("http://localhost:8080/api/v1/documento/documentos?usuario=" + localStorage.user)
+        .then((response) => {
+          console.log("GET Response")
+          console.log(response.data)
+          this.documentos = response.data
+        })
+        if(localStorage.user) {
+            this.usuario = localStorage.user;
+        }
+        else {
+            this.usuario = "";
+        }
+
+      },
       cambiarSwitch(){
         if(this.switch1){
           this.addItem.estado = "Publico"
@@ -76,7 +110,11 @@ import Tabla from './Tabla.vue';
           this.addItem.estado = "Privado"
         }
       },
-      
+      editItem (item) {
+        this.editedIndex = this.desserts.indexOf(item)
+        this.editedItem = Object.assign({}, item)
+        this.dialog = true
+      },
       cambioBusqueda() {
         if(this.addItem.estado) {
             this.addItem.estado = false;
@@ -133,7 +171,39 @@ import Tabla from './Tabla.vue';
             this.usuario = "";
         }
     },
-    
+    save (documento) {
+        this.snack = true
+        this.snackColor = 'success'
+        this.snackText = 'Data saved'
+        this.editedItem.archivo = documento.archivo
+        this.editedItem.etiquetasEdit = documento.etiquetas
+        this.editedItem.id = documento.id
+        this.editarDocumento()
+      },
+      cancel () {
+        this.snack = true
+        this.snackColor = 'error'
+        this.snackText = 'Canceled'
+      },
+      remove (item) {
+        this.chips.splice(this.chips.indexOf(item), 1)
+        this.chips = [...this.chips]
+      },
+      open () {
+        this.snack = true
+        this.snackColor = 'info'
+        this.snackText = 'Dialog opened'
+      },
+      close () {
+        console.log('Dialog closed')
+      },
+      editarDocumento(){
+        var documentoActual = this.editedItem
+            Axios
+            .put("http://localhost:8080/api/v1/documento/editarDocumento", documentoActual)
+            .then(Response => (this.estadoSolicitud = Response.status))
+            this.cargarDocumentos()
+      }
     }
   }
 </script>
