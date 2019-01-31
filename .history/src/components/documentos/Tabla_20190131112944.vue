@@ -63,7 +63,13 @@
             </v-chip>
             </td>
             <td class="text-xs-left">
-            <v-btn flat small v-if="props.item.usuario === usuario" @click="eliminarDocumento(props.item)"><v-icon  small="" > delete </v-icon></v-btn>
+            <v-icon
+                v-if="props.item.usuario === usuario"
+                small
+                @click="eliminarDocumento(props.item)"
+            >
+                delete
+            </v-icon>
             </td>
         </template>
         </v-data-table>
@@ -72,7 +78,7 @@
             {{ snackText }}
             <v-btn flat @click="snack = false">Close</v-btn>
         </v-snackbar>
-        <p v-if="shareDocs != null">{{initialize()}}</p>
+        <p>{{obtenerDocumentos(documentosComponente)}}</p>
         <p>{{actualizarDocumentos()}}</p>
         <p v-if="estadoSolicitud == 200"> {{manejadorRespuestas()}} </p>
         </v-app>
@@ -82,7 +88,7 @@
 <script>
 import Axios from 'axios';
 export default {
-    props: ['shareDocs'],
+    props: ['documentosComponente'],
     data() {
         return {
                 headers: [
@@ -116,7 +122,13 @@ export default {
     },
     methods: {
         initialize(){
-            this.documentos = this.shareDocs
+            Axios
+            .get("http://localhost:8080/api/v1/documento/documentos?usuario=" + localStorage.user)
+            .then((response) => {
+            console.log("GET Response")
+            console.log(response.data)
+            this.documentos = response.data
+            })
             if(localStorage.user) {
                 this.usuario = localStorage.user;
             }

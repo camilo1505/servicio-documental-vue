@@ -10,13 +10,13 @@
         <nuevo-documento></nuevo-documento>
         <v-divider class="mx-2" inset vertical> </v-divider>
         <!--Mis Documentos-->
-        <mis-documentos @misDocs="documentos = $event" @tipoCons="tipoConsulta = $event"></mis-documentos>
+        <mis-documentos @cambioDocumentos="documentos = $event"></mis-documentos>
         <v-spacer></v-spacer>
         <!-- Buscar Documento -->
-        <buscar-documentos @cambioMensage="documentos = $event" :shareDocs = "documentos" :tipoCons = "tipoConsulta"></buscar-documentos>
+        <buscar-documentos @cambioMensage="documentos = $event"></buscar-documentos>
       </v-toolbar>
       <!--Tabla con los documentos-->
-      <tabla @cambioDocumentos="documentos = $event" :shareDocs = "documentos"></tabla>
+      <tabla @cambioDocumentos="documentos = $event" :documentosComponente = "documentos"></tabla>
     </v-app>
   </div>
 </template>
@@ -37,8 +37,7 @@ import MisDocumentos from './misDocumentos.vue'
     data() {
       return {
         documentos: null,
-        error: null,
-        tipoConsulta: false,
+        error: null
       }
     },
     created() {

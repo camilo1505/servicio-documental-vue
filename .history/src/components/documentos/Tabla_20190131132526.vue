@@ -64,6 +64,7 @@
             </td>
             <td class="text-xs-left">
             <v-btn flat small v-if="props.item.usuario === usuario" @click="eliminarDocumento(props.item)"><v-icon  small="" > delete </v-icon></v-btn>
+            
             </td>
         </template>
         </v-data-table>
@@ -81,7 +82,11 @@
 
 <script>
 import Axios from 'axios';
+import VerDetalles from './VerDetalles.vue'
 export default {
+    components: {
+        VerDetalles,
+    },
     props: ['shareDocs'],
     data() {
         return {

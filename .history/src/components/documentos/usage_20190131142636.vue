@@ -13,7 +13,7 @@
         <mis-documentos @misDocs="documentos = $event" @tipoCons="tipoConsulta = $event"></mis-documentos>
         <v-spacer></v-spacer>
         <!-- Buscar Documento -->
-        <buscar-documentos @cambioMensage="documentos = $event" :shareDocs = "documentos" :tipoCons = "tipoConsulta"></buscar-documentos>
+        <buscar-documentos @cambioMensage="documentos = $event" :shareDocs = "documentos"></buscar-documentos>
       </v-toolbar>
       <!--Tabla con los documentos-->
       <tabla @cambioDocumentos="documentos = $event" :shareDocs = "documentos"></tabla>

@@ -81,7 +81,11 @@
 
 <script>
 import Axios from 'axios';
+import VerDetalles from './VerDetalles.vue'
 export default {
+    components: {
+        VerDetalles,
+    },
     props: ['shareDocs'],
     data() {
         return {

@@ -63,7 +63,13 @@
             </v-chip>
             </td>
             <td class="text-xs-left">
-            <v-btn flat small v-if="props.item.usuario === usuario" @click="eliminarDocumento(props.item)"><v-icon  small="" > delete </v-icon></v-btn>
+            <v-icon
+                v-if="props.item.usuario === usuario"
+                medium
+                @click="eliminarDocumento(props.item)"
+            >
+                delete
+            </v-icon>
             </td>
         </template>
         </v-data-table>

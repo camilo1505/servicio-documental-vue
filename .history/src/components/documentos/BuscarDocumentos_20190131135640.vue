@@ -8,6 +8,7 @@
 <script>
 import Axios from 'axios';
 export default {
+    props: ['shareDocs'],
     data() {
         return {
             documentos: null,
@@ -17,7 +18,7 @@ export default {
     methods: {
         buscarDocumentos() {
             Axios
-            .get("http://localhost:8080/api/v1/documento/consultarDocumento?consulta=" + this.busqueda + "&usuario=" + localStorage.user + "&tipoConsulta=false")
+            .get("http://localhost:8080/api/v1/documento/consultarDocumento?consulta=" + this.busqueda + "&usuario=" + localStorage.user)
             .then(Response =>(this.documentos = Response.data));
         },
         cambiarDocumentos() {
