@@ -100,7 +100,7 @@ export default {
                 { text: 'Descripcion', value: 'Descripcion', sortable: false },
                 { text: 'Autor', align: 'rigth' ,value: 'Autor', sortable: false },
                 { text: 'Etiquetas', align: 'center', value: 'Etiquetas', sortable: false },
-                { text: 'Privado/Publico',
+                { text: 'Publicado o no publicado',
                 sortable: false,
                 },
                 { text: 'Actions', align: 'center', value: 'name', sortable: false }

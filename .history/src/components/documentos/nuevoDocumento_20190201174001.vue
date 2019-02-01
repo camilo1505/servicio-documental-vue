@@ -11,7 +11,7 @@
                     <v-container grid-list-md>
                         <v-layout wrap>
                             <v-flex xs12 sm6 md10>
-                                <h4 class="text-to-left">Nombre del Documento*</h4>
+                                <h4 class="text-to-left">Nombre del Documento</h4>
                                 <v-text-field v-model="nuevoDocumento.nombre" label="Nombre del documento"></v-text-field>
                             </v-flex>
                             <v-flex xs12 sm6 md10>
@@ -19,7 +19,7 @@
                                 <v-text-field v-model="nuevoDocumento.descripcion" label="Descripcion"></v-text-field>
                             </v-flex>
                             <v-flex xs12 sm6 md10>
-                                <h4 class="text-to-left">Agregar Etiquetas, Escribe e Ingresalas con Enter.*</h4>
+                                <h4 class="text-to-left">Agregar Etiquetas, Escribe e Ingresalas con Enter.</h4>
                                 <v-combobox v-model="chips" :items="items" label="Agrega Etiquetas" chips clearable prepend-icon="filter_list" solo multiple>
                                     <template slot="selection" slot-scope="data">
                                         <v-chip :selected="data.selected" close @input="remove(data.item)">
@@ -33,7 +33,7 @@
                                 <v-switch @change="cambiarSwitch()" :label="`${labelSwitch}`" v-model="nuevoDocumento.estado" color="blue darken-3"></v-switch>
                             </v-flex>
                             <v-flex xs12 class="text-xs-center text-sm-center text-md-center text-lg-center">
-                                <h4 class="text-to-left">Añade archivos*</h4>
+                                <h4 class="text-to-left">Añade archivos</h4>
                                 <multiple-file-uploader postURL="" successMessagePath="" errorMessagePath="" ></multiple-file-uploader>
                             </v-flex>
                             <v-flex xs12 class="text-xs-center text-sm-center text-md-center text-lg-center">

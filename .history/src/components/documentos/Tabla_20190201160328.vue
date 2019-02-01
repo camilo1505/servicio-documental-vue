@@ -100,7 +100,7 @@ export default {
                 { text: 'Descripcion', value: 'Descripcion', sortable: false },
                 { text: 'Autor', align: 'rigth' ,value: 'Autor', sortable: false },
                 { text: 'Etiquetas', align: 'center', value: 'Etiquetas', sortable: false },
-                { text: 'Privado/Publico',
+                { text: 'Publicado o no publicado',
                 sortable: false,
                 },
                 { text: 'Actions', align: 'center', value: 'name', sortable: false }
@@ -193,7 +193,7 @@ export default {
         eliminarDocumento(documento) {
             if(documento.usuario == localStorage.user) {
                 const index = this.documentos.indexOf(documento)
-                confirm("Esta seguro que quiere eliminar este Archivo?") && this.documentos.splice(index,1) && this.borrar(documento);
+                confirm("Esta seguro que quiere eliminar este Documento?") && this.documentos.splice(index,1) && this.borrar(documento);
             }
         },
         manejadorRespuestas() {

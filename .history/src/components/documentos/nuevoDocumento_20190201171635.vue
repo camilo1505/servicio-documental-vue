@@ -11,7 +11,7 @@
                     <v-container grid-list-md>
                         <v-layout wrap>
                             <v-flex xs12 sm6 md10>
-                                <h4 class="text-to-left">Nombre del Documento*</h4>
+                                <h4 class="text-to-left">Nombre del Documento</h4>
                                 <v-text-field v-model="nuevoDocumento.nombre" label="Nombre del documento"></v-text-field>
                             </v-flex>
                             <v-flex xs12 sm6 md10>
@@ -19,7 +19,7 @@
                                 <v-text-field v-model="nuevoDocumento.descripcion" label="Descripcion"></v-text-field>
                             </v-flex>
                             <v-flex xs12 sm6 md10>
-                                <h4 class="text-to-left">Agregar Etiquetas, Escribe e Ingresalas con Enter.*</h4>
+                                <h4 class="text-to-left">Agregar Etiquetas, Escribe e Ingresalas con Enter.</h4>
                                 <v-combobox v-model="chips" :items="items" label="Agrega Etiquetas" chips clearable prepend-icon="filter_list" solo multiple>
                                     <template slot="selection" slot-scope="data">
                                         <v-chip :selected="data.selected" close @input="remove(data.item)">
@@ -33,8 +33,8 @@
                                 <v-switch @change="cambiarSwitch()" :label="`${labelSwitch}`" v-model="nuevoDocumento.estado" color="blue darken-3"></v-switch>
                             </v-flex>
                             <v-flex xs12 class="text-xs-center text-sm-center text-md-center text-lg-center">
-                                <h4 class="text-to-left">Añade archivos*</h4>
-                                <multiple-file-uploader postURL="" successMessagePath="" errorMessagePath="" ></multiple-file-uploader>
+                                <h4 class="text-to-left">Añade archivos</h4>
+                                <multiple-file-uploader postURL="" successMessagePath="" errorMessagePath=""></multiple-file-uploader>
                             </v-flex>
                             <v-flex xs12 class="text-xs-center text-sm-center text-md-center text-lg-center">
                             </v-flex>
@@ -44,7 +44,7 @@
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn color="blue darken-1" flat @click="dialogo = false">Cancelar</v-btn>
-                    <v-btn color="blue darken-1" flat v-if="todosLosCampos()" @click="guardarDocumento()">Guardar</v-btn>
+                    <v-btn color="blue darken-1" flat @click="guardarDocumento()">Guardar</v-btn>
                 </v-card-actions>
                 <p v-if="documentos">{{enviarDocumentos()}}</p>
             </v-card>
@@ -109,13 +109,7 @@ export default {
             this.documentos = null;
         },
         todosLosCampos() {
-            if(this.nuevoDocumento.nombre != '' && this.nuevoDocumento.descripcion != ''
-               && this.chips.length >> 0 && this.nuevoDocumento.archivos.length >> 0){
-                return true
-            }
-            else {
-                return false
-            }
+            if(nuevoDocumento.nombre != '' && nuevoDocumento.descripcion != '')
         },
     }
 }
