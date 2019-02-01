@@ -66,8 +66,8 @@
                 <td v-else @click="cambiarEstado(props.item)"> <v-btn color="lime lighten-5"><v-icon>lock</v-icon></v-btn> </td>
             </div>
 
-            <td class="text-xs-left">
-            <archivos  @cambioDocumentos="documentos = $event" :shareDocs = "documentos"></archivos>
+            <td >
+            <archivos></archivos>
             <v-btn flat small v-if="props.item.usuario === usuario" @click="eliminarDocumento(props.item)"><v-icon  small="" > delete </v-icon></v-btn>
             </td>
         </template>

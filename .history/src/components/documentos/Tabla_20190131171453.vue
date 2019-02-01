@@ -67,12 +67,13 @@
             </div>
 
             <td class="text-xs-left">
-            <archivos  @cambioDocumentos="documentos = $event" :shareDocs = "documentos"></archivos>
+            <v-btn flat small ><v-icon  small="" > visibility </v-icon></v-btn>
             <v-btn flat small v-if="props.item.usuario === usuario" @click="eliminarDocumento(props.item)"><v-icon  small="" > delete </v-icon></v-btn>
             </td>
         </template>
         </v-data-table>
         
+        <archivos></archivos>
 
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}

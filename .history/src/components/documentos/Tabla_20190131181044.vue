@@ -131,6 +131,7 @@ export default {
             else {
                 this.usuario = "";
             }
+            console.log(this.documentos.nombre)
         },
         editItem (item) {
             this.editedIndex = this.desserts.indexOf(item)

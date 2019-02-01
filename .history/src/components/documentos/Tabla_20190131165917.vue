@@ -67,12 +67,11 @@
             </div>
 
             <td class="text-xs-left">
-            <archivos  @cambioDocumentos="documentos = $event" :shareDocs = "documentos"></archivos>
+            <v-btn flat small ><v-icon  small="" > lock </v-icon></v-btn>
             <v-btn flat small v-if="props.item.usuario === usuario" @click="eliminarDocumento(props.item)"><v-icon  small="" > delete </v-icon></v-btn>
             </td>
         </template>
         </v-data-table>
-        
 
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}
@@ -87,11 +86,7 @@
 
 <script>
 import Axios from 'axios';
-import archivos from './archivos.vue';
 export default {
-    components: {
-      archivos
-    },
     props: ['shareDocs'],
     data() {
         return {
@@ -103,7 +98,7 @@ export default {
                 { text: 'Publicado o no publicado',
                 sortable: false,
                 },
-                { text: 'Actions', align: 'center', value: 'name', sortable: false }
+                { text: 'Actions', align: 'left', value: 'name', sortable: false }
             ],
             editedItem:{
                 id:null,

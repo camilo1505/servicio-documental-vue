@@ -63,16 +63,14 @@
             </td>
             <div>            
                 <td v-if="props.item.estado"><v-btn color="blue lighten-5" @click="cambiarEstado(props.item)"><v-icon>lock_open</v-icon></v-btn></td>
-                <td v-else @click="cambiarEstado(props.item)"> <v-btn color="lime lighten-5"><v-icon>lock</v-icon></v-btn> </td>
+                <td v-else @click="cambiarEstado(props.item)"> <v-btn  color="lime lighten-5"><v-icon>lock</v-icon></v-btn> </td>
             </div>
 
             <td class="text-xs-left">
-            <archivos  @cambioDocumentos="documentos = $event" :shareDocs = "documentos"></archivos>
             <v-btn flat small v-if="props.item.usuario === usuario" @click="eliminarDocumento(props.item)"><v-icon  small="" > delete </v-icon></v-btn>
             </td>
         </template>
         </v-data-table>
-        
 
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}
@@ -87,23 +85,20 @@
 
 <script>
 import Axios from 'axios';
-import archivos from './archivos.vue';
 export default {
-    components: {
-      archivos
-    },
     props: ['shareDocs'],
     data() {
         return {
                 headers: [
                 { text: 'Nombre del documento', value: 'Nombre del documento', sortable: false },
                 { text: 'Descripcion', value: 'Descripcion', sortable: false },
-                { text: 'Autor', align: 'rigth' ,value: 'Autor', sortable: false },
+                { text: 'Autor', value: 'Autor', sortable: false },
                 { text: 'Etiquetas', align: 'center', value: 'Etiquetas', sortable: false },
-                { text: 'Publicado o no publicado',
+                { text: '',
+                align: 'left',
                 sortable: false,
                 },
-                { text: 'Actions', align: 'center', value: 'name', sortable: false }
+                { text: 'Actions', value: 'name', sortable: false }
             ],
             editedItem:{
                 id:null,
