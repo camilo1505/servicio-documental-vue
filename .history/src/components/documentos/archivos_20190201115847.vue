@@ -89,8 +89,7 @@ export default {
             },
             eliminarArchivo(archivo){
                 Axios
-                .delete("http://localhost:8080/api/v1/documento/eliminarArchivo?archivo=" + archivo.nombre + "&documento="+ this.shareName + "&usuario=" + this.shareUser)
-                .then(Response => (this.estadoSolicitud = Response.status))
+                .delete("http://localhost:8080/api/v1/documento/eliminarArchivo?nombreArchivo=" + archivo.nombre + "&usuario=" + this.shareUser)
             },
         }
 }

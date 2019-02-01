@@ -67,7 +67,7 @@
             </div>
 
             <td class="text-xs-left">
-            <archivos  @cambioDocumentos="documentos = $event" :shareDocs = "props.item.archivo" :shareUser = "props.item.usuario" :shareName = "props.item.nombre"></archivos>
+            <archivos  @cambioDocumentos="documentos = $event" :shareDocs = "props.item.archivo"></archivos>
             <v-btn flat small v-if="props.item.usuario === usuario" @click="eliminarDocumento(props.item)"><v-icon  small="" > delete </v-icon></v-btn>
             </td>
         </template>

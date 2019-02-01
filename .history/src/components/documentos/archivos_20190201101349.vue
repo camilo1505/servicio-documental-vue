@@ -10,7 +10,7 @@
       max-width="auto"
     >
       <v-card>
-        <v-card-title class="headline">Archivos en "{{shareName}}"</v-card-title>
+        <v-card-title class="headline">Archivos en este documento</v-card-title>
 
         <v-card-text>
            <v-data-table
@@ -24,12 +24,9 @@
             
             <td> {{ props.item.nombreArchivo}}</td>
             <td>{{ props.item.textoCompleto }}</td>
-            <td>
-                <a :href="props.item.url">Descargar</a>
-            </td>
 
             <td class="text-xs-left">
-                <v-btn flat small v-if="shareUser === usuario" @click="eliminarArchivo(props.item)"><v-icon  small="" > delete </v-icon></v-btn>
+            <v-btn flat small v-if="props.item.usuario === usuario" @click="eliminarDocumento(props.item)"><v-icon  small="" > delete </v-icon></v-btn>
             </td>
         </template>
         </v-data-table>
@@ -56,16 +53,14 @@
 </template>
 
 <script>
-import Axios from 'axios';
 export default {
-    props: ['shareDocs', 'shareUser', 'shareName'],
+    props: ['shareDocs'],
     data () {
         return {
             dialog: false,
             headers: [
                     { text: 'Nombre del Archivo', value: 'Nombre del Archivo', sortable: false },
                     { text: 'Descripcion', value: 'Descripcion', sortable: false },
-                    { text: 'URL', value: 'URL', sortable: false },
                     { text: 'Actions', align: 'center', value: 'name', sortable: false }
                 ],
             archivos:[],
@@ -80,17 +75,13 @@ export default {
                     this.usuario = localStorage.user;
                 }
                 else {
-                    this.$router.push({name:'login'})
+                    this.usuario = "";
                 }
                 
+            console.log(this.archivos)
             },
             actualizarDocumentos() {
                 this.$emit('cambioDocumentos', this.archivos);
-            },
-            eliminarArchivo(archivo){
-                Axios
-                .delete("http://localhost:8080/api/v1/documento/eliminarArchivo?archivo=" + archivo.nombre + "&documento="+ this.shareName + "&usuario=" + this.shareUser)
-                .then(Response => (this.estadoSolicitud = Response.status))
             },
         }
 }

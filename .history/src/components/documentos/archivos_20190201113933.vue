@@ -10,7 +10,7 @@
       max-width="auto"
     >
       <v-card>
-        <v-card-title class="headline">Archivos en "{{shareName}}"</v-card-title>
+        <v-card-title class="headline">Archivos en este documento</v-card-title>
 
         <v-card-text>
            <v-data-table
@@ -29,7 +29,7 @@
             </td>
 
             <td class="text-xs-left">
-                <v-btn flat small v-if="shareUser === usuario" @click="eliminarArchivo(props.item)"><v-icon  small="" > delete </v-icon></v-btn>
+            <v-btn flat small v-if="shareUsuario === usuario" @click="eliminarArchivo(props.item)"><v-icon  small="" > delete </v-icon></v-btn>
             </td>
         </template>
         </v-data-table>
@@ -56,9 +56,8 @@
 </template>
 
 <script>
-import Axios from 'axios';
 export default {
-    props: ['shareDocs', 'shareUser', 'shareName'],
+    props: ['shareDocs', 'shareUsuario'],
     data () {
         return {
             dialog: false,
@@ -80,17 +79,12 @@ export default {
                     this.usuario = localStorage.user;
                 }
                 else {
-                    this.$router.push({name:'login'})
+                    this.usuario = "";
                 }
                 
             },
             actualizarDocumentos() {
                 this.$emit('cambioDocumentos', this.archivos);
-            },
-            eliminarArchivo(archivo){
-                Axios
-                .delete("http://localhost:8080/api/v1/documento/eliminarArchivo?archivo=" + archivo.nombre + "&documento="+ this.shareName + "&usuario=" + this.shareUser)
-                .then(Response => (this.estadoSolicitud = Response.status))
             },
         }
 }

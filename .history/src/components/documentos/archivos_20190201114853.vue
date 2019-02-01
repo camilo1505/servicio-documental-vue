@@ -10,7 +10,7 @@
       max-width="auto"
     >
       <v-card>
-        <v-card-title class="headline">Archivos en "{{shareName}}"</v-card-title>
+        <v-card-title class="headline">Archivos en {{shareName}}</v-card-title>
 
         <v-card-text>
            <v-data-table
@@ -56,7 +56,6 @@
 </template>
 
 <script>
-import Axios from 'axios';
 export default {
     props: ['shareDocs', 'shareUser', 'shareName'],
     data () {
@@ -86,11 +85,6 @@ export default {
             },
             actualizarDocumentos() {
                 this.$emit('cambioDocumentos', this.archivos);
-            },
-            eliminarArchivo(archivo){
-                Axios
-                .delete("http://localhost:8080/api/v1/documento/eliminarArchivo?archivo=" + archivo.nombre + "&documento="+ this.shareName + "&usuario=" + this.shareUser)
-                .then(Response => (this.estadoSolicitud = Response.status))
             },
         }
 }
