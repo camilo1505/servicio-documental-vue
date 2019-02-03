@@ -3,24 +3,23 @@
     <v-app>
       <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
       <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
-      <v-toolbar flat color="white" extended>
-        <v-toolbar-title slot="extension">Documentos</v-toolbar-title>
-        <v-divider slot="extension" class="mx-2" inset vertical> </v-divider>
+      <v-toolbar flat color="white" dark color="primary">
+        <v-toolbar-title>Documentos</v-toolbar-title>
+        <v-divider class="mx-2" inset vertical> </v-divider>
         <!-- Nuevo Documento -->
-        <nuevo-documento slot="extension"></nuevo-documento>
-        <v-divider slot="extension" class="mx-2" inset vertical> </v-divider>
+        <nuevo-documento></nuevo-documento>
+        <v-divider class="mx-2" inset vertical> </v-divider>
         <!--CloudTag-->
-        <v-btn  slot="extension" color="warning" dark class="mb-2" @click="redirigir()">Busqueda por etiqueta</v-btn>
-        <v-divider  slot="extension" class="mx-2" inset vertical> </v-divider>
+        <v-btn color="warning" dark class="mb-2" @click="redirigir()">Busqueda por etiqueta</v-btn>
+        <v-divider class="mx-2" inset vertical> </v-divider>
         <!--Mis Documentos-->
-        <mis-documentos slot="extension" @misDocs="documentos = $event" @tipoCons="tipoConsulta = $event"></mis-documentos>
-        <v-spacer slot="extension" ></v-spacer>
-        <!-- Buscar Documento -->
-        <buscar-documentos slot="extension" @cambioMensage="documentos = $event" :shareDocs = "documentos" :tipoCons = "tipoConsulta"></buscar-documentos>
+        <mis-documentos @misDocs="documentos = $event" @tipoCons="tipoConsulta = $event"></mis-documentos>
         <v-spacer></v-spacer>
-        <v-btn dark>
-          <v-icon dark left>power_settings_new</v-icon>Salir de la sesion
-        </v-btn>
+        <!-- Buscar Documento -->
+        <buscar-documentos @cambioMensage="documentos = $event" :shareDocs = "documentos" :tipoCons = "tipoConsulta"></buscar-documentos>
+           <v-btn icon>
+      <v-icon>more_vert</v-icon>
+    </v-btn>
       </v-toolbar>
       <!--Tabla con los documentos-->
       <tabla @cambioDocumentos="documentos = $event" :shareDocs = "documentos"></tabla>

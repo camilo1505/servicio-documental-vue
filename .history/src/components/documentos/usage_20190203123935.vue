@@ -18,9 +18,9 @@
         <!-- Buscar Documento -->
         <buscar-documentos slot="extension" @cambioMensage="documentos = $event" :shareDocs = "documentos" :tipoCons = "tipoConsulta"></buscar-documentos>
         <v-spacer></v-spacer>
-        <v-btn dark>
-          <v-icon dark left>power_settings_new</v-icon>Salir de la sesion
-        </v-btn>
+           <v-btn icon>
+      <v-icon>more_vert</v-icon>
+    </v-btn>
       </v-toolbar>
       <!--Tabla con los documentos-->
       <tabla @cambioDocumentos="documentos = $event" :shareDocs = "documentos"></tabla>

@@ -1,12 +1,13 @@
 <template>
+
     <div id="app">
         
         <v-app>
-
             
             <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
             <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
             <v-container align-center=true>
+                <v-parallax src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"></v-parallax>
                 <v-layout row class="text-xs-center">
                     <v-flex xs3>
                         <v-card height="500px" color="light-blue darken-4"></v-card>
@@ -44,7 +45,6 @@
 
         </v-app>
     </div>
-    
 </template>
 
 <script>

@@ -1,4 +1,8 @@
 <template>
+            <v-parallax
+            dark
+            src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+        >
     <div id="app">
         
         <v-app>
@@ -45,6 +49,7 @@
         </v-app>
     </div>
     
+        </v-parallax>
 </template>
 
 <script>
