@@ -28,17 +28,15 @@
                                 </v-card>
                             </v-container>
                         </v-flex>
-                                    <v-carousel>
+                </v-layout>
+            </v-container>
+            <v-carousel>
                 <v-carousel-item
                 v-for="(item,i) in items"
                 :key="i"
                 :src="item.src"
                 ></v-carousel-item>
             </v-carousel>
-                </v-layout>
-
-            </v-container>
-
         </v-app>
     </div>
 </template>
