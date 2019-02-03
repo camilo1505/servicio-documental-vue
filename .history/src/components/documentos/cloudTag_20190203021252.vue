@@ -8,10 +8,10 @@
       <!--CloudTag-->
       <v-btn color="primary" dark class="mb-2" @click="redirigir()">Pagina de inicio</v-btn>        
     </v-toolbar>
-    
+    <v-btn color="primary" dark class="mb-2" @click="dialog=true">etiquetas</v-btn>
     <v-layout>
     <v-flex xs12 sm6 offset-sm3>
-      <v-card color="#F7EFF6" elevation="20" max-width="auto" max-height="auto">
+      <v-card color="#F7EFF6" elevation="2" max-width="auto" max-height="auto">
         <v-card-title primary-title>
           <div>
             <h3 class="headline">Selecciona una etiqueta!</h3>
@@ -29,7 +29,6 @@
       </v-card>
     </v-flex>
   </v-layout>
-  <br>
   <div class="text-xs-center">
     
       <tabla @cambioDocumentos="documentos = $event" :shareDocs = "documentos"></tabla>

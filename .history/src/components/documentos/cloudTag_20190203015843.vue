@@ -8,10 +8,9 @@
       <!--CloudTag-->
       <v-btn color="primary" dark class="mb-2" @click="redirigir()">Pagina de inicio</v-btn>        
     </v-toolbar>
-    
     <v-layout>
     <v-flex xs12 sm6 offset-sm3>
-      <v-card color="#F7EFF6" elevation="20" max-width="auto" max-height="auto">
+      <v-card color="#F7EFF6" elevation="2" max-width="auto" max-height="auto">
         <v-card-title primary-title>
           <div>
             <h3 class="headline">Selecciona una etiqueta!</h3>
@@ -29,11 +28,27 @@
       </v-card>
     </v-flex>
   </v-layout>
-  <br>
-  <div class="text-xs-center">
-    
-      <tabla @cambioDocumentos="documentos = $event" :shareDocs = "documentos"></tabla>
-  </div>
+    <v-dialog  
+    v-model="dialog"
+    max-width="auto">
+    <v-card>
+      <v-card-title class="headline">Archivos de la etiqueta "{{etiqueta}}"</v-card-title>
+        <v-card-text>
+          <tabla @cambioDocumentos="documentos = $event" :shareDocs = "documentos"></tabla>
+        </v-card-text>
+        <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn
+          color="green darken-1"
+          flat="flat"
+          @click="dialog = false"
+        >
+        cerrar
+        </v-btn>
+        </v-card-actions>
+        </v-card>
+      </v-dialog>
+      
     </div>
   
 </template>
@@ -54,12 +69,13 @@ export default {
       Axios
       .get("http://localhost:8080/api/v1/documento/consultarEtiqueta?etiqueta=" + name)
       .then(Response =>(this.documentos = Response.data))
-      this.dialog = true
+      this.dialog=true
       this.etiqueta = name
+      console.log("yo ya inicie")
     },
     redirigir() {
-      this.$router.push({name:'tabla'})
-    }
+            this.$router.push({name:'tabla'})
+      }
   },
   data() {
     return {

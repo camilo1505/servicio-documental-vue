@@ -29,7 +29,6 @@
       </v-card>
     </v-flex>
   </v-layout>
-  <br>
   <div class="text-xs-center">
     
       <tabla @cambioDocumentos="documentos = $event" :shareDocs = "documentos"></tabla>
