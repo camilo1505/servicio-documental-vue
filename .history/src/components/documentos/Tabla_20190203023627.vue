@@ -161,6 +161,7 @@ export default {
             this.snack = true
             this.snackColor = 'success'
             this.snackText = 'Cambio Realizado'
+            console.log(documento)
             this.editarDocumento(documento)
       },
       cancel () {
@@ -215,6 +216,7 @@ export default {
             }
         },
         manejadorRespuestas() {
+            console.log(this.estadoSolicitud)
             if(this.estadoSolicitud == 200) {
                 this.save();
                 this.estadoSolicitud = null;

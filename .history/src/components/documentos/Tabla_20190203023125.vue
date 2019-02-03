@@ -63,7 +63,7 @@
                 @close="close"
                 v-model="editedItem.etiquetasEdit"
             >
-            <v-chip
+            <v-chip 
                 v-for="tag in props.item.etiquetas" 
                 :key="tag" 
             >{{tag}}
@@ -124,7 +124,6 @@ export default {
                 },
                 { text: 'Actions', align: 'center', value: 'name', sortable: false }
             ],
-            hola:true,
             editedItem:{
                 id:null,
                 nombreEdit:'',
@@ -161,6 +160,7 @@ export default {
             this.snack = true
             this.snackColor = 'success'
             this.snackText = 'Cambio Realizado'
+            console.log(documento)
             this.editarDocumento(documento)
       },
       cancel () {
@@ -185,9 +185,10 @@ export default {
       open () {
         this.snack = true
         this.snackColor = 'info'
-        this.snackText = 'Listo para editar'
+        this.snackText = 'Dialog opened'
       },
       close () {
+        console.log('Dialog closed')
       },
       editarDocumento(documento){
             Axios
@@ -215,6 +216,7 @@ export default {
             }
         },
         manejadorRespuestas() {
+            console.log(this.estadoSolicitud)
             if(this.estadoSolicitud == 200) {
                 this.save();
                 this.estadoSolicitud = null;

@@ -54,29 +54,11 @@
             </td>
             <td class="text-xs-right">{{ props.item.usuario }}</td>
             <td>
-            <v-edit-dialog
-                :return-value.sync="props.item.etiquetas"
-                lazy
-                @save="save(props.item)"
-                @cancel="cancel"
-                @open="open"
-                @close="close"
-                v-model="editedItem.etiquetasEdit"
-            >
-            <v-chip
+            <v-chip 
                 v-for="tag in props.item.etiquetas" 
                 :key="tag" 
             >{{tag}}
             </v-chip>
-            <v-text-field
-                v-if="!props.item.etiquetas"
-                slot="input"
-                v-model="props.item.etiquetas"
-                label="Edit"
-                single-line
-                counter
-                ></v-text-field>
-            </v-edit-dialog>
             </td>
             <td>
             <div>            
@@ -124,7 +106,6 @@ export default {
                 },
                 { text: 'Actions', align: 'center', value: 'name', sortable: false }
             ],
-            hola:true,
             editedItem:{
                 id:null,
                 nombreEdit:'',
@@ -161,6 +142,7 @@ export default {
             this.snack = true
             this.snackColor = 'success'
             this.snackText = 'Cambio Realizado'
+            console.log(documento)
             this.editarDocumento(documento)
       },
       cancel () {
@@ -185,9 +167,10 @@ export default {
       open () {
         this.snack = true
         this.snackColor = 'info'
-        this.snackText = 'Listo para editar'
+        this.snackText = 'Dialog opened'
       },
       close () {
+        console.log('Dialog closed')
       },
       editarDocumento(documento){
             Axios
@@ -215,6 +198,7 @@ export default {
             }
         },
         manejadorRespuestas() {
+            console.log(this.estadoSolicitud)
             if(this.estadoSolicitud == 200) {
                 this.save();
                 this.estadoSolicitud = null;

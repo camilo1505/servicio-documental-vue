@@ -215,6 +215,7 @@ export default {
             }
         },
         manejadorRespuestas() {
+            console.log(this.estadoSolicitud)
             if(this.estadoSolicitud == 200) {
                 this.save();
                 this.estadoSolicitud = null;
