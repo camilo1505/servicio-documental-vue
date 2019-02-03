@@ -6,9 +6,12 @@ import Vuetify from 'vuetify'
 
 //import 'bootstrap/dist/css/bootstrap.css'
 //import 'bootstrap-vue/dist/bootstrap-vue.css'
-import VueWordCloud from 'vuewordcloud';
 
-Vue.component(VueWordCloud.name, VueWordCloud);
+import Wordcloud from "@blackywkl/vuewordcloud";
+
+Vue.use(Wordcloud);
+
+Vue.config.productionTip = false;
 
 //Vue.config.productionTip = false
 

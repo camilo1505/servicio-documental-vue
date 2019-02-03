@@ -33,11 +33,6 @@ export default new Router({
       path: '/registrarse',
       name: 'registrarse',
       component: Registrarse
-    },
-    {
-      path: '/cloud',
-      name: 'cloudTag',
-      component: cloudTag
     }
   ]
 })
