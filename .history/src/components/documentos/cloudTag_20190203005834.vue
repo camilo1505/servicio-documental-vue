@@ -8,7 +8,6 @@
       nameKey="id"
       valueKey="value"
       :color="myColors"
-      :showTooltip="false"
       :wordClick="wordClickHandler">
       </wordcloud>
 
