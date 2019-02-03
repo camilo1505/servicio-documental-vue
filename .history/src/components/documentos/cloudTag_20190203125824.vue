@@ -7,17 +7,12 @@
       <v-divider class="mx-2" inset vertical slot="extension"> </v-divider>
       <!--CloudTag-->
       <v-btn slot="extension" color="primary" dark class="mb-2" @click="redirigir()">Pagina de inicio</v-btn>        
-      <v-spacer></v-spacer>
-      <v-btn dark>
-        <v-icon dark left>power_settings_new</v-icon>Salir de la sesion
-      </v-btn>
-    </v-toolbar>
-      <div class="text-xs-center" v-if="!transicion" @click="transicion=true">
-        <v-btn color="red">
-          <v-icon dark left>label</v-icon>Buscar por otra etiqueta
+              <v-spacer></v-spacer>
+        <v-btn dark>
+          <v-icon dark left>power_settings_new</v-icon>Salir de la sesion
         </v-btn>
-      </div>
-
+    </v-toolbar>
+    
     <v-layout>
     <v-flex xs12 sm6 offset-sm3 v-if="transicion">
       <v-card color="#F7EFF6" elevation="20" max-width="auto" max-height="auto">
@@ -41,7 +36,7 @@
   <br>
   <div class="text-xs-center">
     
-      <tabla v-if="!transicion" @cambioDocumentos="documentos = $event" :shareDocs = "documentos"></tabla>
+      <tabla @cambioDocumentos="documentos = $event" :shareDocs = "documentos"></tabla>
   </div>
     </div>
   
@@ -65,7 +60,6 @@ export default {
       .then(Response =>(this.documentos = Response.data))
       this.dialog = true
       this.etiqueta = name
-      this.transicion = false
     },
     redirigir() {
       this.$router.push({name:'tabla'})
@@ -78,8 +72,7 @@ export default {
       tipoConsulta: false,
       documentos: null,
       etiqueta:"hola",
-      dialog:false,
-      transicion:true
+      dialog:false
     }
   },
     mounted(){

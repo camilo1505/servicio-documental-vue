@@ -3,22 +3,23 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
     <v-toolbar flat color="white"  extended>
+      
       <v-toolbar-title slot="extension">Busqueda por Etiquetas</v-toolbar-title>
       <v-divider class="mx-2" inset vertical slot="extension"> </v-divider>
       <!--CloudTag-->
       <v-btn slot="extension" color="primary" dark class="mb-2" @click="redirigir()">Pagina de inicio</v-btn>        
-      <v-spacer></v-spacer>
-      <v-btn dark>
-        <v-icon dark left>power_settings_new</v-icon>Salir de la sesion
-      </v-btn>
+              <v-spacer></v-spacer>
+        <v-btn dark>
+          <v-icon dark left>power_settings_new</v-icon>Salir de la sesion
+        </v-btn>
     </v-toolbar>
-      <div class="text-xs-center" v-if="!transicion" @click="transicion=true">
-        <v-btn color="red">
+          <div class="text-xs-center" v-if="!transicion" @click="transicion=true">
+        <v-btn dark>
           <v-icon dark left>label</v-icon>Buscar por otra etiqueta
         </v-btn>
       </div>
-
     <v-layout>
+
     <v-flex xs12 sm6 offset-sm3 v-if="transicion">
       <v-card color="#F7EFF6" elevation="20" max-width="auto" max-height="auto">
         <v-card-title primary-title>

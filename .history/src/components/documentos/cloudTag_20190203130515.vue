@@ -6,11 +6,11 @@
       <v-toolbar-title slot="extension">Busqueda por Etiquetas</v-toolbar-title>
       <v-divider class="mx-2" inset vertical slot="extension"> </v-divider>
       <!--CloudTag-->
-      <v-btn slot="extension" color="primary" dark class="mb-2" @click="redirigir()">Pagina de inicio</v-btn>        
-      <v-spacer></v-spacer>
-      <v-btn dark>
-        <v-icon dark left>power_settings_new</v-icon>Salir de la sesion
-      </v-btn>
+      <v-btn slot="extension" color="primary"  class="mb-2" @click="redirigir()">Pagina de inicio</v-btn>        
+              <v-spacer></v-spacer>
+        <v-btn dark>
+          <v-icon dark left>power_settings_new</v-icon>Salir de la sesion
+        </v-btn>
     </v-toolbar>
       <div class="text-xs-center" v-if="!transicion" @click="transicion=true">
         <v-btn color="red">
