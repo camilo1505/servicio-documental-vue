@@ -9,18 +9,16 @@
         <!-- Nuevo Documento -->
         <nuevo-documento></nuevo-documento>
         <v-divider class="mx-2" inset vertical> </v-divider>
-        <!--CloudTag-->
-        <v-btn color="warning" dark class="mb-2" @click="redirigir()">Busqueda por etiqueta</v-btn>
-        <v-divider class="mx-2" inset vertical> </v-divider>
         <!--Mis Documentos-->
         <mis-documentos @misDocs="documentos = $event" @tipoCons="tipoConsulta = $event"></mis-documentos>
+        <!--CloudTag-->
+        <cloud-tag></cloud-tag>
         <v-spacer></v-spacer>
         <!-- Buscar Documento -->
         <buscar-documentos @cambioMensage="documentos = $event" :shareDocs = "documentos" :tipoCons = "tipoConsulta"></buscar-documentos>
       </v-toolbar>
       <!--Tabla con los documentos-->
       <tabla @cambioDocumentos="documentos = $event" :shareDocs = "documentos"></tabla>
-      <p v-if="respuesta == 200">{{redirigir()}}</p>
     </v-app>
   </div>
 </template>
@@ -31,11 +29,13 @@ import NuevoDocumento from './nuevoDocumento.vue';
 import BuscarDocumentos from './BuscarDocumentos.vue';
 import Tabla from './Tabla.vue';
 import MisDocumentos from './misDocumentos.vue'
+import CloudTag from './cloudTag.vue'
   export default {
     components: {
       NuevoDocumento,
       BuscarDocumentos,
       Tabla,
+      CloudTag,
       MisDocumentos
     },
     data() {
@@ -43,7 +43,6 @@ import MisDocumentos from './misDocumentos.vue'
         documentos: null,
         error: null,
         tipoConsulta: false,
-        respuesta: null
       }
     },
     created() {
@@ -60,9 +59,6 @@ import MisDocumentos from './misDocumentos.vue'
         else {
           this.$router.push({name:'login'})
         }
-      },
-      redirigir() {
-            this.$router.push({name:'cloud'})
       }
     }
   }

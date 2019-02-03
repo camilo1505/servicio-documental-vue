@@ -2,7 +2,7 @@
 <div>
   <v-layout>
     <v-btn 
-        flat small
+        flat small 
         @click="dialog=true"
         ><v-icon  small="" > visibility </v-icon>
     </v-btn>

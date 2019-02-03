@@ -6,18 +6,17 @@
         <!--CloudTag-->
         <v-btn color="primary" dark class="mb-2" @click="redirigir()">Pagina de inicio</v-btn>
         <v-divider class="mx-2" inset vertical> </v-divider>
-        
-      </v-toolbar>
     <v-layout>
     <v-flex xs12 sm6 offset-sm3>
-      <v-card color="#F7EFF6" elevation="2" max-width="auto" max-height="auto">
+      <v-card>
         <v-card-title primary-title>
           <div>
-            <h3 class="headline">Selecciona una etiqueta!</h3>
+            <h3 class="headline mb-0">Selecciona una etiqueta!</h3>
             <div>Busca en la tabla de abajo los resultados</div>
           </div>
         </v-card-title>
 
+      </v-toolbar>
       <wordcloud
       :data="etiquetas"
       nameKey="id"
@@ -26,9 +25,6 @@
       :showTooltip="false"
       :wordClick="wordClickHandler">
       </wordcloud>
-       </v-card>
-    </v-flex>
-  </v-layout>
       <tabla @cambioDocumentos="documentos = $event" :shareDocs = "documentos"></tabla>
   </div>
   

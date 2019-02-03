@@ -10,7 +10,7 @@
       </v-toolbar>
     <v-layout>
     <v-flex xs12 sm6 offset-sm3>
-      <v-card color="#F7EFF6" elevation="2" max-width="auto" max-height="auto">
+      <v-card color="#F7EFF6" elevation="2" height="300">
         <v-card-title primary-title>
           <div>
             <h3 class="headline">Selecciona una etiqueta!</h3>

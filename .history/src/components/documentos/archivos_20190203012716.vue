@@ -1,8 +1,7 @@
 <template>
-<div>
   <v-layout>
     <v-btn 
-        flat small
+        flat small 
         @click="dialog=true"
         ><v-icon  small="" > visibility </v-icon>
     </v-btn>
@@ -54,7 +53,6 @@
     <p>{{actualizarDocumentos()}}</p>
     <p v-if="estadoSolicitud == 200"> {{manejadorRespuestas()}} </p>
   </v-layout>
-  </div>
 </template>
 
 <script>

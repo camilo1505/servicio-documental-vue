@@ -6,18 +6,10 @@
         <!--CloudTag-->
         <v-btn color="primary" dark class="mb-2" @click="redirigir()">Pagina de inicio</v-btn>
         <v-divider class="mx-2" inset vertical> </v-divider>
-        
-      </v-toolbar>
-    <v-layout>
-    <v-flex xs12 sm6 offset-sm3>
-      <v-card color="#F7EFF6" elevation="2" max-width="auto" max-height="auto">
-        <v-card-title primary-title>
-          <div>
-            <h3 class="headline">Selecciona una etiqueta!</h3>
-            <div>Busca en la tabla de abajo los resultados</div>
-          </div>
-        </v-card-title>
+        <!-- Buscar Documento -->
+        <buscar-documentos @cambioMensage="documentos = $event" :shareDocs = "documentos" :tipoCons = "tipoConsulta"></buscar-documentos>
 
+      </v-toolbar>
       <wordcloud
       :data="etiquetas"
       nameKey="id"
@@ -26,15 +18,13 @@
       :showTooltip="false"
       :wordClick="wordClickHandler">
       </wordcloud>
-       </v-card>
-    </v-flex>
-  </v-layout>
       <tabla @cambioDocumentos="documentos = $event" :shareDocs = "documentos"></tabla>
   </div>
   
 </template>
 
 <script>
+import BuscarDocumentos from './BuscarDocumentos.vue';
 import wordcloud from 'vue-wordcloud'
 import Axios from 'axios'
 import Tabla from './Tabla.vue';
@@ -43,6 +33,7 @@ export default {
   name: 'cloud',
   components: {
     Tabla,
+      BuscarDocumentos,
     wordcloud
   },
   methods: {
@@ -59,7 +50,6 @@ export default {
     return {
       myColors: ['#1f77b4', '#EC4CAD', '#0017FF', '#629fc9', '#E8FF00','#EC4C4C', '#94bedb', '#138025' ,'#c9e0ef', '#FFA200' , '#FF00D4', '#0A0109'],
       etiquetas:[],
-        tipoConsulta: false,
       documentos: null
     }
   },

@@ -9,11 +9,10 @@
         <!-- Nuevo Documento -->
         <nuevo-documento></nuevo-documento>
         <v-divider class="mx-2" inset vertical> </v-divider>
-        <!--CloudTag-->
-        <v-btn color="warning" dark class="mb-2" @click="redirigir()">Busqueda por etiqueta</v-btn>
-        <v-divider class="mx-2" inset vertical> </v-divider>
         <!--Mis Documentos-->
         <mis-documentos @misDocs="documentos = $event" @tipoCons="tipoConsulta = $event"></mis-documentos>
+        <!--CloudTag-->
+        <v-btn primary large block @click="redirigir()">Busqueda por etiqueta</v-btn>
         <v-spacer></v-spacer>
         <!-- Buscar Documento -->
         <buscar-documentos @cambioMensage="documentos = $event" :shareDocs = "documentos" :tipoCons = "tipoConsulta"></buscar-documentos>
@@ -43,7 +42,6 @@ import MisDocumentos from './misDocumentos.vue'
         documentos: null,
         error: null,
         tipoConsulta: false,
-        respuesta: null
       }
     },
     created() {
