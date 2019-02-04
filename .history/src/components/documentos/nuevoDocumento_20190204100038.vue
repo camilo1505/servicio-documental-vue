@@ -34,8 +34,7 @@
                             </v-flex>
                             <v-flex xs12 class="text-xs-center text-sm-center text-md-center text-lg-center">
                                 <h4 class="text-to-left">Añade archivos*</h4>
-                                <input id="file-upload" type="file" @change="onFileChange">
-                                <multiple-file-uploader :postURL="'http://localhost:8080/api/v1/documento/guardarArchivo?nombreDocumento=' + nuevoDocumento.nombre + '&autor=' + nuevoDocumento.autor + '&ocr=' + false" successMessagePath="" errorMessagePath="" :documentoDTO="nuevoDocumento" :etiquetas="chips"></multiple-file-uploader>
+                                <multiple-file-uploader :postURL="'http://localhost:8080/api/v1/documento/guardarArchivo?nombreDocumento=' + nuevoDocumento.nombre + '&autor=' + nuevoDocumento.autor + '&ocr=' + false " successMessagePath="" errorMessagePath="" :documentoDTO="nuevoDocumento" :etiquetas="chips"></multiple-file-uploader>
                             </v-flex>
                             <v-flex xs12 class="text-xs-center text-sm-center text-md-center text-lg-center">
                             </v-flex>
@@ -48,7 +47,6 @@
                     <v-btn color="blue darken-1" flat v-if="todosLosCampos()" @click="guardarDocumento()">Guardar</v-btn>
                 </v-card-actions>
                 <p v-if="documentos">{{enviarDocumentos()}}</p>
-                <p>{{establecerUsuario()}}</p>
             </v-card>
         </v-dialog>
     </div>
@@ -69,7 +67,7 @@ export default {
                 etiquetas: [],
                 estado: false,
                 archivos: [],
-                usuario: localStorage.user
+                autor: $localStorage.user
             },
             chips: [],
             items: [],
@@ -119,12 +117,6 @@ export default {
                 return false
             }
         },
-        establecerUsuario() {
-            this.nuevoDocumento.autor = localStorage.user
-        },
-        onFileChange() {
-            
-        }
     }
 }
 </script>

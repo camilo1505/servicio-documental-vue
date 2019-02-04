@@ -65,14 +65,13 @@ export default {
         },
         postMeta: {
             type: [String, Array, Object],
-            default: 'file'
+            default: ''
         },
         postData: {
             type: [Object],
             default: () => {}
         },
         postHeader:{
-          key: 'file',
           type: [Object],
           default: () => {}
         },
@@ -205,55 +204,46 @@ export default {
             this.dragging = false;
         },
         onSubmit() {
-            console.log("hola 1")
-            if(this.crearDocumento())
-            {
-                console.log("hola 1")
-                this.isLoaderVisible = true;
-                if ((typeof this.postMeta === 'string' && this.postMeta !== '') ||
-                    (typeof this.postMeta === 'object' && Object.keys(this.postMeta).length > 0)) {
-                    console.log("hola 2")
-                    this.formData.append('postMeta', this.postMeta);
-                }
-                
-                if(typeof this.postData ==='object' && this.postData !== null && Object.keys(this.postData).length > 0){
-                console.log("hola 3")
-                for(var key in this.postData){
-                    console.log("hola " + key)
-                    this.formData.append(key, this.postData[key]);
-                }
-                }
-                if (this.method === 'put' || this.method === 'post' ) {
-                    console.log("hola 4")
-                    axios({method: this.method, url: this.postURL, data: this.formData,headers:this.postHeader})
-                        .then((response) => {
-                            this.isLoaderVisible = false;
-                            // Show success message
-                            if(this.showHttpMessages)
-                            this.successMsg = response + "." + this.successMessagePath;
-                            this.removeItems();
-                        })
-                        .catch((error) => {
-                            this.isLoaderVisible = false;
-                            if(this.showHttpMessages)
-                            this.errorMsg = error + "." + this.errorMessagePath;
-                            this.removeItems();
-                        });
-                } else {
-                    if(this.showHttpMessages)
-                    this.errorMsg = this.httpMethodErrorMessage;
-                    this.removeItems();
-                }
+            this.crearDocumento()
+            this.isLoaderVisible = true;
+            if ((typeof this.postMeta === 'string' && this.postMeta !== '') ||
+                (typeof this.postMeta === 'object' && Object.keys(this.postMeta).length > 0)) {
+                this.formData.append('postMeta', this.postMeta);
+            }
+            
+            if(typeof this.postData ==='object' && this.postData !== null && Object.keys(this.postData).length > 0){
+              for(var key in this.postData){
+                this.formData.append(key, this.postData[key]);
+              }
+            }
+            if (this.method === 'put' || this.method === 'post' ) {
+                axios({method: this.method, url: this.postURL, data: this.formData,headers:this.postHeader})
+                    .then((response) => {
+                        this.isLoaderVisible = false;
+                        // Show success message
+                        if(this.showHttpMessages)
+                          this.successMsg = response + "." + this.successMessagePath;
+                        this.removeItems();
+                    })
+                    .catch((error) => {
+                        this.isLoaderVisible = false;
+                        if(this.showHttpMessages)
+                          this.errorMsg = error + "." + this.errorMessagePath;
+                        this.removeItems();
+                    });
+            } else {
+                if(this.showHttpMessages)
+                this.errorMsg = this.httpMethodErrorMessage;
+                this.removeItems();
             }
         },
         crearDocumento() {
             var documento = this.documentoDTO;
             documento.etiquetas = this.etiquetas;
-            documento.usuario = localStorage.user
+            documento.autor = this.$localStorage.user;
             axios
             .post("http://localhost:8080/api/v1/documento/crearDocumento",documento)
             .then(Response => (this.estadoSolicitud = Response.status))
-            return true
         },
     }
 }

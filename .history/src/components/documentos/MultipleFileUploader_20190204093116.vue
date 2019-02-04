@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div>
-                <v-btn :disabled="itemsAdded < minItems || itemsAdded > maxItems" @click="onSubmit">
+                <v-btn :disabled="itemsAdded < minItems || itemsAdded > maxItems">
                     {{uploadButtonMessage}}
                 </v-btn>
                 <v-btn @click="removeItems">{{cancelButtonMessage}}</v-btn>
@@ -44,7 +44,7 @@
 
 <script>
 require('es6-promise').polyfill();
-import axios from 'axios';
+import axios from "axios"
 export default {
     props: {
         postURL: {
@@ -65,14 +65,13 @@ export default {
         },
         postMeta: {
             type: [String, Array, Object],
-            default: 'file'
+            default: ''
         },
         postData: {
             type: [Object],
             default: () => {}
         },
         postHeader:{
-          key: 'file',
           type: [Object],
           default: () => {}
         },
@@ -86,15 +85,15 @@ export default {
         },
         headerMessage: {
           type: String,
-          default: 'Add files'
+          default: 'Añade archivos para crear el documento!'
         },
         dropAreaPrimaryMessage: {
           type: String,
-          default: 'Drop multiple files here'
+          default: 'Arrastra los archivos!'
         },
         dropAreaSecondaryMessage: {
           type: String,
-          default: 'or click to upload'
+          default: 'o presiona en para añadirlos'
         },
         fileNameMessage: {
           type: String,
@@ -102,19 +101,19 @@ export default {
         },
         fileSizeMessage: {
           type: String,
-          default: 'Sizes'
+          default: 'Tamaño de los archivos subidos '
         },
         totalFileMessage: {
           type: String,
-          default: 'Total files:'
+          default: 'Total de archivos:'
         },
         totalUploadSizeMessage: {
           type: String,
-          default: 'Total upload size:'
+          default: 'Total tamaño de subida:'
         },
         removeFileMessage: {
           type: String,
-          default: 'Remove files'
+          default: 'Eliminar los archivos subidos'
         },
         uploadButtonMessage: {
           type: String,
@@ -126,19 +125,19 @@ export default {
         },
         fileUploadErrorMessage: {
           type: String,
-          default: 'An error has occurred'
+          default: 'A ocurrido un error'
         },
         minFilesErrorMessage: {
           type: String,
-          default: 'Minimum files that need to be added to uploader'
+          default: 'Debes añadir un archivo por lo menos'
         },
         maxFilesErrorMessage:  {
           type: String,
-          default: 'Maximum files that can be added to uploader'
+          default: 'No se pueden añadir mas archivos, añada el resto despues'
         },
         retryErrorMessage: {
           type: String,
-          default: 'Please remove the files and try again.'
+          default: 'Por favor remueva los archivos o intente de nuevo.'
         },
         httpMethodErrorMessage: {
           type: String,
@@ -147,10 +146,9 @@ export default {
         showHttpMessages: {
           type: Boolean,
           default: true
-        },
-        documentoDTO: null,
-        etiquetas: null,
+        }
     },
+
     /*
      * The component's data.
      */
@@ -166,9 +164,9 @@ export default {
             successMsg: '',
             errorMsg: '',
             isLoaderVisible: false,
-            estadoSolicitud: null,
         }
     },
+
     methods: {
         // http://scratch99.com/web-development/javascript/convert-bytes-to-mb-kb/
         bytesToSize(bytes) {
@@ -178,6 +176,7 @@ export default {
             if (i === 0) return bytes + ' ' + sizes[i];
             return (bytes / Math.pow(1024, i)).toFixed(2) + ' ' + sizes[i];
         },
+
         onChange(e) {
             this.successMsg = '';
             this.errorMsg = '';
@@ -196,6 +195,7 @@ export default {
             }
             this.itemsTotalSize = this.bytesToSize(fileSizes);
         },
+
         removeItems() {
             this.items = '';
             this.itemsAdded = '';
@@ -204,56 +204,41 @@ export default {
             this.itemsTotalSize = '';
             this.dragging = false;
         },
+
         onSubmit() {
-            console.log("hola 1")
-            if(this.crearDocumento())
-            {
-                console.log("hola 1")
-                this.isLoaderVisible = true;
-                if ((typeof this.postMeta === 'string' && this.postMeta !== '') ||
-                    (typeof this.postMeta === 'object' && Object.keys(this.postMeta).length > 0)) {
-                    console.log("hola 2")
-                    this.formData.append('postMeta', this.postMeta);
-                }
-                
-                if(typeof this.postData ==='object' && this.postData !== null && Object.keys(this.postData).length > 0){
-                console.log("hola 3")
-                for(var key in this.postData){
-                    console.log("hola " + key)
-                    this.formData.append(key, this.postData[key]);
-                }
-                }
-                if (this.method === 'put' || this.method === 'post' ) {
-                    console.log("hola 4")
-                    axios({method: this.method, url: this.postURL, data: this.formData,headers:this.postHeader})
-                        .then((response) => {
-                            this.isLoaderVisible = false;
-                            // Show success message
-                            if(this.showHttpMessages)
-                            this.successMsg = response + "." + this.successMessagePath;
-                            this.removeItems();
-                        })
-                        .catch((error) => {
-                            this.isLoaderVisible = false;
-                            if(this.showHttpMessages)
-                            this.errorMsg = error + "." + this.errorMessagePath;
-                            this.removeItems();
-                        });
-                } else {
-                    if(this.showHttpMessages)
-                    this.errorMsg = this.httpMethodErrorMessage;
-                    this.removeItems();
-                }
+            this.isLoaderVisible = true;
+
+            if ((typeof this.postMeta === 'string' && this.postMeta !== '') ||
+                (typeof this.postMeta === 'object' && Object.keys(this.postMeta).length > 0)) {
+                this.formData.append('postMeta', this.postMeta);
             }
-        },
-        crearDocumento() {
-            var documento = this.documentoDTO;
-            documento.etiquetas = this.etiquetas;
-            documento.usuario = localStorage.user
-            axios
-            .post("http://localhost:8080/api/v1/documento/crearDocumento",documento)
-            .then(Response => (this.estadoSolicitud = Response.status))
-            return true
+            
+            if(typeof this.postData ==='object' && this.postData !== null && Object.keys(this.postData).length > 0){
+              for(var key in this.postData){
+                this.formData.append(key, this.postData[key]);
+              }
+            }
+
+            if (this.method === 'put' || this.method === 'post' ) {
+                axios({method: this.method, url: this.postURL, data: this.formData,headers:this.postHeader})
+                    .then((response) => {
+                        this.isLoaderVisible = false;
+                        // Show success message
+                        if(this.showHttpMessages)
+                          this.successMsg = response + "." + this.successMessagePath;
+                        this.removeItems();
+                    })
+                    .catch((error) => {
+                        this.isLoaderVisible = false;
+                        if(this.showHttpMessages)
+                          this.errorMsg = error + "." + this.errorMessagePath;
+                        this.removeItems();
+                    });
+            } else {
+                if(this.showHttpMessages)
+                this.errorMsg = this.httpMethodErrorMessage;
+                this.removeItems();
+            }
         },
     }
 }

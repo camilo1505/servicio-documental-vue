@@ -168,12 +168,12 @@ export default {
         this.snackText = 'Canceled'
       },
       borrar (documento) {
-        Axios
-        .put("http://localhost:8080/api/v1/documento/eliminarDocumento?nombreDocumento=" + documento.nombre + "&usuario=" + localStorage.user)
-        .then(Response => (this.estadoSolicitud = Response.status))
         this.snack = true;
         this.snackColor = 'success';
         this.snackText = 'Documento Eliminado'
+        Axios
+        .put("http://localhost:8080/api/v1/documento/eliminarDocumento?nombreDocumento=" + documento.nombre + "&usuario=" + localStorage.user)
+        .then(Response => (this.estadoSolicitud = Response.status))
       },
       error() {
             this.snack = true

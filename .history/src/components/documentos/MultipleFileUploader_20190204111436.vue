@@ -65,14 +65,14 @@ export default {
         },
         postMeta: {
             type: [String, Array, Object],
-            default: 'file'
+            default: ''
         },
         postData: {
             type: [Object],
             default: () => {}
         },
         postHeader:{
-          key: 'file',
+          name: 'file',
           type: [Object],
           default: () => {}
         },
@@ -205,26 +205,21 @@ export default {
             this.dragging = false;
         },
         onSubmit() {
-            console.log("hola 1")
+            
             if(this.crearDocumento())
             {
-                console.log("hola 1")
                 this.isLoaderVisible = true;
                 if ((typeof this.postMeta === 'string' && this.postMeta !== '') ||
                     (typeof this.postMeta === 'object' && Object.keys(this.postMeta).length > 0)) {
-                    console.log("hola 2")
                     this.formData.append('postMeta', this.postMeta);
                 }
                 
                 if(typeof this.postData ==='object' && this.postData !== null && Object.keys(this.postData).length > 0){
-                console.log("hola 3")
                 for(var key in this.postData){
-                    console.log("hola " + key)
                     this.formData.append(key, this.postData[key]);
                 }
                 }
                 if (this.method === 'put' || this.method === 'post' ) {
-                    console.log("hola 4")
                     axios({method: this.method, url: this.postURL, data: this.formData,headers:this.postHeader})
                         .then((response) => {
                             this.isLoaderVisible = false;

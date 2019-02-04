@@ -34,8 +34,7 @@
                             </v-flex>
                             <v-flex xs12 class="text-xs-center text-sm-center text-md-center text-lg-center">
                                 <h4 class="text-to-left">Añade archivos*</h4>
-                                <input id="file-upload" type="file" @change="onFileChange">
-                                <multiple-file-uploader :postURL="'http://localhost:8080/api/v1/documento/guardarArchivo?nombreDocumento=' + nuevoDocumento.nombre + '&autor=' + nuevoDocumento.autor + '&ocr=' + false" successMessagePath="" errorMessagePath="" :documentoDTO="nuevoDocumento" :etiquetas="chips"></multiple-file-uploader>
+                                <multiple-file-uploader :postURL="'http://localhost:8080/api/v1/documento/guardarArchivo?nombreDocumento=' + nuevoDocumento.nombre + '&autor=' + nuevoDocumento.autor + '&ocr=' + false " successMessagePath="" errorMessagePath="" :documentoDTO="nuevoDocumento" :etiquetas="chips"></multiple-file-uploader>
                             </v-flex>
                             <v-flex xs12 class="text-xs-center text-sm-center text-md-center text-lg-center">
                             </v-flex>
@@ -69,7 +68,7 @@ export default {
                 etiquetas: [],
                 estado: false,
                 archivos: [],
-                usuario: localStorage.user
+                autor: null
             },
             chips: [],
             items: [],
@@ -120,11 +119,8 @@ export default {
             }
         },
         establecerUsuario() {
-            this.nuevoDocumento.autor = localStorage.user
+            this.nuevoDocumento.autor = this.$localStorage.user
         },
-        onFileChange() {
-            
-        }
     }
 }
 </script>
