@@ -61,7 +61,8 @@ export default {
             estadoSolicitud: null,
             snack: false,
             snackColor: '',
-            snackText: '',     
+            snackText: '',
+            estadoSolicitud        
         }
     },
         methods: {

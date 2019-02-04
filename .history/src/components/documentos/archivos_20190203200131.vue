@@ -11,7 +11,7 @@
                 <v-data-table :headers="headers" :items="archivos" class="elevation-1" item-key="id.counter">
                     <template slot="items" slot-scope="props">
                         <td>
-                            <v-edit-dialog :return-value.sync="props.item.name" lazy @save="save(props.item)" @cancel="cancel" @open="open"  @close="close">
+                            <v-edit-dialog :return-value.sync="props.item.name" lazy @save="save" @cancel="cancel" @open="open"  @close="close">
                                 {{ props.item.nombreArchivo}}
                                 <v-text-field slot="input" v-model="props.item.name" label="Edit" single-line counter></v-text-field>
                             </v-edit-dialog>
@@ -61,7 +61,8 @@ export default {
             estadoSolicitud: null,
             snack: false,
             snackColor: '',
-            snackText: '',     
+            snackText: '',
+            estadoSolicitud        
         }
     },
         methods: {
@@ -87,11 +88,10 @@ export default {
                 const index = this.archivos.indexOf(archivo)
                 confirm("Esta seguro que quiere eliminar este Archivo?") && this.archivos.splice(index,1) && this.borrar(archivo);
             },
-            save(archivo) {
+            save() {
                 this.snack = true
                 this.snackColor = 'success'
                 this.snackText = 'Guardado'
-                this.editarArchivo(archivo)
             },
             cancel () {
                 this.snack = true
@@ -106,7 +106,7 @@ export default {
             close () {
                 console.log('Dialogo cerrado')
             },
-            editarArchivo(archivo) {
+            editarArchivos() {
                 Axios
                 .put("http://localhost:8080/api/v1/documento/cambiarNombreArchivo?documento=" + this.shareName + "&archivo="+ archivo.nombreArchivo + "&usuario=" + this.shareUser)
                 .then(Response => (this.estadoSolicitud = Response.status))
