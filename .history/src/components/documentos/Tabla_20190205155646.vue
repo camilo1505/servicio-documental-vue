@@ -1,6 +1,8 @@
 <template>
     <div>
         <v-app>
+                <v-layout row wrap>
+                <v-flex xs7>
                 <v-data-table
                 :headers="headers"
                 :items="documentos"
@@ -87,8 +89,9 @@
                     </td>
                 </template>
             </v-data-table>
+            </v-flex>
             <v-flex xs5>
-                <cloud-tag @updateDocumentos="documentos = $event"></cloud-tag>
+                <cloud-tag @updateDocumentos="documentosEtiquetas = $event"></cloud-tag>
             </v-flex >
             </v-layout>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
@@ -105,9 +108,11 @@
 <script>
 import Axios from 'axios';
 import archivos from './archivos.vue';
+import cloudTag from './cloudTag.vue';
 export default {
     components: {
       archivos,
+      cloudTag
     },
     props: ['shareDocs'],
     data() {
@@ -134,6 +139,7 @@ export default {
             snackColor: '',
             snackText: '',
             documentos:[],
+            documentosEtiquetas:[],
             usuario: null,
             estadoSolicitud: null
         }
@@ -191,7 +197,12 @@ export default {
             .then(Response => (this.estadoSolicitud = Response.status))
         },
         actualizarDocumentos() {
-            this.$emit('cambioDocumentos', this.documentos);
+            if(this.documentosEtiquetas != null){
+                this.$emit('cambioDocmentos', this.documentosEtiquetas)
+            }
+            else {
+                this.$emit('cambioDocumentos', this.documentos);
+            }
         },
         cambiarEstado(documento) {
             if(documento.usuario == localStorage.user) {

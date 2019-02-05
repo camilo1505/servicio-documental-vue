@@ -82,15 +82,13 @@
                         <v-icon small class="mr-3" v-if="props.item.estado" @click="cambiarEstado(props.item)" >lock_open</v-icon>
                         <v-icon small class="mr-3" v-if="!props.item.estado"  @click="cambiarEstado(props.item)">lock</v-icon>
                         <v-icon small class="mr-3" @click="activador=true">visibility</v-icon>
-                        <archivos :dialog="activador" @updateDialog="activador = $event" :shareDocs = "props.item.archivo" :shareUser = "props.item.usuario" :shareName = "props.item.nombre"></archivos>
+                        <v-dialog v-model="activador" max-width="auto">
+                            <archivos :dialog="activador" @updateDialog="activador = false" :shareDocs = "props.item.archivo" :shareUser = "props.item.usuario" :shareName = "props.item.nombre"></archivos>
+                        </v-dialog>
                         <v-icon  small class="mr-3" v-if="props.item.usuario === usuario" @click="eliminarDocumento(props.item)" > delete </v-icon>
                     </td>
                 </template>
             </v-data-table>
-            <v-flex xs5>
-                <cloud-tag @updateDocumentos="documentos = $event"></cloud-tag>
-            </v-flex >
-            </v-layout>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}
             <v-btn flat @click="snack = false">Close</v-btn>

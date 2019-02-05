@@ -44,6 +44,7 @@ export default {
     },
     methods: {
     wordClickHandler(name) {
+      console.log("buscar por la etiqueta: " + name)
       Axios
       .get("http://localhost:8080/api/v1/documento/consultarEtiqueta?etiqueta=" + name)
       .then(Response =>(this.documentos = Response.data ) )
