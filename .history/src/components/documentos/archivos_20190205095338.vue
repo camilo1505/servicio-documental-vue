@@ -47,7 +47,6 @@
       </v-card>
 
     
-    </v-dialog>
         <p v-if="shareDocs != null">{{initialize()}}</p>
         <p>{{actualizarDocumentos()}}</p>
         <p v-if="estadoSolicitud == 200"> {{manejadorRespuestas()}} </p>
