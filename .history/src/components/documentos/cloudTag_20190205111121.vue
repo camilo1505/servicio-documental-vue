@@ -7,6 +7,7 @@
           <v-card-title primary-title>
             <div>
               <h3 class="headline">Busqueda por Etiquetas</h3>
+              <div></div>
             </div>
           </v-card-title>
           <wordcloud
@@ -20,7 +21,6 @@
         </v-card>
       </v-flex>
     </v-layout>
-    <p v-if="documentos">{{enviarDocumentos()}}</p>
   </div>
 </template>
 
@@ -61,9 +61,6 @@ export default {
       Axios
       .get("http://localhost:8080/api/v1/documento/cloudEtiquetas")
       .then(Response =>(this.etiquetas = Response.data))
-    },
-    enviarDocumentos() {
-      this.$emit('updateDocumentos',this.documentos)
     }
 }
 </script>

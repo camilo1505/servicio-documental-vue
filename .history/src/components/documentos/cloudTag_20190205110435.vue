@@ -2,11 +2,11 @@
   <div id="app">
       <!--CloudTag-->
       <v-layout>
-      <v-flex>
-        <v-card color="withe" elevation="1" max-width="auto" max-height="auto">
+      <v-flex   >
+        <v-card color="withe" elevation="1" max-width="500px" max-height="auto">
           <v-card-title primary-title>
             <div>
-              <h3 class="headline">Busqueda por Etiquetas</h3>
+              <h3 class="headline">Etiquetas</h3>
             </div>
           </v-card-title>
           <wordcloud
@@ -20,7 +20,6 @@
         </v-card>
       </v-flex>
     </v-layout>
-    <p v-if="documentos">{{enviarDocumentos()}}</p>
   </div>
 </template>
 
@@ -61,9 +60,6 @@ export default {
       Axios
       .get("http://localhost:8080/api/v1/documento/cloudEtiquetas")
       .then(Response =>(this.etiquetas = Response.data))
-    },
-    enviarDocumentos() {
-      this.$emit('updateDocumentos',this.documentos)
     }
 }
 </script>
