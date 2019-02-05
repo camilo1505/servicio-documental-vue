@@ -2,7 +2,7 @@
     <div>
         <v-app>
                 <v-layout row wrap>
-                <v-flex lg7>
+                <v-flex xs7>
                 <v-data-table
                 :headers="headers"
                 :items="documentos"
@@ -90,9 +90,9 @@
                 </template>
             </v-data-table>
             </v-flex>
-            <v-flex xs5>
+            <v-flex>
                 <cloud-tag @updateDocumentos="documentos = $event"></cloud-tag>
-            </v-flex >
+            </v-flex>
             </v-layout>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}

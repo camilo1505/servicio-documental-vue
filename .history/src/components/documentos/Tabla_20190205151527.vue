@@ -1,8 +1,8 @@
 <template>
     <div>
         <v-app>
-                <v-layout row wrap>
-                <v-flex lg7>
+            <v-container max-heigth="auto">
+                <v-layout >
                 <v-data-table
                 :headers="headers"
                 :items="documentos"
@@ -89,11 +89,9 @@
                     </td>
                 </template>
             </v-data-table>
-            </v-flex>
-            <v-flex xs5>
                 <cloud-tag @updateDocumentos="documentos = $event"></cloud-tag>
-            </v-flex >
             </v-layout>
+            </v-container>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}
             <v-btn flat @click="snack = false">Close</v-btn>

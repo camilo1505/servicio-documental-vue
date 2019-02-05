@@ -1,13 +1,14 @@
 <template>
     <div>
         <v-app>
-                <v-layout row wrap>
-                <v-flex lg7>
+            <v-container fill-height="100%">
+                <v-layout >
                 <v-data-table
                 :headers="headers"
                 :items="documentos"
                 class="elevation-1"
                 item-key="id.counter"
+                must-sort=false
                 
                 
                 >
@@ -89,11 +90,9 @@
                     </td>
                 </template>
             </v-data-table>
-            </v-flex>
-            <v-flex xs5>
                 <cloud-tag @updateDocumentos="documentos = $event"></cloud-tag>
-            </v-flex >
             </v-layout>
+            </v-container>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}
             <v-btn flat @click="snack = false">Close</v-btn>

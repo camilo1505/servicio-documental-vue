@@ -2,7 +2,7 @@
     <div>
         <v-app>
                 <v-layout row wrap>
-                <v-flex lg7>
+                <v-flex xs7>
                 <v-data-table
                 :headers="headers"
                 :items="documentos"
