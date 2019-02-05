@@ -1,51 +1,6 @@
 <template>
 <div>
   <v-layout>
-    <v-icon  flat small @click="dialog=true"> visibility </v-icon>
-    <v-dialog
-      v-model="dialog"
-      max-width="auto"
-    >
-      <v-card>
-        <v-card-title class="headline">Archivos en "{{shareName}}"</v-card-title>
-
-        <v-card-text>
-           <v-data-table
-        :headers="headers"
-        :items="archivos"
-        class="elevation-1"
-        item-key="id.counter"
-        
-        >
-        <template slot="items" slot-scope="props">
-            
-            <td> {{ props.item.nombreArchivo}}</td>
-            <td>{{ props.item.textoCompleto }}</td>
-            <td>
-                <a :href="props.item.url">Descargar</a>
-            </td>
-
-            <td class="text-xs-left">
-                <v-btn flat small v-if="shareUser === usuario" @click="eliminarArchivo(props.item)"><v-icon  small="" > delete </v-icon></v-btn>
-            </td>
-        </template>
-        </v-data-table>
-        </v-card-text>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-
-          <v-btn
-            color="green darken-1"
-            flat="flat"
-            @click="dialog = false"
-          >
-            cerrar
-          </v-btn>
-        </v-card-actions>
-        
-      </v-card>
-
     <v-btn flat small @click="dialog=true">
         <v-icon  small="" > visibility </v-icon>
     </v-btn>
@@ -63,7 +18,7 @@
                         </td>
                         <td>{{ props.item.textoCompleto }}</td>
                         <td>
-                            <a v-bind:href="props.item.url">Descargar</a>
+                            <a :href="props.item.url">Descargar</a>
                         </td>
                         <td class="text-xs-left">
                             <v-btn flat small v-if="shareUser === usuario" @click="eliminarArchivo(props.item)"><v-icon  small="" > delete </v-icon></v-btn>
@@ -106,7 +61,8 @@ export default {
             estadoSolicitud: null,
             snack: false,
             snackColor: '',
-            snackText: '',     
+            snackText: '',
+            estadoSolicitud        
         }
     },
         methods: {

@@ -7,9 +7,10 @@ import VueWordCloud from 'vuewordcloud'
 import VueClip from 'vue-clip'
 
 Vue.component(VueWordCloud.name, VueWordCloud);
+Vue.component(VueClip.name, VueClip)
 
 
-Vue.use(Vuetify,VueClip);
+Vue.use(Vuetify);
 new Vue({
   router,
   render: h => h(App),

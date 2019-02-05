@@ -78,10 +78,15 @@
             </v-edit-dialog>
             </td>
             <td>
-                <v-icon v-if="props.item.estado" @click="cambiarEstado(props.item)" >lock_open</v-icon>
-                <v-icon v-if="!props.item.estado"  @click="cambiarEstado(props.item)">lock</v-icon>
+            <div>            
+                <td v-if="props.item.estado"><v-btn color="blue lighten-5" @click="cambiarEstado(props.item)"><v-icon>lock_open</v-icon></v-btn></td>
+                <td v-else @click="cambiarEstado(props.item)"> <v-btn color="lime lighten-5"><v-icon>lock</v-icon></v-btn> </td>
+            </div>
+            </td>
+
+            <td class="text-xs-left">
                 <archivos  @cambioDocumentos="documentos = $event" :shareDocs = "props.item.archivo" :shareUser = "props.item.usuario" :shareName = "props.item.nombre"></archivos>
-                <v-icon v-btn color="blue darken-1" flat v-if="props.item.usuario === usuario" @click="eliminarDocumento(props.item)" > delete </v-icon>
+                <v-btn flat small v-if="props.item.usuario === usuario" @click="eliminarDocumento(props.item)"><v-icon  small="" > delete </v-icon></v-btn>
             </td>
         </template>
         </v-data-table>
@@ -113,9 +118,10 @@ export default {
                 { text: 'Descripcion', value: 'Descripcion', sortable: false },
                 { text: 'Autor', align: 'rigth' ,value: 'Autor', sortable: false },
                 { text: 'Etiquetas', align: 'center', value: 'Etiquetas', sortable: false },
-                { text: 'acciones',
+                { text: 'Privado/Publico',
                 sortable: false,
-                }
+                },
+                { text: 'Actions', align: 'center', value: 'name', sortable: false }
             ],
             hola:true,
             editedItem:{
@@ -162,12 +168,12 @@ export default {
         this.snackText = 'Canceled'
       },
       borrar (documento) {
-        Axios
-        .put("http://localhost:8080/api/v1/documento/eliminarDocumento?nombreDocumento=" + documento.nombre + "&usuario=" + localStorage.user)
-        .then(Response => (this.estadoSolicitud = Response.status))
         this.snack = true;
         this.snackColor = 'success';
         this.snackText = 'Documento Eliminado'
+        Axios
+        .put("http://localhost:8080/api/v1/documento/eliminarDocumento?nombreDocumento=" + documento.nombre + "&usuario=" + localStorage.user)
+        .then(Response => (this.estadoSolicitud = Response.status))
       },
       error() {
             this.snack = true

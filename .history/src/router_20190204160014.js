@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import tabla from './components/documentos/usage.vue'
+import MultipleFileUpload from './components/sort.vue'
 import Registrarse from './components/registrarse.vue'
 import cloudTag from './components/documentos/cloudTag.vue'
-
+import SubirArchivos from './components/documentos/SubirArchivos.vue'
 
 
 import Login from './components/login.vue'
@@ -25,6 +26,11 @@ export default new Router({
       component: tabla
     },
     {
+      path: '/crud',
+      name: 'crud',
+      component: MultipleFileUpload,
+    },
+    {
       path: '/registrarse',
       name: 'registrarse',
       component: Registrarse
@@ -33,6 +39,11 @@ export default new Router({
       path: '/cloud',
       name: 'cloud',
       component: cloudTag
+    },
+    {
+      path: '/pruebas',
+      name: 'pruebas',
+      component:
     }
   ]
 })

@@ -1,51 +1,6 @@
 <template>
 <div>
   <v-layout>
-    <v-icon  flat small @click="dialog=true"> visibility </v-icon>
-    <v-dialog
-      v-model="dialog"
-      max-width="auto"
-    >
-      <v-card>
-        <v-card-title class="headline">Archivos en "{{shareName}}"</v-card-title>
-
-        <v-card-text>
-           <v-data-table
-        :headers="headers"
-        :items="archivos"
-        class="elevation-1"
-        item-key="id.counter"
-        
-        >
-        <template slot="items" slot-scope="props">
-            
-            <td> {{ props.item.nombreArchivo}}</td>
-            <td>{{ props.item.textoCompleto }}</td>
-            <td>
-                <a :href="props.item.url">Descargar</a>
-            </td>
-
-            <td class="text-xs-left">
-                <v-btn flat small v-if="shareUser === usuario" @click="eliminarArchivo(props.item)"><v-icon  small="" > delete </v-icon></v-btn>
-            </td>
-        </template>
-        </v-data-table>
-        </v-card-text>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-
-          <v-btn
-            color="green darken-1"
-            flat="flat"
-            @click="dialog = false"
-          >
-            cerrar
-          </v-btn>
-        </v-card-actions>
-        
-      </v-card>
-
     <v-btn flat small @click="dialog=true">
         <v-icon  small="" > visibility </v-icon>
     </v-btn>
@@ -56,14 +11,14 @@
                 <v-data-table :headers="headers" :items="archivos" class="elevation-1" item-key="id.counter">
                     <template slot="items" slot-scope="props">
                         <td>
-                            <v-edit-dialog :return-value.sync="props.item.name" lazy @save="save(props.item)" @cancel="cancel" @open="open"  @close="close">
+                            <v-edit-dialog :return-value.sync="props.item.name" lazy @save="save" @cancel="cancel" @open="open"  @close="close">
                                 {{ props.item.nombreArchivo}}
                                 <v-text-field slot="input" v-model="props.item.name" label="Edit" single-line counter></v-text-field>
                             </v-edit-dialog>
                         </td>
                         <td>{{ props.item.textoCompleto }}</td>
                         <td>
-                            <a v-bind:href="props.item.url">Descargar</a>
+                            <a :href="props.item.url">Descargar</a>
                         </td>
                         <td class="text-xs-left">
                             <v-btn flat small v-if="shareUser === usuario" @click="eliminarArchivo(props.item)"><v-icon  small="" > delete </v-icon></v-btn>
@@ -106,7 +61,8 @@ export default {
             estadoSolicitud: null,
             snack: false,
             snackColor: '',
-            snackText: '',     
+            snackText: '',
+            estadoSolicitud        
         }
     },
         methods: {
@@ -132,11 +88,10 @@ export default {
                 const index = this.archivos.indexOf(archivo)
                 confirm("Esta seguro que quiere eliminar este Archivo?") && this.archivos.splice(index,1) && this.borrar(archivo);
             },
-            save(archivo) {
+            save() {
                 this.snack = true
                 this.snackColor = 'success'
                 this.snackText = 'Guardado'
-                this.editarArchivo(archivo)
             },
             cancel () {
                 this.snack = true
@@ -151,7 +106,7 @@ export default {
             close () {
                 console.log('Dialogo cerrado')
             },
-            editarArchivo(archivo) {
+            editarArchivos() {
                 Axios
                 .put("http://localhost:8080/api/v1/documento/cambiarNombreArchivo?documento=" + this.shareName + "&archivo="+ archivo.nombreArchivo + "&usuario=" + this.shareUser)
                 .then(Response => (this.estadoSolicitud = Response.status))
