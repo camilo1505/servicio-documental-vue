@@ -1,9 +1,14 @@
 <template>
+  <div id="app">
       <!--CloudTag-->
-        <v-card color="#F7EFF6" elevation="1" max-width="auto" max-height="auto">
+      <v-layout>
+      <v-flex>
+        <v-card color="withe" elevation="1" max-width="auto" max-height="700">
           <v-card-title primary-title>
-              <h3 class="headline">Consulta por etiquetas, solo dale click a una!</h3>
-
+            <div>
+              <h3 class="headline">Etiquetas</h3>
+              <div>Busca en la tabla de abajo los resultados</div>
+            </div>
           </v-card-title>
           <wordcloud
           :data="etiquetas"
@@ -14,6 +19,9 @@
           :wordClick="wordClickHandler">
           </wordcloud>
         </v-card>
+      </v-flex>
+    </v-layout>
+  </div>
 </template>
 
 <script>
@@ -27,11 +35,9 @@ export default {
   },
   methods: {
     wordClickHandler(name) {
-      console.log("buscar por la etiqueta: " + name)
       Axios
       .get("http://localhost:8080/api/v1/documento/consultarEtiqueta?etiqueta=" + name)
-      .then(Response =>(this.documentos = Response.data ) )
-      
+      .then(Response =>(this.documentos = Response.data))
       this.dialog = true
       this.etiqueta = name
       this.transicion = false
@@ -55,9 +61,6 @@ export default {
       Axios
       .get("http://localhost:8080/api/v1/documento/cloudEtiquetas")
       .then(Response =>(this.etiquetas = Response.data))
-    },
-    enviarDocumentos() {
-      this.$emit('updateDocumentos',this.documentos)
     }
 }
 </script>
