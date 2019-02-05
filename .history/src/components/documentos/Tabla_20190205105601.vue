@@ -2,7 +2,7 @@
     <div>
         <v-app>
             <v-container >
-                <v-layout >
+                <v-layout row class="text-xs-center">
                 <v-data-table
                 :headers="headers"
                 :items="documentos"
@@ -89,10 +89,10 @@
                     </td>
                 </template>
             </v-data-table>
-            
-                <cloud-tag></cloud-tag>
-            </v-layout>
-            
+                </v-layout>
+                <v-layout row >
+            <cloud-tag></cloud-tag>
+                </v-layout>
             </v-container>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}

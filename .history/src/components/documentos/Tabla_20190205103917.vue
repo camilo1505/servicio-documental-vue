@@ -1,8 +1,7 @@
 <template>
     <div>
         <v-app>
-            <v-container >
-                <v-layout >
+            <div class="tabla">
                 <v-data-table
                 :headers="headers"
                 :items="documentos"
@@ -87,13 +86,17 @@
                         <archivos :dialog="activador" @updateDialog="activador = $event" :shareDocs = "props.item.archivo" :shareUser = "props.item.usuario" :shareName = "props.item.nombre"></archivos>
                         <v-icon  small class="mr-3" v-if="props.item.usuario === usuario" @click="eliminarDocumento(props.item)" > delete </v-icon>
                     </td>
+                        
+
                 </template>
+
             </v-data-table>
-            
-                <cloud-tag></cloud-tag>
-            </v-layout>
-            
-            </v-container>
+        </div>
+         
+<cloud-tag></cloud-tag>
+
+        
+
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}
             <v-btn flat @click="snack = false">Close</v-btn>
@@ -230,8 +233,5 @@ export default {
 </script>
 
 <style>
-.tabla{
-    width: 800px;
-    height: 500px;
-}
+
 </style>

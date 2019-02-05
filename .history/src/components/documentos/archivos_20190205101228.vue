@@ -2,7 +2,7 @@
 <div>
   <v-layout>
     <v-dialog
-      v-model="activador"
+      v-model="dialog"
       max-width="auto"
     >
       <v-card>
@@ -86,7 +86,6 @@ export default {
                 else {
                     this.$router.push({name:'login'})
                 }
-                this.activador=this.dialog
                 
             },
             actualizarDocumentos() {
@@ -127,8 +126,8 @@ export default {
             },
             updateDialog(){
                 if(this.dialog){
-                    this.activador=false
-                    this.$emit('updateDialog',this.activador)
+                    this.dialog=false
+                    this.$emit('updateDialog',this.dialog)
                 }
             }
         }

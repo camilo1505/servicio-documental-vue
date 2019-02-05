@@ -68,7 +68,7 @@ export default {
                     { text: 'URL', value: 'URL', sortable: false },
                     { text: 'Actions', align: 'center', value: 'name', sortable: false }
                 ],
-            activador:false,
+            activador:dialog,
             archivos:[],
             usuario: null,
             estadoSolicitud: null,
@@ -86,7 +86,6 @@ export default {
                 else {
                     this.$router.push({name:'login'})
                 }
-                this.activador=this.dialog
                 
             },
             actualizarDocumentos() {
@@ -127,8 +126,8 @@ export default {
             },
             updateDialog(){
                 if(this.dialog){
-                    this.activador=false
-                    this.$emit('updateDialog',this.activador)
+                    this.dialog=false
+                    this.$emit('updateDialog',this.dialog)
                 }
             }
         }

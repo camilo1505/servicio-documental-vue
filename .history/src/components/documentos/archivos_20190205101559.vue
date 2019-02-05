@@ -128,7 +128,7 @@ export default {
             updateDialog(){
                 if(this.dialog){
                     this.activador=false
-                    this.$emit('updateDialog',this.activador)
+                    this.$emit('updateDialog',this.dialog)
                 }
             }
         }

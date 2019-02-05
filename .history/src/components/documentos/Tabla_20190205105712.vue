@@ -89,9 +89,8 @@
                     </td>
                 </template>
             </v-data-table>
-            
-                <cloud-tag></cloud-tag>
             </v-layout>
+                <cloud-tag></cloud-tag>
             
             </v-container>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">

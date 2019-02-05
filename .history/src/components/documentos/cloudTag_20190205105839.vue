@@ -2,8 +2,8 @@
   <div id="app">
       <!--CloudTag-->
       <v-layout>
-      <v-flex   >
-        <v-card color="#F7EFF6" elevation="1" max-width="auto" max-height="auto">
+      <v-flex xs2 sm12 offset-sm2>
+        <v-card color="#F7EFF6" elevation="20" max-width="auto" max-height="auto">
           <v-card-title primary-title>
             <div>
               <h3 class="headline">Selecciona una etiqueta!</h3>

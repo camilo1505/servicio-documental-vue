@@ -2,7 +2,7 @@
 <div>
   <v-layout>
     <v-dialog
-      v-model="activador"
+      v-model="dialog"
       max-width="auto"
     >
       <v-card>
@@ -37,13 +37,15 @@
           <v-btn
             color="green darken-1"
             flat="flat"
-            @click="updateDialog()"
+            @click="dialog = false"
           >
             cerrar
           </v-btn>
         </v-card-actions>
         
       </v-card>
+
+    
     </v-dialog>
         <p v-if="shareDocs != null">{{initialize()}}</p>
         <p>{{actualizarDocumentos()}}</p>
@@ -68,7 +70,6 @@ export default {
                     { text: 'URL', value: 'URL', sortable: false },
                     { text: 'Actions', align: 'center', value: 'name', sortable: false }
                 ],
-            activador:false,
             archivos:[],
             usuario: null,
             estadoSolicitud: null,
@@ -86,7 +87,6 @@ export default {
                 else {
                     this.$router.push({name:'login'})
                 }
-                this.activador=this.dialog
                 
             },
             actualizarDocumentos() {
@@ -124,12 +124,6 @@ export default {
                 Axios
                 .put("http://localhost:8080/api/v1/documento/cambiarNombreArchivo?documento=" + this.shareName + "&archivo="+ archivo.nombreArchivo + "&usuario=" + this.shareUser)
                 .then(Response => (this.estadoSolicitud = Response.status))
-            },
-            updateDialog(){
-                if(this.dialog){
-                    this.activador=false
-                    this.$emit('updateDialog',this.activador)
-                }
             }
         }
 }

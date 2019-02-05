@@ -1,36 +1,44 @@
 <template>
   <div id="app">
-      <!--CloudTag-->
-      <v-layout>
-      <v-flex   >
-        <v-card color="#F7EFF6" elevation="1" max-width="auto" max-height="auto">
-          <v-card-title primary-title>
-            <div>
-              <h3 class="headline">Selecciona una etiqueta!</h3>
-              <div>Busca en la tabla de abajo los resultados</div>
-            </div>
-          </v-card-title>
-          <wordcloud
-          :data="etiquetas"
-          nameKey="id"
-          valueKey="value"
-          :color="myColors"
-          :showTooltip="false"
-          :wordClick="wordClickHandler">
-          </wordcloud>
-        </v-card>
-      </v-flex>
-    </v-layout>
+    <!--CloudTag-->
+    <v-layout>
+    <v-flex xs12 sm6 offset-sm3>
+      <v-card color="#F7EFF6" elevation="20" max-width="auto" max-height="auto">
+        <v-card-title primary-title>
+          <div>
+            <h3 class="headline">Selecciona una etiqueta!</h3>
+            <div>Busca en la tabla de abajo los resultados</div>
+          </div>
+        </v-card-title>
+        <wordcloud
+        :data="etiquetas"
+        nameKey="id"
+        valueKey="value"
+        :color="myColors"
+        :showTooltip="false"
+        :wordClick="wordClickHandler">
+        </wordcloud>
+      </v-card>
+    </v-flex>
+  </v-layout>
+  <br>
+  <div class="text-xs-center">
+    
+      <tabla v-if="!transicion" @cambioDocumentos="documentos = $event" :shareDocs = "documentos"></tabla>
   </div>
+    </div>
+  
 </template>
 
 <script>
 import wordcloud from 'vue-wordcloud'
 import Axios from 'axios'
+import Tabla from './Tabla.vue';
 
 export default {
   name: 'cloud',
   components: {
+    Tabla,
     wordcloud
   },
   methods: {

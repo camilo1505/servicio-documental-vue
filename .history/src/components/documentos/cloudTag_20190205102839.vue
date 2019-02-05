@@ -2,8 +2,8 @@
   <div id="app">
       <!--CloudTag-->
       <v-layout>
-      <v-flex   >
-        <v-card color="#F7EFF6" elevation="1" max-width="auto" max-height="auto">
+      <v-flex xs12 sm6 offset-sm3>
+        <v-card color="#F7EFF6" elevation="20" max-width="auto" max-height="auto">
           <v-card-title primary-title>
             <div>
               <h3 class="headline">Selecciona una etiqueta!</h3>
@@ -22,15 +22,18 @@
       </v-flex>
     </v-layout>
   </div>
+  
 </template>
 
 <script>
 import wordcloud from 'vue-wordcloud'
 import Axios from 'axios'
+import Tabla from './Tabla.vue';
 
 export default {
   name: 'cloud',
   components: {
+    Tabla,
     wordcloud
   },
   methods: {

@@ -1,8 +1,7 @@
 <template>
     <div>
         <v-app>
-            <v-container >
-                <v-layout >
+            <div class="tabla">
                 <v-data-table
                 :headers="headers"
                 :items="documentos"
@@ -89,11 +88,12 @@
                     </td>
                 </template>
             </v-data-table>
-            
-                <cloud-tag></cloud-tag>
-            </v-layout>
-            
-            </v-container>
+        </div>
+         
+<cloud-tag></cloud-tag>
+
+        
+
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}
             <v-btn flat @click="snack = false">Close</v-btn>
@@ -234,4 +234,8 @@ export default {
     width: 800px;
     height: 500px;
 }
+.cloud{
+    
+}
+
 </style>

@@ -1,8 +1,15 @@
 <template>
     <div>
         <v-app>
-            <v-container >
-                <v-layout >
+            <v-item-group>
+            <v-container grid-list-md>
+                <v-layout wrap>
+                <v-flex
+                v-for="n in 2"
+                :key="n"
+                xs12
+                md4
+                >
                 <v-data-table
                 :headers="headers"
                 :items="documentos"
@@ -89,11 +96,14 @@
                     </td>
                 </template>
             </v-data-table>
-            
-                <cloud-tag></cloud-tag>
-            </v-layout>
-            
-            </v-container>
+                     <div class="cloud">
+            <cloud-tag></cloud-tag>
+         </div>
+        </div>
+
+
+        
+
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}
             <v-btn flat @click="snack = false">Close</v-btn>

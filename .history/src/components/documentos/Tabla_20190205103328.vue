@@ -1,99 +1,98 @@
 <template>
     <div>
         <v-app>
-            <v-container >
-                <v-layout >
-                <v-data-table
-                :headers="headers"
-                :items="documentos"
-                class="elevation-1"
-                item-key="id.counter"
-                
-                
-                >
-                <template slot="items" slot-scope="props">
-                    
-                    <td>
-                    <v-edit-dialog
-                        :return-value.sync="props.item.nombre"
-                        lazy
-                        @save="save(props.item)"
-                        @cancel="cancel"
-                        @open="open"
-                        @close="close"
-                        v-model="editedItem.nombreEdit"
-                        
-                    > {{ props.item.nombre }}
-                        <v-text-field
-                        v-if="!props.item.estado"
-                        slot="input"
-                        v-model="props.item.nombre"
-                        label="Edit"
-                        single-line
-                        counter
-                        ></v-text-field>
-                    </v-edit-dialog>
-                    </td>
-                    <td>
-                    <v-edit-dialog
-                        :return-value.sync="props.item.descripcion"
-                        lazy
-                        @save="save(props.item)"
-                        @cancel="cancel"
-                        @open="open"
-                        @close="close"
-                        v-model="editedItem.descripcionEdit"
-                    > {{ props.item.descripcion }}
-                        <v-text-field
-                        v-if="!props.item.estado"
-                        slot="input"
-                        v-model="props.item.descripcion"
-                        label="Edit"
-                        single-line
-                        counter
-                        ></v-text-field>
-                    </v-edit-dialog>
-                    </td>
-                    <td class="text-xs-right">{{ props.item.usuario }}</td>
-                    <td>
-                    <v-edit-dialog
-                        :return-value.sync="props.item.etiquetas"
-                        lazy
-                        @save="save(props.item)"
-                        @cancel="cancel"
-                        @open="open"
-                        @close="close"
-                        v-model="editedItem.etiquetasEdit"
-                    >
-                    <v-chip
-                        v-for="tag in props.item.etiquetas" 
-                        :key="tag" 
-                    >{{tag}}
-                    </v-chip>
-                    <v-text-field
-                        v-if="!props.item.etiquetas"
-                        slot="input"
-                        v-model="props.item.etiquetas"
-                        label="Edit"
-                        single-line
-                        counter
-                        ></v-text-field>
-                    </v-edit-dialog>
-                    </td>
-                    <td class="justify-center layout px-0">
-                        <v-icon small class="mr-3" v-if="props.item.estado" @click="cambiarEstado(props.item)" >lock_open</v-icon>
-                        <v-icon small class="mr-3" v-if="!props.item.estado"  @click="cambiarEstado(props.item)">lock</v-icon>
-                        <v-icon small class="mr-3" @click="activador=true">visibility</v-icon>
-                        <archivos :dialog="activador" @updateDialog="activador = $event" :shareDocs = "props.item.archivo" :shareUser = "props.item.usuario" :shareName = "props.item.nombre"></archivos>
-                        <v-icon  small class="mr-3" v-if="props.item.usuario === usuario" @click="eliminarDocumento(props.item)" > delete </v-icon>
-                    </td>
-                </template>
-            </v-data-table>
+         <v-data-table
+        :headers="headers"
+        :items="documentos"
+        class="elevation-1"
+        item-key="id.counter"
+        
+        >
+        <template slot="items" slot-scope="props">
             
-                <cloud-tag></cloud-tag>
-            </v-layout>
+            <td>
+            <v-edit-dialog
+                :return-value.sync="props.item.nombre"
+                lazy
+                @save="save(props.item)"
+                @cancel="cancel"
+                @open="open"
+                @close="close"
+                v-model="editedItem.nombreEdit"
+                
+            > {{ props.item.nombre }}
+                <v-text-field
+                v-if="!props.item.estado"
+                slot="input"
+                v-model="props.item.nombre"
+                label="Edit"
+                single-line
+                counter
+                ></v-text-field>
+            </v-edit-dialog>
+            </td>
+            <td>
+            <v-edit-dialog
+                :return-value.sync="props.item.descripcion"
+                lazy
+                @save="save(props.item)"
+                @cancel="cancel"
+                @open="open"
+                @close="close"
+                v-model="editedItem.descripcionEdit"
+            > {{ props.item.descripcion }}
+                <v-text-field
+                v-if="!props.item.estado"
+                slot="input"
+                v-model="props.item.descripcion"
+                label="Edit"
+                single-line
+                counter
+                ></v-text-field>
+            </v-edit-dialog>
+            </td>
+            <td class="text-xs-right">{{ props.item.usuario }}</td>
+            <td>
+            <v-edit-dialog
+                :return-value.sync="props.item.etiquetas"
+                lazy
+                @save="save(props.item)"
+                @cancel="cancel"
+                @open="open"
+                @close="close"
+                v-model="editedItem.etiquetasEdit"
+            >
+            <v-chip
+                v-for="tag in props.item.etiquetas" 
+                :key="tag" 
+            >{{tag}}
+            </v-chip>
+            <v-text-field
+                v-if="!props.item.etiquetas"
+                slot="input"
+                v-model="props.item.etiquetas"
+                label="Edit"
+                single-line
+                counter
+                ></v-text-field>
+            </v-edit-dialog>
+            </td>
+            <td class="justify-center layout px-0">
+                <v-icon small class="mr-3" v-if="props.item.estado" @click="cambiarEstado(props.item)" >lock_open</v-icon>
+                <v-icon small class="mr-3" v-if="!props.item.estado"  @click="cambiarEstado(props.item)">lock</v-icon>
+                <v-icon small class="mr-3" @click="activador=true">visibility</v-icon>
+                <archivos :dialog="activador" @updateDialog="activador = $event" :shareDocs = "props.item.archivo" :shareUser = "props.item.usuario" :shareName = "props.item.nombre"></archivos>
+                <v-icon  small class="mr-3" v-if="props.item.usuario === usuario" @click="eliminarDocumento(props.item)" > delete </v-icon>
+            </td>
             
-            </v-container>
+        </template>
+
+        </v-data-table>
+
+<cloud-tag></cloud-tag>
+
+        
+
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}
             <v-btn flat @click="snack = false">Close</v-btn>
@@ -122,7 +121,8 @@ export default {
                 { text: 'Descripcion', value: 'Descripcion', sortable: false },
                 { text: 'Autor', align: 'rigth' ,value: 'Autor', sortable: false },
                 { text: 'Etiquetas', align: 'center', value: 'Etiquetas', sortable: false },
-                { text: 'acciones',sortable: false }
+                { text: 'acciones',sortable: false },
+                { text: 'cloud'}
             ],
             activador:false,
             hola:true,
@@ -230,8 +230,5 @@ export default {
 </script>
 
 <style>
-.tabla{
-    width: 800px;
-    height: 500px;
-}
+
 </style>

@@ -2,8 +2,8 @@
   <div id="app">
       <!--CloudTag-->
       <v-layout>
-      <v-flex   >
-        <v-card color="#F7EFF6" elevation="1" max-width="auto" max-height="auto">
+      <v-flex xs12 sm6 offset-sm3>
+        <v-card color="#F7EFF6" elevation="20" max-width="auto" max-height="auto">
           <v-card-title primary-title>
             <div>
               <h3 class="headline">Selecciona una etiqueta!</h3>
@@ -31,6 +31,7 @@ import Axios from 'axios'
 export default {
   name: 'cloud',
   components: {
+    Tabla,
     wordcloud
   },
   methods: {
