@@ -77,12 +77,11 @@
                 ></v-text-field>
             </v-edit-dialog>
             </td>
-            <td>
-                <v-icon v-if="props.item.estado" @click="cambiarEstado(props.item)" >lock_open</v-icon>
-                <v-icon v-if="!props.item.estado"  @click="cambiarEstado(props.item)">lock</v-icon>
+            
+                <td v-if="props.item.estado"><v-icon  @click="cambiarEstado(props.item)" >lock_open</v-icon></td>
+                <td v-else><v-icon  @click="cambiarEstado(props.item)">lock</v-icon></td>
                 <archivos  @cambioDocumentos="documentos = $event" :shareDocs = "props.item.archivo" :shareUser = "props.item.usuario" :shareName = "props.item.nombre"></archivos>
-                <v-icon v-btn color="blue darken-1" flat v-if="props.item.usuario === usuario" @click="eliminarDocumento(props.item)" > delete </v-icon>
-            </td>
+                <v-icon flat small v-if="props.item.usuario === usuario" @click="eliminarDocumento(props.item)" > delete </v-icon>
         </template>
         </v-data-table>
         
@@ -113,9 +112,10 @@ export default {
                 { text: 'Descripcion', value: 'Descripcion', sortable: false },
                 { text: 'Autor', align: 'rigth' ,value: 'Autor', sortable: false },
                 { text: 'Etiquetas', align: 'center', value: 'Etiquetas', sortable: false },
-                { text: 'acciones',
+                { text: 'Privado/Publico',
                 sortable: false,
-                }
+                },
+                { text: 'Actions', align: 'center', value: 'name', sortable: false }
             ],
             hola:true,
             editedItem:{

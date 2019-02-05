@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import tabla from './components/documentos/usage.vue'
+import MultipleFileUpload from './components/sort.vue'
 import Registrarse from './components/registrarse.vue'
 import cloudTag from './components/documentos/cloudTag.vue'
 import previ from './components/documentos/previsualizar.vue'

@@ -81,7 +81,7 @@
                 <v-icon v-if="props.item.estado" @click="cambiarEstado(props.item)" >lock_open</v-icon>
                 <v-icon v-if="!props.item.estado"  @click="cambiarEstado(props.item)">lock</v-icon>
                 <archivos  @cambioDocumentos="documentos = $event" :shareDocs = "props.item.archivo" :shareUser = "props.item.usuario" :shareName = "props.item.nombre"></archivos>
-                <v-icon v-btn color="blue darken-1" flat v-if="props.item.usuario === usuario" @click="eliminarDocumento(props.item)" > delete </v-icon>
+                <v-btn color="blue darken-1" flat v-if="props.item.usuario === usuario" @click="eliminarDocumento(props.item)" > delete </v-btn>
             </td>
         </template>
         </v-data-table>
