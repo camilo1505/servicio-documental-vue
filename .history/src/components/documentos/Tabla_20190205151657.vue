@@ -2,7 +2,7 @@
     <div>
         <v-app>
             <v-container fill-height="100%">
-                <v-layout>
+                <v-layout max-height="50%">
                 <v-data-table
                 :headers="headers"
                 :items="documentos"
