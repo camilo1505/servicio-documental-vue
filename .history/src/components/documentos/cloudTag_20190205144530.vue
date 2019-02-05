@@ -2,7 +2,7 @@
       <!--CloudTag-->
         <v-card color="#F7EFF6" elevation="1" max-width="auto" max-height="auto">
           <v-card-title primary-title>
-              <h3 class="headline">Consulta por etiquetas, solo dale click a una!</h3>
+              <h3 class="headline">Selecciona una etiqueta!</h3>
           </v-card-title>
           <wordcloud
           :data="etiquetas"
@@ -29,7 +29,7 @@ export default {
       console.log("buscar por la etiqueta: " + name)
       Axios
       .get("http://localhost:8080/api/v1/documento/consultarEtiqueta?etiqueta=" + name)
-      .then(Response =>(this.documentos = Response.data ) )
+      .then(Response =>(this.documentos = Response.data ) console.log(this.documentos))
       
       this.dialog = true
       this.etiqueta = name

@@ -2,7 +2,7 @@
       <!--CloudTag-->
         <v-card color="#F7EFF6" elevation="1" max-width="auto" max-height="auto">
           <v-card-title primary-title>
-              <h3 class="headline">Consulta por etiquetas, solo dale click a una!</h3>
+              <h3 class="headline">Selecciona una etiqueta!</h3>
           </v-card-title>
           <wordcloud
           :data="etiquetas"

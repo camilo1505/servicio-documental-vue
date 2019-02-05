@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-app>
-            <v-container fill-height="100%">
+            <v-container height="100%">
                 <v-layout >
                 <v-data-table
                 :headers="headers"

@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-app>
-            <v-container fill-height="100%">
+            <v-container >
                 <v-layout >
                 <v-data-table
                 :headers="headers"
@@ -91,6 +91,7 @@
             </v-data-table>
             <cloud-tag></cloud-tag>
             </v-layout>
+            
             </v-container>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}
