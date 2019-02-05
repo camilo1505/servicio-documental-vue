@@ -9,7 +9,7 @@ import VueClip from 'vue-clip'
 Vue.component(VueWordCloud.name, VueWordCloud);
 
 
-Vue.use(Vuetify,VueClip);
+Vue.use(Vuetify, VueClip);
 new Vue({
   router,
   render: h => h(App),

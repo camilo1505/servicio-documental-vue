@@ -18,7 +18,7 @@
                         </td>
                         <td>{{ props.item.textoCompleto }}</td>
                         <td>
-                            <a v-bind:href="props.item.url">Descargar</a>
+                            <img v-bind:src="props.item.url">
                         </td>
                         <td class="text-xs-left">
                             <v-btn flat small v-if="shareUser === usuario" @click="eliminarArchivo(props.item)"><v-icon  small="" > delete </v-icon></v-btn>

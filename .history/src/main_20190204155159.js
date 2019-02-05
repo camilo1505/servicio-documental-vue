@@ -4,12 +4,12 @@ import router from './router'
 import Vuetify from 'vuetify'
 
 import VueWordCloud from 'vuewordcloud'
-import VueClip from 'vue-clip'
+import VueClip from 'vuel-clip'
 
 Vue.component(VueWordCloud.name, VueWordCloud);
 
 
-Vue.use(Vuetify,VueClip);
+Vue.use(Vuetify, VueClip);
 new Vue({
   router,
   render: h => h(App),

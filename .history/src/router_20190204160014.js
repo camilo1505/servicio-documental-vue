@@ -43,7 +43,7 @@ export default new Router({
     {
       path: '/pruebas',
       name: 'pruebas',
-      component: SubirArchivos
+      component:
     }
   ]
 })
