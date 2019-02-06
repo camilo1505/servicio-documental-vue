@@ -34,7 +34,14 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="green darken-1" flat="flat" @click="activador=false"> cerrar </v-btn>
+
+          <v-btn
+            color="green darken-1"
+            flat="flat"
+            @click="updateDialog()"
+          >
+            cerrar
+          </v-btn>
         </v-card-actions>
         
       </v-card>
@@ -121,6 +128,12 @@ export default {
                 Axios
                 .put("http://localhost:8080/documento/cambiarNombreArchivo?documento=" + this.shareName + "&archivo="+ archivo.nombreArchivo + "&usuario=" + this.shareUser)
                 .then(Response => (this.estadoSolicitud = Response.status))
+            },
+            updateDialog(){
+                if(this.dialog){
+                    this.activador=false
+                    this.$emit('updateDialog',this.activador)
+                }
             }
         }
 }

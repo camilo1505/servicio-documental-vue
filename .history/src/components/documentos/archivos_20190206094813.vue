@@ -34,12 +34,19 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="green darken-1" flat="flat" @click="activador=false"> cerrar </v-btn>
+
+          <v-btn
+            color="green darken-1"
+            flat="flat"
+            @click="updateDialog()"
+          >
+            cerrar
+          </v-btn>
         </v-card-actions>
         
       </v-card>
     </v-dialog>
-        <p v-if="shareDoc != null">{{initialize()}}</p>
+        <p v-if="shareDocs != null">{{initialize()}}</p>
         <p>{{actualizarDocumentos()}}</p>
         <p v-if="estadoSolicitud == 200"> {{manejadorRespuestas()}} </p>
   </v-layout>
@@ -76,7 +83,7 @@ export default {
     },
         methods: {
             initialize(){
-                this.archivos = this.shareDoc
+                this.archivos = this.shareDocs
                 if(localStorage.user) {
                     this.usuario = localStorage.user;
                 }
@@ -91,7 +98,7 @@ export default {
             },
             borrar(archivo) {
                 Axios
-                .put("http://localhost:8080/documento/eliminarArchivo?documento=" + this.shareName + "&archivo="+ archivo.nombreArchivo + "&usuario=" + localStorage.user)
+                .put("http://localhost:8080/documento/eliminarArchivo?documento=" + this.shareName + "&archivo="+ archivo.nombreArchivo + "&usuario=" + this.shareUser)
                 .then(Response => (this.estadoSolicitud = Response.status))
             },
             eliminarArchivo(archivo){
@@ -121,6 +128,12 @@ export default {
                 Axios
                 .put("http://localhost:8080/documento/cambiarNombreArchivo?documento=" + this.shareName + "&archivo="+ archivo.nombreArchivo + "&usuario=" + this.shareUser)
                 .then(Response => (this.estadoSolicitud = Response.status))
+            },
+            updateDialog(){
+                if(this.dialog){
+                    this.activador=false
+                    this.$emit('updateDialog',this.activador)
+                }
             }
         }
 }
