@@ -19,3 +19,6 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+src/components/documentos/Tabla.vue
+.history/src/components/documentos/Tabla_20190205152425.vue
+src/components/documentos/Tabla.vue
