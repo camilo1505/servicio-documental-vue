@@ -1,11 +1,15 @@
 <template>
     <div>
         <v-app>
+                <v-layout row wrap>
+                <v-flex lg7>
                 <v-data-table
                 :headers="headers"
                 :items="documentos"
                 class="elevation-1"
                 item-key="id.counter"
+                
+                
                 >
                 <template slot="items" slot-scope="props">
                     
@@ -85,6 +89,11 @@
                     </td>
                 </template>
             </v-data-table>
+            </v-flex>
+            <v-flex xs5>
+                <cloud-tag @updateDocumentos="documentos = $event"></cloud-tag>
+            </v-flex >
+            </v-layout>
         <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
             {{ snackText }}
             <v-btn flat @click="snack = false">Close</v-btn>
@@ -99,9 +108,11 @@
 <script>
 import Axios from 'axios';
 import archivos from './archivos.vue';
+import cloudTag from './cloudTag.vue';
 export default {
     components: {
       archivos,
+      cloudTag
     },
     props: ['shareDocs'],
     data() {

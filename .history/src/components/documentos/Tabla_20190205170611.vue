@@ -6,6 +6,8 @@
                 :items="documentos"
                 class="elevation-1"
                 item-key="id.counter"
+                
+                
                 >
                 <template slot="items" slot-scope="props">
                     
@@ -80,7 +82,9 @@
                         <v-icon small class="mr-3" v-if="props.item.estado" @click="cambiarEstado(props.item)" >lock_open</v-icon>
                         <v-icon small class="mr-3" v-if="!props.item.estado"  @click="cambiarEstado(props.item)">lock</v-icon>
                         <v-icon small class="mr-3" @click="activador=true">visibility</v-icon>
-                        <archivos :dialog="activador" @updateDialog="activador = $event" :shareDocs = "props.item.archivo" :shareUser = "props.item.usuario" :shareName = "props.item.nombre"></archivos>
+                        <v-dialog v-model="activador" max-width="auto">
+                            <archivos :dialog="activador" @updateDialog="activador = false" :shareDocs = "props.item.archivo" :shareUser = "props.item.usuario" :shareName = "props.item.nombre"></archivos>
+                        </v-dialog>
                         <v-icon  small class="mr-3" v-if="props.item.usuario === usuario" @click="eliminarDocumento(props.item)" > delete </v-icon>
                     </td>
                 </template>

@@ -1,6 +1,6 @@
 <template>
       <!--CloudTag-->
-        <v-card color="withe" elevation="0" max-width="auto" max-height="auto">
+        <v-card color="#F7EFF6" elevation="1" max-width="auto" max-height="auto">
           <v-card-title primary-title>
               <h3 class="headline">Consulta por etiquetas, solo dale click a una!</h3>
 
@@ -13,7 +13,6 @@
           :showTooltip="false"
           :wordClick="wordClickHandler">
           </wordcloud>
-          <p v-if="documentos">{{enviarDocumentos()}}</p>
         </v-card>
 </template>
 
@@ -25,6 +24,21 @@ export default {
   name: 'cloud',
   components: {
     wordcloud
+  },
+  methods: {
+    wordClickHandler(name) {
+      console.log("buscar por la etiqueta: " + name)
+      Axios
+      .get("http://localhost:8080/api/v1/documento/consultarEtiqueta?etiqueta=" + name)
+      .then(Response =>(this.documentos = Response.data ) )
+      
+      this.dialog = true
+      this.etiqueta = name
+      this.transicion = false
+    },
+    redirigir() {
+      this.$router.push({name:'tabla'})
+    }
   },
   data() {
     return {
@@ -42,22 +56,8 @@ export default {
       .get("http://localhost:8080/api/v1/documento/cloudEtiquetas")
       .then(Response =>(this.etiquetas = Response.data))
     },
-    methods: {
-    wordClickHandler(name) {
-      Axios
-      .get("http://localhost:8080/api/v1/documento/consultarEtiqueta?etiqueta=" + name)
-      .then(Response =>(this.documentos = Response.data ) )
-      
-      this.dialog = true
-      this.etiqueta = name
-      this.transicion = false
-    },
-    redirigir() {
-      this.$router.push({name:'tabla'})
-    },
     enviarDocumentos() {
       this.$emit('updateDocumentos',this.documentos)
     }
-  },
 }
 </script>

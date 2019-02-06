@@ -6,6 +6,8 @@
                 :items="documentos"
                 class="elevation-1"
                 item-key="id.counter"
+                
+                
                 >
                 <template slot="items" slot-scope="props">
                     
