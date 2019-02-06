@@ -19,19 +19,14 @@
         >
         <template slot="items" slot-scope="props">
             
-            <td>
-                <v-edit-dialog :return-value.sync="props.item.nombreArchivo" lazy @save="editarArchivo(props.item)" @cancel="cancel" @open="open" @close="close">
-                    {{ props.item.nombreArchivo}}
-                    <v-text-field slot="input" v-model="nuevoNombre" label="Nombre Archivo" single-line counter></v-text-field>
-                </v-edit-dialog>
-            </td>
+            <td> {{ props.item.nombreArchivo}}</td>
             <td>{{ props.item.textoCompleto }}</td>
             <td>
                 <a :href="props.item.url">Descargar</a>
             </td>
 
             <td class="text-xs-left">
-                <v-btn flat small v-if="propietario()" @click="eliminarArchivo(props.item)"><v-icon  small="" > delete </v-icon></v-btn>
+                <v-btn flat small v-if="propietario(props.item.usuario)" @click="eliminarArchivo(props.item)"><v-icon  small="" > delete </v-icon></v-btn>
             </td>
         </template>
         </v-data-table>
@@ -60,8 +55,7 @@ import Axios from 'axios';
 export default {
     props: {
         shareDoc:null,
-        shareName:null,
-        shareOwner: null
+        shareName:null
     },
     data () {
         return {
@@ -77,8 +71,7 @@ export default {
             estadoSolicitud: null,
             snack: false,
             snackColor: '',
-            snackText: '',
-            nuevoNombre: null
+            snackText: '',     
         }
     },
         methods: {
@@ -98,16 +91,16 @@ export default {
                 Axios
                 .put("http://localhost:8080/documento/eliminarArchivo?documento=" + this.shareName + "&archivo="+ archivo.nombreArchivo + "&usuario=" + localStorage.user)
                 .then(Response => (this.estadoSolicitud = Response.status))
-                this.save()
             },
             eliminarArchivo(archivo){
                 const index = this.archivos.indexOf(archivo)
                 confirm("Esta seguro que quiere eliminar este Archivo?") && this.archivos.splice(index,1) && this.borrar(archivo);
             },
-            save() {
+            save(archivo) {
                 this.snack = true
                 this.snackColor = 'success'
                 this.snackText = 'Guardado'
+                this.editarArchivo(archivo)
             },
             cancel () {
                 this.snack = true
@@ -124,19 +117,18 @@ export default {
             },
             editarArchivo(archivo) {
                 Axios
-                .put("http://localhost:8080/documento/cambiarNombreArchivo?nombreDocumento=" + this.shareName + "&nombreActual=" + archivo.nombreArchivo + "&nombreNuevo="+ this.nuevoNombre + "&usuario=" + localStorage.user)
+                .put("http://localhost:8080/documento/cambiarNombreArchivo?documento=" + this.shareName + "&archivo="+ archivo.nombreArchivo + "&usuario=" + localStorage.user)
                 .then(Response => (this.estadoSolicitud = Response.status))
-                archivo.nombreArchivo = this.nuevoNombre
-                this.save()
             },
-            propietario() {
-                if(this.shareOwner == localStorage.user) {
+            propietario(owner) {
+                console.log("Este es del archivo: "+owner+" y este el del sesion: "+this.usuario)
+                if(owner == this.usuario) {
                     return true
                 }
                 else {
                     return false
                 }
-            },
+            }
         }
 }
 </script>

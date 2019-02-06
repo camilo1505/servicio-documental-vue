@@ -124,7 +124,7 @@ export default {
             },
             editarArchivo(archivo) {
                 Axios
-                .put("http://localhost:8080/documento/cambiarNombreArchivo?nombreDocumento=" + this.shareName + "&nombreActual=" + archivo.nombreArchivo + "&nombreNuevo="+ this.nuevoNombre + "&usuario=" + localStorage.user)
+                .put("http://localhost:8080/documento/cambiarNombreArchivo?nombreDocumento=" + this.shareName + "&nombreActual=" + archivo.nombreArchivo + "&nuevoNombre="+ this.nuevoNombre + "&usuario=" + localStorage.user)
                 .then(Response => (this.estadoSolicitud = Response.status))
                 archivo.nombreArchivo = this.nuevoNombre
                 this.save()

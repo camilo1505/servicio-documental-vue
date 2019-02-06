@@ -20,9 +20,9 @@
         <template slot="items" slot-scope="props">
             
             <td>
-                <v-edit-dialog :return-value.sync="props.item.nombreArchivo" lazy @save="editarArchivo(props.item)" @cancel="cancel" @open="open" @close="close">
+                <v-edit-dialog :return-value.sync="props.item.nombreArchivo" lazy @save="save" @cancel="cancel" @open="open" @close="close">
                     {{ props.item.nombreArchivo}}
-                    <v-text-field slot="input" v-model="nuevoNombre" label="Nombre Archivo" single-line counter></v-text-field>
+                    <v-text-field slot="input" v-model="props.item.name" label="Nombre Archivo" single-line counter></v-text-field>
                 </v-edit-dialog>
             </td>
             <td>{{ props.item.textoCompleto }}</td>
@@ -77,8 +77,7 @@ export default {
             estadoSolicitud: null,
             snack: false,
             snackColor: '',
-            snackText: '',
-            nuevoNombre: null
+            snackText: '',     
         }
     },
         methods: {
@@ -98,16 +97,16 @@ export default {
                 Axios
                 .put("http://localhost:8080/documento/eliminarArchivo?documento=" + this.shareName + "&archivo="+ archivo.nombreArchivo + "&usuario=" + localStorage.user)
                 .then(Response => (this.estadoSolicitud = Response.status))
-                this.save()
             },
             eliminarArchivo(archivo){
                 const index = this.archivos.indexOf(archivo)
                 confirm("Esta seguro que quiere eliminar este Archivo?") && this.archivos.splice(index,1) && this.borrar(archivo);
             },
-            save() {
+            save(archivo) {
                 this.snack = true
                 this.snackColor = 'success'
                 this.snackText = 'Guardado'
+                this.editarDocumento(archivo)
             },
             cancel () {
                 this.snack = true
@@ -122,12 +121,10 @@ export default {
             close () {
                 console.log('Dialogo cerrado')
             },
-            editarArchivo(archivo) {
+            editarDocumento(archivo) {
                 Axios
-                .put("http://localhost:8080/documento/cambiarNombreArchivo?nombreDocumento=" + this.shareName + "&nombreActual=" + archivo.nombreArchivo + "&nombreNuevo="+ this.nuevoNombre + "&usuario=" + localStorage.user)
+                .put("http://localhost:8080/documento/cambiarNombreArchivo?documento=" + this.shareName + "&archivo="+ archivo.nombreArchivo + "&usuario=" + localStorage.user)
                 .then(Response => (this.estadoSolicitud = Response.status))
-                archivo.nombreArchivo = this.nuevoNombre
-                this.save()
             },
             propietario() {
                 if(this.shareOwner == localStorage.user) {
@@ -136,7 +133,7 @@ export default {
                 else {
                     return false
                 }
-            },
+            }
         }
 }
 </script>

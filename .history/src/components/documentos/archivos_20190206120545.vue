@@ -22,7 +22,7 @@
             <td>
                 <v-edit-dialog :return-value.sync="props.item.nombreArchivo" lazy @save="editarArchivo(props.item)" @cancel="cancel" @open="open" @close="close">
                     {{ props.item.nombreArchivo}}
-                    <v-text-field slot="input" v-model="nuevoNombre" label="Nombre Archivo" single-line counter></v-text-field>
+                    <v-text-field slot="input" v-model="props.item.nombreArchivo" label="Nombre Archivo" single-line counter></v-text-field>
                 </v-edit-dialog>
             </td>
             <td>{{ props.item.textoCompleto }}</td>
@@ -77,8 +77,7 @@ export default {
             estadoSolicitud: null,
             snack: false,
             snackColor: '',
-            snackText: '',
-            nuevoNombre: null
+            snackText: '',     
         }
     },
         methods: {
@@ -124,9 +123,8 @@ export default {
             },
             editarArchivo(archivo) {
                 Axios
-                .put("http://localhost:8080/documento/cambiarNombreArchivo?nombreDocumento=" + this.shareName + "&nombreActual=" + archivo.nombreArchivo + "&nombreNuevo="+ this.nuevoNombre + "&usuario=" + localStorage.user)
+                .put("http://localhost:8080/documento/cambiarNombreArchivo?documento=" + this.shareName + "&archivo="+ archivo.nombreArchivo + "&usuario=" + localStorage.user)
                 .then(Response => (this.estadoSolicitud = Response.status))
-                archivo.nombreArchivo = this.nuevoNombre
                 this.save()
             },
             propietario() {
