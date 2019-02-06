@@ -4,7 +4,7 @@ import tabla from './components/documentos/usage.vue'
 import Registrarse from './components/registrarse.vue'
 import cloudTag from './components/documentos/cloudTag.vue'
 import SubirArchivos from './components/documentos/SubirArchivos.vue'
-import previ from './components/documentos/preview.vue'
+import previ from './components/documentos/previsualizar.vue'
 
 
 import Login from './components/login.vue'

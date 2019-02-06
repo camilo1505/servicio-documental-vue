@@ -13,7 +13,7 @@ import VuePreview from 'vue-preview'
 Vue.use(VuePreview)
  
 // with parameters install
-Vue.use( {
+Vue.use(preview, {
   mainClass: 'pswp--minimal--dark',
   barsSize: {top: 0, bottom: 0},
   captionEl: false,
