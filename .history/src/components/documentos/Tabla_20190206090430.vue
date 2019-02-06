@@ -81,7 +81,8 @@
                     <td class="justify-center layout px-0">
                         <v-icon small class="mr-3" v-if="props.item.estado" @click="cambiarEstado(props.item)" >lock_open</v-icon>
                         <v-icon small class="mr-3" v-if="!props.item.estado"  @click="cambiarEstado(props.item)">lock</v-icon>
-                        <archivos :shareDocs = "props.item.archivo" :shareName = "props.item.nombre"></archivos>
+                        <v-icon small class="mr-3" @click="activador=true">visibility</v-icon>
+                        <archivos :dialog="activador" @updateDialog="activador = $event" :shareDocs = "props.item.archivo" :shareUser = "props.item.usuario" :shareName = "props.item.nombre"></archivos>
                         <v-icon  small class="mr-3" v-if="props.item.usuario === usuario" @click="eliminarDocumento(props.item)" > delete </v-icon>
                     </td>
                 </template>

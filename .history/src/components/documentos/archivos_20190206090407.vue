@@ -1,6 +1,5 @@
 <template>
 <div>
-  <v-icon small class="mr-3" @click="activador=true">visibility</v-icon>
   <v-layout>
     <v-dialog
       v-model="activador"
@@ -60,7 +59,7 @@
 <script>
 import Axios from 'axios';
 export default {
-    props: ['shareDocs', 'shareUser', 'shareName'],
+    props: ['shareDocs', 'shareUser', 'shareName','dialog'],
     data () {
         return {
             headers: [

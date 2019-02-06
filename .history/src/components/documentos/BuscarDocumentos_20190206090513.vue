@@ -17,7 +17,7 @@ export default {
     methods: {
         buscarDocumentos() {
             Axios
-            .get("http://localhost:8080/documento/consultar?consulta=" + this.busqueda + "&usuario=" + localStorage.user + "&etiqueta=" + "&misDocumentos=" + false)
+            .get("http://localhost:8080/documento/consultarDocumento?consulta=" + this.busqueda + "&usuario=" + localStorage.user + "&tipoConsulta=false")
             .then(Response =>(this.documentos = Response.data));
         },
         cambiarDocumentos() {
