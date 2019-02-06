@@ -83,7 +83,7 @@ export default {
     methods: {
         comprobarUsuario() {
             Axios
-            .get("http://localhost:8080/usuario/consultarUsuario?usuario="+this.user+"&password="+this.password)
+            .get("http://localhost:8080/usuario/consultarUsuario?nombreUsuario="+this.user+"&password="+this.password)
             .then(Response =>(this.respuesta = Response.status))
         },
         usuario() {

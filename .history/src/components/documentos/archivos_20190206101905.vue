@@ -1,9 +1,9 @@
 <template>
 <div>
-  <v-icon small class="mr-3" @click="dialog=true">visibility</v-icon>
+  <v-icon small class="mr-3" @click="activador=true">visibility</v-icon>
   <v-layout>
     <v-dialog
-      v-model="dialog"
+      v-model="activador"
       max-width="auto"
     >
       <v-card>
@@ -34,7 +34,7 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="green darken-1" flat="flat" @click="dialog=false"> cerrar </v-btn>
+          <v-btn color="green darken-1" flat="flat" @click="activador=false"> cerrar </v-btn>
         </v-card-actions>
         
       </v-card>
@@ -65,7 +65,7 @@ export default {
                     { text: 'URL', value: 'URL', sortable: false },
                     { text: 'Actions', align: 'center', value: 'name', sortable: false }
                 ],
-            dialog:false,
+            activador:false,
             archivos:[],
             usuario: null,
             estadoSolicitud: null,
@@ -83,6 +83,8 @@ export default {
                 else {
                     this.$router.push({name:'login'})
                 }
+                this.activador=this.dialog
+                
             },
             actualizarDocumentos() {
                 this.$emit('cambioDocumentos', this.archivos);

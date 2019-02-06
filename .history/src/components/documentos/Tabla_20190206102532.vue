@@ -82,9 +82,7 @@
                             <v-icon small class="mr-3" v-if="!props.item.estado"  @click="cambiarEstado(props.item)">lock</v-icon>
                         </div>
                         <archivos :shareDoc = "props.item.archivo" :shareName = "props.item.nombre"></archivos>
-                        <div>
-                            <v-icon  small class="mr-3" v-if="props.item.usuario === usuario" @click="eliminarDocumento(props.item)" > delete </v-icon>
-                        </div>
+                        <v-icon  small class="mr-3" v-if="props.item.usuario === usuario" @click="eliminarDocumento(props.item)" > delete </v-icon>
                     </td>
                 </template>
             </v-data-table>
