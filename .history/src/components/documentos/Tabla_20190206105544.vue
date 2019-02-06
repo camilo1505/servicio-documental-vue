@@ -150,16 +150,11 @@ export default {
             this.editedItem = Object.assign({}, item)
             this.dialog = true
         },
-        correct() {
-            this.snack = true
-            this.snackColor = 'success'
-            this.snackText = 'Cambio Realizado'
-        },
         save (documento) {
-            this.editarDocumento(documento)
             this.snack = true
             this.snackColor = 'success'
             this.snackText = 'Cambio Realizado'
+            this.editarDocumento(documento)
       },
       cancel () {
         this.snack = true
@@ -188,6 +183,7 @@ export default {
       close () {
       },
       editarDocumento(documento){
+            console.log(documento)
             Axios
             .put("http://localhost:8080/documento/editarDocumento?usuario=" + localStorage.user, documento)
             .then(Response => (this.estadoSolicitud = Response.status))
@@ -214,7 +210,7 @@ export default {
         },
         manejadorRespuestas() {
             if(this.estadoSolicitud == 200) {
-                this.correct()
+                this.save();
                 this.estadoSolicitud = null;
             }
             else {

@@ -188,6 +188,7 @@ export default {
       close () {
       },
       editarDocumento(documento){
+            console.log(documento)
             Axios
             .put("http://localhost:8080/documento/editarDocumento?usuario=" + localStorage.user, documento)
             .then(Response => (this.estadoSolicitud = Response.status))

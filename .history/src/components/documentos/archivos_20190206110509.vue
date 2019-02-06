@@ -26,7 +26,7 @@
             </td>
 
             <td class="text-xs-left">
-                <v-btn flat small v-if="propietario(props.item.usuario)" @click="eliminarArchivo(props.item)"><v-icon  small="" > delete </v-icon></v-btn>
+                <v-btn flat small v-if="localStorage.user === usuario" @click="eliminarArchivo(props.item)"><v-icon  small="" > delete </v-icon></v-btn>
             </td>
         </template>
         </v-data-table>
@@ -119,14 +119,6 @@ export default {
                 Axios
                 .put("http://localhost:8080/documento/cambiarNombreArchivo?documento=" + this.shareName + "&archivo="+ archivo.nombreArchivo + "&usuario=" + localStorage.user)
                 .then(Response => (this.estadoSolicitud = Response.status))
-            },
-            propietario(owner) {
-                if(owner == this.usuario) {
-                    return true
-                }
-                else {
-                    return false
-                }
             }
         }
 }
