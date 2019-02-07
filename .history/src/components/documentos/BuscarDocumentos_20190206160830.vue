@@ -19,7 +19,6 @@ export default {
     },
     methods: {
         buscarDocumentos() {
-            console.log("Esto es lo que esta en el switch " + this.switchMios)
             Axios
             .get("http://localhost:8080/documento/consultar?consulta=" + this.busqueda + "&usuario=" + localStorage.user + "&etiqueta=" + "&misDocumentos=" + this.switchMios)
             .then(Response =>(this.documentos = Response.data));

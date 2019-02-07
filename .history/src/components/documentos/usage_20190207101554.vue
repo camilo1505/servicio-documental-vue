@@ -20,9 +20,8 @@
         </v-btn>
       </v-toolbar>
       <!--Etiqueta seleccionada-->
-      <div>
-        <p v-if="etiqueta">Etiqueta Seleccionada: {{etiqueta}} <v-icon small class="mr-3" v-if="etiqueta" @click="showEtiqueta()" >close</v-icon> </p>
-      </div>
+      <v-chip v-model="viewEtiqueta" close>{{etiqueta}}</v-chip>
+      <v-spacer slot="extension" ></v-spacer>
       <!--Tabla con los documentos-->
       <v-layout row wrap>
         <v-flex xs7>
@@ -58,7 +57,8 @@ import cloudTag from './cloudTag.vue';
         error: null,
         tipoConsulta: false,
         respuesta: null,
-        etiqueta: null
+        etiqueta: null,
+        viewEtiqueta: true
       }
     },
     created() {
@@ -78,10 +78,6 @@ import cloudTag from './cloudTag.vue';
       },
       redirigir() {
             this.$router.push({name:'cloud'})
-      },
-      showEtiqueta() {
-        this.etiqueta = null
-        this.inicializar()
       }
     }
   }

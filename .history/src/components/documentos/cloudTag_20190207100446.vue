@@ -33,7 +33,7 @@ export default {
       etiquetas:[],
       tipoConsulta: false,
       documentos: null,
-      etiqueta:null,
+      etiqueta:"hola",
       dialog:false,
       transicion:true
     }
@@ -60,8 +60,8 @@ export default {
       this.$emit('updateDocumentos',this.documentos)
     },
     enviarEtiqueta() {
+      console.log(this.etiqueta)
       this.$emit('updateEtiqueta', this.etiqueta)
-      this.etiqueta = null
     }
   },
 }

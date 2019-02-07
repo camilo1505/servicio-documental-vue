@@ -61,7 +61,6 @@ export default {
     },
     enviarEtiqueta() {
       this.$emit('updateEtiqueta', this.etiqueta)
-      this.etiqueta = null
     }
   },
 }

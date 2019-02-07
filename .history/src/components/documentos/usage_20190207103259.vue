@@ -21,7 +21,8 @@
       </v-toolbar>
       <!--Etiqueta seleccionada-->
       <div>
-        <p v-if="etiqueta">Etiqueta Seleccionada: {{etiqueta}} <v-icon small class="mr-3" v-if="etiqueta" @click="showEtiqueta()" >close</v-icon> </p>
+        <v-chip v-model="showEtiqueta" close>{{etiqueta}}</v-chip>
+        <v-spacer slot="extension" ></v-spacer>
       </div>
       <!--Tabla con los documentos-->
       <v-layout row wrap>
@@ -58,7 +59,8 @@ import cloudTag from './cloudTag.vue';
         error: null,
         tipoConsulta: false,
         respuesta: null,
-        etiqueta: null
+        etiqueta: null,
+        showEtiqueta: true
       }
     },
     created() {
@@ -79,9 +81,8 @@ import cloudTag from './cloudTag.vue';
       redirigir() {
             this.$router.push({name:'cloud'})
       },
-      showEtiqueta() {
-        this.etiqueta = null
-        this.inicializar()
+      mostrarEtiqueta() {
+        this.showEtiqueta = true
       }
     }
   }

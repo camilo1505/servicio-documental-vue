@@ -9,7 +9,7 @@
 import Axios from 'axios';
 export default {
     props: {
-        switchMios: null,
+        misDocumentos: null,
     },
     data() {
         return {
@@ -19,9 +19,8 @@ export default {
     },
     methods: {
         buscarDocumentos() {
-            console.log("Esto es lo que esta en el switch " + this.switchMios)
             Axios
-            .get("http://localhost:8080/documento/consultar?consulta=" + this.busqueda + "&usuario=" + localStorage.user + "&etiqueta=" + "&misDocumentos=" + this.switchMios)
+            .get("http://localhost:8080/documento/consultar?consulta=" + this.busqueda + "&usuario=" + localStorage.user + "&etiqueta=" + "&misDocumentos=" + true)
             .then(Response =>(this.documentos = Response.data));
         },
         cambiarDocumentos() {

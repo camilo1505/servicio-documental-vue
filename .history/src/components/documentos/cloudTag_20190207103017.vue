@@ -60,8 +60,10 @@ export default {
       this.$emit('updateDocumentos',this.documentos)
     },
     enviarEtiqueta() {
-      this.$emit('updateEtiqueta', this.etiqueta)
-      this.etiqueta = null
+      if(this.etiqueta != null) {
+        this.$emit('updateEtiqueta', this.etiqueta)
+        this.etiqueta = null
+      }
     }
   },
 }
