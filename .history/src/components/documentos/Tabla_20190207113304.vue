@@ -88,6 +88,7 @@ export default {
                 { text: 'Nombre del documento', value: 'Nombre del documento', sortable: false },
                 { text: 'Descripcion', value: 'Descripcion', sortable: false },
                 { text: 'Autor', align: 'rigth' ,value: 'Autor', sortable: false },
+                { text: 'Etiquetas', align: 'center', value: 'Etiquetas', sortable: false },
                 { text: 'acciones',sortable: false }
             ],
             activador:false,
