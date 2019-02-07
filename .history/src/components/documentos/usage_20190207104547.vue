@@ -21,7 +21,8 @@
       </v-toolbar>
       <!--Etiqueta seleccionada-->
       <div>
-        <p v-if="etiqueta">Etiqueta Seleccionada: {{etiqueta}} <v-icon small class="mr-3" v-if="etiqueta" @click="showEtiqueta()" >close</v-icon> </p>
+        <p v-if="etiqueta">Etiqueta Seleccionada: {{etiqueta}}</p>
+        <v-icon small class="mr-3" v-if="etiqueta" @click="showEtiqueta()" >times</v-icon>
       </div>
       <!--Tabla con los documentos-->
       <v-layout row wrap>
@@ -81,7 +82,6 @@ import cloudTag from './cloudTag.vue';
       },
       showEtiqueta() {
         this.etiqueta = null
-        this.inicializar()
       }
     }
   }

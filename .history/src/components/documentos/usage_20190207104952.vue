@@ -81,7 +81,6 @@ import cloudTag from './cloudTag.vue';
       },
       showEtiqueta() {
         this.etiqueta = null
-        this.inicializar()
       }
     }
   }

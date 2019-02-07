@@ -19,10 +19,6 @@
           <v-icon dark left>power_settings_new</v-icon>Salir de la sesion
         </v-btn>
       </v-toolbar>
-      <!--Etiqueta seleccionada-->
-      <div>
-        <p v-if="etiqueta">Etiqueta Seleccionada: {{etiqueta}} <v-icon small class="mr-3" v-if="etiqueta" @click="showEtiqueta()" >close</v-icon> </p>
-      </div>
       <!--Tabla con los documentos-->
       <v-layout row wrap>
         <v-flex xs7>
@@ -78,10 +74,6 @@ import cloudTag from './cloudTag.vue';
       },
       redirigir() {
             this.$router.push({name:'cloud'})
-      },
-      showEtiqueta() {
-        this.etiqueta = null
-        this.inicializar()
       }
     }
   }

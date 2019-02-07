@@ -19,17 +19,13 @@
           <v-icon dark left>power_settings_new</v-icon>Salir de la sesion
         </v-btn>
       </v-toolbar>
-      <!--Etiqueta seleccionada-->
-      <div>
-        <p v-if="etiqueta">Etiqueta Seleccionada: {{etiqueta}} <v-icon small class="mr-3" v-if="etiqueta" @click="showEtiqueta()" >close</v-icon> </p>
-      </div>
       <!--Tabla con los documentos-->
       <v-layout row wrap>
         <v-flex xs7>
           <tabla @cambioDocumentos="documentos = $event" :shareDocs = "documentos"></tabla>
         </v-flex>
         <v-flex xs5>
-          <cloud-tag @updateDocumentos="documentos = $event" @updateEtiqueta="etiqueta = $event"></cloud-tag>
+          <cloud-tag @updateDocumentos="documentos = $event"></cloud-tag>
         </v-flex>
       </v-layout>
       <p v-if="respuesta == 200">{{redirigir()}}</p>
@@ -57,8 +53,7 @@ import cloudTag from './cloudTag.vue';
         documentos: null,
         error: null,
         tipoConsulta: false,
-        respuesta: null,
-        etiqueta: null
+        respuesta: null
       }
     },
     created() {
@@ -78,10 +73,6 @@ import cloudTag from './cloudTag.vue';
       },
       redirigir() {
             this.$router.push({name:'cloud'})
-      },
-      showEtiqueta() {
-        this.etiqueta = null
-        this.inicializar()
       }
     }
   }
