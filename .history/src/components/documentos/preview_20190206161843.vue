@@ -1,7 +1,5 @@
 <template>
-
     <v-app>
-      
 		<v-content>
 			<v-container fluid>
 				<v-flex xs12 class="text-xs-center text-sm-center text-md-center text-lg-center">
@@ -22,9 +20,7 @@
 				</v-dialog>
 			</v-container>
 		</v-content>
-    
-    <img src="<c:url value="/misterySnow/tesis publico/img003 (2).jpg"/>">
-    
+    <img :src="images.sample">
   <vue-preview :slides="slide1" @close="handleClose"></vue-preview>
     </v-app>
     
@@ -32,13 +28,13 @@
 </template>
  
 <script>
+import image from "./assets/logo.png"
 export default {
     data () {
       return {
-        direccion:'/misterySnow/tesis publico/img003 (2).jpg',
         slide1: [
           {
-            src: '<c:url value="/misterySnow/tesis publico/img003 (2).jpg"/>',
+            src: image,
             msrc: 'https://publicacion.com/wp-content/uploads/2018/09/15-imagenes-que-te-demostraran-que-no-te-puedes-fiar-ni-de-tu-pareja.jpg',
             alt: 'visualizar',
             title: 'Image Caption 1',
@@ -46,7 +42,7 @@ export default {
             h: 400
           },
           {
-            src: '@/assets/logo.png',
+            src: 'https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_m.jpg',
             msrc: 'https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_m.jpg',
             alt: 'picture2',
             title: 'Image Caption 2',
@@ -54,6 +50,7 @@ export default {
             h: 900
           }
         ],
+        image:image,
         images: {
                 sample: require('@/assets/logo.png')
             },

@@ -38,7 +38,7 @@ export default {
         direccion:'/misterySnow/tesis publico/img003 (2).jpg',
         slide1: [
           {
-            src: '<c:url value="/misterySnow/tesis publico/img003 (2).jpg"/>',
+            src: '~src/assets/img/.png',
             msrc: 'https://publicacion.com/wp-content/uploads/2018/09/15-imagenes-que-te-demostraran-que-no-te-puedes-fiar-ni-de-tu-pareja.jpg',
             alt: 'visualizar',
             title: 'Image Caption 1',
