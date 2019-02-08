@@ -5,7 +5,7 @@
             <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
             <input type="file" id="file" ref="myFiles" class="custom-file-input" @change="onFileChanged()" multiple>
             <v-btn @click="onUpload()">Upload</v-btn>
-            <p>{{selectedFile}}</p>
+            <p>{{selectedFile["0"]}}</p>
         </v-app>
     </div>
 </template>

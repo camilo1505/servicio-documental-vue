@@ -3,9 +3,8 @@
         <v-app>
             <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
             <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
-            <input type="file" id="file" ref="myFiles" class="custom-file-input" @change="onFileChanged()" multiple>
-            <v-btn @click="onUpload()">Upload</v-btn>
-            <p>{{selectedFile}}</p>
+            <input type="file" @change="onfileChanged">
+            <v-btn @click="onUpload">Upload</v-btn>
         </v-app>
     </div>
 </template>
@@ -16,12 +15,12 @@ export default {
     name:"pruebas",
     data() {
         return{
-            selectedFile: []
+            selectedFile: null
         }
     },
     methods: {
-        onFileChanged() {
-            this.selectedFile = this.$refs.myFiles.files
+        onFileChanged(event) {
+            this.selectedFile = event.target.files[0]
         },
         onUpload() {
             const formData = new FormData()

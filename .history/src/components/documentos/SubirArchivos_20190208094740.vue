@@ -26,6 +26,7 @@ export default {
         onUpload() {
             const formData = new FormData()
             formData.append('myFile', this.selectedFile, this.selectedFile.name)
+            console.log(formData)
             Axios.post('my-domain.com/file-upload', formData)
         }
     }

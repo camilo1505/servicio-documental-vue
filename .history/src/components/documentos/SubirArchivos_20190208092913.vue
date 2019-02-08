@@ -21,7 +21,10 @@ export default {
     },
     methods: {
         onFileChanged() {
-            this.selectedFile = this.$refs.myFiles.files
+            for(var file in this.$refs.myFiles.files) {
+                console.log(file)
+                this.selectedFile.append(file)
+            }
         },
         onUpload() {
             const formData = new FormData()

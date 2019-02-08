@@ -5,7 +5,6 @@
             <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
             <input type="file" id="file" ref="myFiles" class="custom-file-input" @change="onFileChanged()" multiple>
             <v-btn @click="onUpload()">Upload</v-btn>
-            <p>{{selectedFile}}</p>
         </v-app>
     </div>
 </template>
@@ -21,6 +20,7 @@ export default {
     },
     methods: {
         onFileChanged() {
+            console.log(this.$refs.myFiles.files)
             this.selectedFile = this.$refs.myFiles.files
         },
         onUpload() {

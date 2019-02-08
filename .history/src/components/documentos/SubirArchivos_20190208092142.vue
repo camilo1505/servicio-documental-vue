@@ -21,6 +21,7 @@ export default {
     },
     methods: {
         onFileChanged() {
+            console.log(this.$refs.myFiles.files)
             this.selectedFile = this.$refs.myFiles.files
         },
         onUpload() {
