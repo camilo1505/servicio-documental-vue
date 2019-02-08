@@ -2,13 +2,13 @@
     <div id="app">
         <v-app>
             <v-layout row wrap>
-                <v-flex xs5>
+                <v-flex xs6>
                     <input type="file" id="file" ref="myFiles" class="custom-file-input" @change="onFileChanged()" multiple>
                 </v-flex>
                 <v-flex xs7>
                     <v-btn @click="onUpload()">Guardar</v-btn>
                 </v-flex>
-                <v-flex xs9>
+                <v-flex xs5>
                     <ul>
                         <li v-for="archivo in selectedFile" :key="archivo.id">
                             <h3>Archivo: {{archivo.name}} Listo para subir</h3>

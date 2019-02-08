@@ -8,7 +8,7 @@
                 <v-flex xs7>
                     <v-btn @click="onUpload()">Guardar</v-btn>
                 </v-flex>
-                <v-flex xs9>
+                <v-flex xs10>
                     <ul>
                         <li v-for="archivo in selectedFile" :key="archivo.id">
                             <h3>Archivo: {{archivo.name}} Listo para subir</h3>

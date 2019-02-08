@@ -2,20 +2,17 @@
     <div id="app">
         <v-app>
             <v-layout row wrap>
-                <v-flex xs5>
+                <v-flex>
                     <input type="file" id="file" ref="myFiles" class="custom-file-input" @change="onFileChanged()" multiple>
                 </v-flex>
-                <v-flex xs7>
+                <v-flex>
                     <v-btn @click="onUpload()">Guardar</v-btn>
                 </v-flex>
-                <v-flex xs9>
-                    <ul>
-                        <li v-for="archivo in selectedFile" :key="archivo.id">
-                            <h3>Archivo: {{archivo.name}} Listo para subir</h3>
-                        </li>
-                    </ul>
-                </v-flex>
-                
+                <v-layout row wrap>
+                    <v-flex v-for="archivo in selectedFile" :key="archivo.id" xs7>
+                        <p>Archivo: {{archivo.name}} Listo para subir</p>
+                    </v-flex>
+                </v-layout>
             </v-layout>
         </v-app>
     </div>
@@ -41,7 +38,7 @@ export default {
             var formData = new FormData()
             for(var file of this.selectedFile) {
                 formData.append('file', file)
-                Axios.post("http://localhost:8080/documento/guardarArchivo?nombreDocumento=" + this.documento.nombre + "&usuario="+ localStorage.user + "&ocr=true", formData, {
+                Axios.post("http://localhost:8080/documento/guardarArchivo?nombreDocumento=pruebaCamiloArchivos" + "&usuario=camilo" + "&ocr=true", formData, {
                     onFileChanged: ProgressEvent => {
                         console.log(ProgressEvent.loaded / ProgressEvent.total)
                     }

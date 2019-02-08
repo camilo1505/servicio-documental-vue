@@ -11,7 +11,7 @@
                 <v-flex xs9>
                     <ul>
                         <li v-for="archivo in selectedFile" :key="archivo.id">
-                            <h3>Archivo: {{archivo.name}} Listo para subir</h3>
+                            <h3>Archivo: <h4>{{archivo.name}}</h4> Listo para subir</h3>
                         </li>
                     </ul>
                 </v-flex>
