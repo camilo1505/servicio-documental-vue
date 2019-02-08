@@ -19,9 +19,6 @@
 import Axios from 'axios';
 export default {
     name:"pruebas",
-    props: {
-        documento:null
-    },
     data() {
         return{
             selectedFile: []

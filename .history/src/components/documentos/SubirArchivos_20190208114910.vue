@@ -4,11 +4,11 @@
             <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
             <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
             <v-layout row wrap>
-                <v-flex>
+                <v-flex xs7>
                     <input type="file" id="file" ref="myFiles" class="custom-file-input" @change="onFileChanged()" multiple>
                 </v-flex>
-                <v-flex>
-                    <v-btn @click="onUpload()">Guardar</v-btn>
+                <v-flex xs7>
+                    <v-btn @click="onUpload()">Upload</v-btn>
                 </v-flex>
             </v-layout>
         </v-app>
@@ -19,9 +19,6 @@
 import Axios from 'axios';
 export default {
     name:"pruebas",
-    props: {
-        documento:null
-    },
     data() {
         return{
             selectedFile: []

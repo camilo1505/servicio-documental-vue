@@ -8,7 +8,7 @@
                     <input type="file" id="file" ref="myFiles" class="custom-file-input" @change="onFileChanged()" multiple>
                 </v-flex>
                 <v-flex>
-                    <v-btn @click="onUpload()">Guardar</v-btn>
+                    <v-btn @click="onUpload()">Upload</v-btn>
                 </v-flex>
             </v-layout>
         </v-app>
@@ -19,9 +19,6 @@
 import Axios from 'axios';
 export default {
     name:"pruebas",
-    props: {
-        documento:null
-    },
     data() {
         return{
             selectedFile: []
