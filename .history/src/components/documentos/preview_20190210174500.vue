@@ -6,11 +6,11 @@
 export default {
     data () {
       return {
-        direccion:'/misterySnow/japones/img003 (2).jpg',
+        direccion:'/misterySnow/tesis publico/img003 (2).jpg',
         slide1: [
           {
-            src: 'http://localhost:8080/resources/misterySnow/japones/08_Compiladores_',
-            msrc: 'http://localhost:8080/resources/misterySnow/japones/08_Compiladores_',
+            src: '<c:url value="/misterySnow/tesis publico/img003 (2).jpg"/>',
+            msrc: 'https://publicacion.com/wp-content/uploads/2018/09/15-imagenes-que-te-demostraran-que-no-te-puedes-fiar-ni-de-tu-pareja.jpg',
             alt: 'visualizar',
             title: 'Image Caption 1',
             w: 600,

@@ -9,8 +9,8 @@ export default {
         direccion:'/misterySnow/japones/img003 (2).jpg',
         slide1: [
           {
-            src: 'http://localhost:8080/resources/misterySnow/japones/08_Compiladores_',
-            msrc: 'http://localhost:8080/resources/misterySnow/japones/08_Compiladores_',
+            src: 'localhost:8080/resources/misterySnow/japones/img002.jpg"/>',
+            msrc: 'localhost:8080/misterySnow/japones/img002.jpg',
             alt: 'visualizar',
             title: 'Image Caption 1',
             w: 600,
