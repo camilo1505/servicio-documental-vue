@@ -1,8 +1,9 @@
 <template>
-<div>
-  <p v-if="archivo!=null">inicializador()</p>
+    <div>
     <vue-preview :slides="slide" @close="handleClose"></vue-preview>
-</div>
+
+      <p v-if="archivo!=null">inicializador()</p>
+    </div>
     
 </template>
  
@@ -13,7 +14,7 @@ export default {
   },
     data () {
       return {
-        slide: [],
+        slide: null,
         title: "Image Upload",
         dialog: false,
         imageName: '',
@@ -23,11 +24,11 @@ export default {
     },
     methods: {
       inicializador(){
-        var image = this.archivo;
+        const image = this.archivo;
         this.slide =
           {
-            src: "http://localhost:8080"+image.URL,
-            msrc: "http://localhost:8080"+image.URL,
+            src: 'http://localhost:8080'+image.URL,
+            msrc: 'http://localhost:8080'+image.URL,
             alt: image.nombreArchivo,
             title: image.nombreArchivo,
             w: 600,

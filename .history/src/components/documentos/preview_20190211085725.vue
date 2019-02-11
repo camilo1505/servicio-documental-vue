@@ -1,19 +1,16 @@
 <template>
-<div>
-  <p v-if="archivo!=null">inicializador()</p>
-    <vue-preview :slides="slide" @close="handleClose"></vue-preview>
-</div>
-    
+    <vue-preview :slides="slide1" @close="handleClose"></vue-preview>
 </template>
  
 <script>
 export default {
-  props:{
-    archivo:null
-  },
     data () {
       return {
+        direccion:'/misterySnow/japones/img003 (2).jpg',
         slide: [],
+        images: {
+                sample: require('@/assets/logo.png')
+            },
         title: "Image Upload",
         dialog: false,
         imageName: '',
@@ -23,15 +20,17 @@ export default {
     },
     methods: {
       inicializador(){
-        var image = this.archivo;
-        this.slide =
-          {
-            src: "http://localhost:8080"+image.URL,
-            msrc: "http://localhost:8080"+image.URL,
-            alt: image.nombreArchivo,
-            title: image.nombreArchivo,
-            w: 600,
-            h: 400
+          for (const image of this.archivos) {
+              slide.add(
+                {
+                  src: 'http://localhost:8080'+image.URL,
+                  msrc: 'http://localhost:8080'+image.URL,
+                  alt: image.nombreArchivo,
+                  title: image.nombreArchivo,
+                  w: 600,
+                  h: 400
+                }
+              )
           }
       },
       pickFile () {

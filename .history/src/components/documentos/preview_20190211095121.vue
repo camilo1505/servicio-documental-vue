@@ -1,8 +1,8 @@
 <template>
-<div>
-  <p v-if="archivo!=null">inicializador()</p>
+    <div>
     <vue-preview :slides="slide" @close="handleClose"></vue-preview>
-</div>
+      <p v-if="archivo!=null">inicializador()</p>
+    </div>
     
 </template>
  
@@ -23,7 +23,7 @@ export default {
     },
     methods: {
       inicializador(){
-        var image = this.archivo;
+        const image = this.archivo;
         this.slide =
           {
             src: "http://localhost:8080"+image.URL,

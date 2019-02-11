@@ -1,6 +1,6 @@
 <template>
 <div>
-  <p v-if="archivo!=null">inicializador()</p>
+  <p v-if="archivo!=''">inicializador()</p>
     <vue-preview :slides="slide" @close="handleClose"></vue-preview>
 </div>
     

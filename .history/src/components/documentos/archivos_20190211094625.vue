@@ -26,7 +26,7 @@
             </td>
             <td>{{ props.item.textoCompleto }}</td>
             <td>
-                <a :href="'http://localhost:8080'+props.item.url">ver archivo</a>
+                <a :href="props.item.url"><preview :archivo='props.item' ></preview></a>
             </td>
 
             <td class="text-xs-left">
@@ -56,11 +56,15 @@
 
 <script>
 import Axios from 'axios';
+import preview from './preview.vue';
 export default {
     props: {
         shareDoc:null,
         shareName:null,
         shareOwner: null
+    },
+    components: {
+        preview
     },
     data () {
         return {

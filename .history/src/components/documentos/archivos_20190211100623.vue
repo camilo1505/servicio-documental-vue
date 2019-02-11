@@ -56,11 +56,15 @@
 
 <script>
 import Axios from 'axios';
+import preview from './preview.vue';
 export default {
     props: {
         shareDoc:null,
         shareName:null,
         shareOwner: null
+    },
+    components: {
+        preview
     },
     data () {
         return {

@@ -1,15 +1,12 @@
 <template>
-<div>
-  <p v-if="archivo!=null">inicializador()</p>
     <vue-preview :slides="slide" @close="handleClose"></vue-preview>
-</div>
-    
+    <p></p>
 </template>
  
 <script>
 export default {
   props:{
-    archivo:null
+    archivos:null
   },
     data () {
       return {
@@ -23,15 +20,17 @@ export default {
     },
     methods: {
       inicializador(){
-        var image = this.archivo;
-        this.slide =
-          {
-            src: "http://localhost:8080"+image.URL,
-            msrc: "http://localhost:8080"+image.URL,
-            alt: image.nombreArchivo,
-            title: image.nombreArchivo,
-            w: 600,
-            h: 400
+          for (var image of this.archivos) {
+              this.slide.add(
+                {
+                  src: 'http://localhost:8080'+image.URL,
+                  msrc: 'http://localhost:8080'+image.URL,
+                  alt: image.nombreArchivo,
+                  title: image.nombreArchivo,
+                  w: 600,
+                  h: 400
+                }
+              )
           }
       },
       pickFile () {

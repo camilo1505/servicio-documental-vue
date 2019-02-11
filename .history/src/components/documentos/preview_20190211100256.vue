@@ -1,15 +1,12 @@
 <template>
-<div>
-  <p v-if="archivo!=null">inicializador()</p>
     <vue-preview :slides="slide" @close="handleClose"></vue-preview>
-</div>
-    
+    <p>inicializador()</p>    
 </template>
  
 <script>
 export default {
   props:{
-    archivo:null
+    archivo:''
   },
     data () {
       return {

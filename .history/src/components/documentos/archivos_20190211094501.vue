@@ -18,6 +18,7 @@
         
         >
         <template slot="items" slot-scope="props">
+            
             <td>
                 <v-edit-dialog :return-value.sync="props.item.nombreArchivo" lazy @save="editarArchivo(props.item)" @cancel="cancel" @open="open" @close="close">
                     {{ props.item.nombreArchivo}}
@@ -26,7 +27,7 @@
             </td>
             <td>{{ props.item.textoCompleto }}</td>
             <td>
-                <a :href="'http://localhost:8080'+props.item.url">ver archivo</a>
+                <a :href="props.item.url"><preview :archivos='props.item' ></preview></a>
             </td>
 
             <td class="text-xs-left">
@@ -56,11 +57,15 @@
 
 <script>
 import Axios from 'axios';
+import preview from './preview.vue';
 export default {
     props: {
         shareDoc:null,
         shareName:null,
         shareOwner: null
+    },
+    components: {
+        preview
     },
     data () {
         return {
