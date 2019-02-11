@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-dialog v-model="dialogo" max-width="600px" persistent>
+        <v-dialog v-model="dialogo" max-width="600px">
             <v-btn slot="activator" color="primary" dark class="mb-2">Nuevo Documento</v-btn>
             <v-card>
                 <v-card-title>

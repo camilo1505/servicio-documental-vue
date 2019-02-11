@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <v-app>
             <v-layout column wrap>
                 <v-flex xs5>
                     <input type="file" id="file" ref="myFiles" class="custom-file-input" @change="onFileChanged()" multiple>
@@ -11,6 +12,7 @@
                     </ul>
                 </v-flex>
             </v-layout>
+        </v-app>
     </div>
 </template>
 

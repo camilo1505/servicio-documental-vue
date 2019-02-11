@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-dialog v-model="dialogo" max-width="600px" persistent>
+        <v-dialog v-model="dialogo" max-width="600px">
             <v-btn slot="activator" color="primary" dark class="mb-2">Nuevo Documento</v-btn>
             <v-card>
                 <v-card-title>
@@ -57,9 +57,6 @@
 import Axios from 'axios';
 import SubirArchivos from './SubirArchivos.vue'
 export default {
-    props: {
-        misDocumentos: null,
-    },
     components: {
         SubirArchivos
     },
@@ -96,7 +93,7 @@ export default {
         guardarDocumento() {
             var documento = this.nuevoDocumento;
             documento.etiquetas = this.chips;
-            documento.usuario = localStorage.user;
+            documento.autor = this.$localStorage.user;
 
             Axios
             .post("http://localhost:8080/documento/crearDocumento",documento);
@@ -105,13 +102,12 @@ export default {
         },
         cargarDocumentos() {
             Axios
-            .get("http://localhost:8080/documento/consultar?consulta=&usuario=" + localStorage.user + "&etiqueta=&misDocumentos=" + this.misDocumentos)
-            .then(Response => (this.documentos = Response.data))
+            .get("http://localhost:8080/documento/consultarDocumento?consulta=")
+            .then(Response =>(this.documentos = Response.data));
         },
         enviarDocumentos() {
             this.$emit('cambioMensage', this.documentos);
             this.documentos = null;
-            this.dialogo = false
         },
         todosLosCampos() {
             if(this.nuevoDocumento.nombre != '' && this.nuevoDocumento.descripcion != ''

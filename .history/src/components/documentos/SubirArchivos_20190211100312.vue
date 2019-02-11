@@ -1,9 +1,14 @@
 <template>
     <div id="app">
+        <v-app>
             <v-layout column wrap>
                 <v-flex xs5>
                     <input type="file" id="file" ref="myFiles" class="custom-file-input" @change="onFileChanged()" multiple>
+                </v-flex>
+                <v-flex xs7>
                     <v-btn @click="onUpload()">Guardar</v-btn>
+                </v-flex>
+                <v-flex xs9>
                     <ul>
                         <li v-for="archivo in selectedFile" :key="archivo.id">
                             <h3>Archivo: {{archivo.name}} Listo para subir</h3>
@@ -11,6 +16,7 @@
                     </ul>
                 </v-flex>
             </v-layout>
+        </v-app>
     </div>
 </template>
 

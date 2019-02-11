@@ -7,7 +7,7 @@
         <v-toolbar-title slot="extension">Documentos</v-toolbar-title>
         <v-divider slot="extension" class="mx-2" inset vertical> </v-divider>
         <!-- Nuevo Documento -->
-        <nuevo-documento slot="extension" :mis-documentos="tipoConsulta"></nuevo-documento>
+        <nuevo-documento slot="extension" :misDocummentos="misDocumentos"></nuevo-documento>
         <v-divider slot="extension" class="mx-2" inset vertical> </v-divider>
         <!--Mis Documentos-->
         <mis-documentos slot="extension" @misDocs="documentos = $event" @tipoCons="tipoConsulta = $event"></mis-documentos>
