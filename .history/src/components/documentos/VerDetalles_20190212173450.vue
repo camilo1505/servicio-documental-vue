@@ -5,7 +5,7 @@
         <v-dialog v-model="dialog" max-width="600px">
             <v-card v-if="shareDoc != null">
                 <v-card-title>
-                    <span class="headline">Detalles del Documento</span>
+                    <span class="headline">Detalles del Documento: {{shareDoc.nombre}}</span>
                     <v-divider class="mx-2" inset vertical> </v-divider>
                 </v-card-title>
                 <v-card-text>
@@ -78,9 +78,7 @@ export default {
             chips: [],
             items: [],
             estadoSolicitud: null,
-            snack: null,
-            snackColor: '',
-            snackText: ''
+            snack: null
         }
     },
     methods: {
@@ -100,8 +98,7 @@ export default {
             }
         },
         isChanged() {
-            console.log("tamaño chip: " + this.chips.length +" tamaño en doc: " + this.shareDoc.etiquetas.length)
-            if(this.chips.length != this.shareDoc.etiquetas.length) {
+            if(this.chips != this.shareDoc.etiquetas) {
                 return true
             }
             else {

@@ -57,7 +57,6 @@
                             <v-icon small class="mr-3" v-if="!props.item.estado"  @click="cambiarEstado(props.item)">lock</v-icon>
                         </div>
                         <archivos :shareDoc = "props.item.archivo" :shareName = "props.item.nombre" :share-owner="props.item.usuario"></archivos>
-                        <ver-detalles :share-doc="props.item"></ver-detalles>
                         <div>
                             <v-icon  small class="mr-3" v-if="props.item.usuario === usuario" @click="eliminarDocumento(props.item)" > delete </v-icon>
                         </div>

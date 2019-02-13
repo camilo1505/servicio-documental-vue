@@ -5,12 +5,12 @@
         <v-dialog v-model="dialog" max-width="600px">
             <v-card v-if="shareDoc != null">
                 <v-card-title>
-                    <span class="headline">Detalles del Documento</span>
+                    <span class="headline">Detalles del Documento: {{shareDoc.nombre}}</span>
                     <v-divider class="mx-2" inset vertical> </v-divider>
                 </v-card-title>
                 <v-card-text>
                     <v-container grid-list-md> 
-                        <v-layout wrap column> 
+                        <v-layout wrap> 
                             <v-flex xs12 sm6 md10>
                                 <v-card color="brown lighten-5" elevation=1>
                                     <h4 class="text-to-left">Nombre del Documento:</h4>
@@ -51,23 +51,14 @@
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <div v-if="isChanged()">
-                        <v-btn color="green darken-1" flat="flat" @click="editarDocumento()"> Guardar </v-btn>
-                    </div>
-                    <v-btn color="green darken-1" flat="flat" @click="dialog=false"> Cerrar </v-btn>
+                    <v-btn color="green darken-1" flat="flat" @click="dialog=false"> cerrar </v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
-        <p v-if="estadoSolicitud == 200"> {{manejadorRespuestas()}} </p>
-        <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
-            {{ snackText }}
-            <v-btn flat @click="snack = false">Close</v-btn>
-        </v-snackbar>
     </div>
 </template>
 
 <script>
-import Axios from 'axios';
 export default {
     props: {
         shareDoc: null,
@@ -76,11 +67,7 @@ export default {
         return {
             dialog: false,
             chips: [],
-            items: [],
-            estadoSolicitud: null,
-            snack: null,
-            snackColor: '',
-            snackText: ''
+            items: []
         }
     },
     methods: {
@@ -97,32 +84,6 @@ export default {
             }
             else {
                 return false
-            }
-        },
-        isChanged() {
-            console.log("tamaño chip: " + this.chips.length +" tamaño en doc: " + this.shareDoc.etiquetas.length)
-            if(this.chips.length != this.shareDoc.etiquetas.length) {
-                return true
-            }
-            else {
-                return false
-            }
-        },
-        editarDocumento() {
-            var nuevoDocumento = this.shareDoc
-            nuevoDocumento.etiquetas = this.chips
-            Axios
-            .put("http://localhost:8080/documento/editarDocumento?usuario=" + localStorage.user, nuevoDocumento)
-            .then(Response => (this.estadoSolicitud = Response.status))
-        },
-        manejadorRespuestas() {
-            if(this.estadoSolicitud == 200) {
-                this.correct()
-                this.estadoSolicitud = null
-            }
-            else {
-                this.error()
-                this.estadoSolicitud = null
             }
         }
     },

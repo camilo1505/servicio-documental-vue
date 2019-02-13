@@ -100,8 +100,7 @@ export default {
             }
         },
         isChanged() {
-            console.log("tamaño chip: " + this.chips.length +" tamaño en doc: " + this.shareDoc.etiquetas.length)
-            if(this.chips.length != this.shareDoc.etiquetas.length) {
+            if(this.chips != this.shareDoc.etiquetas) {
                 return true
             }
             else {
