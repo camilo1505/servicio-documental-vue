@@ -78,9 +78,7 @@ export default {
             chips: [],
             items: [],
             estadoSolicitud: null,
-            snack: null,
-            snackColor: '',
-            snackText: ''
+            snack: null
         }
     },
     methods: {
@@ -100,7 +98,7 @@ export default {
             }
         },
         isChanged() {
-            if(this.chips.length != this.shareDoc.etiquetas.length) {
+            if(this.chips != this.shareDoc.etiquetas) {
                 return true
             }
             else {
