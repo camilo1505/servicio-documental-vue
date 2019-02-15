@@ -23,7 +23,15 @@ Vue.use( {
   tapToClose: true,
   tapToToggleControls: false
 })
-
+router.Use(cors.Middleware(cors.Config{
+  Origins:         "*",
+  Methods:         "GET, PUT, POST, DELETE",
+  RequestHeaders:  "Origin, Authorization, Content-Type",
+  ExposedHeaders:  "",
+  MaxAge:          86400,
+  Credentials:     true,
+  ValidateHeaders: false,
+}))
 
 Vue.use(Vuetify);
 new Vue({

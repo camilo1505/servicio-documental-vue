@@ -11,7 +11,7 @@ export default {
     pdf
   },
   mounted(){
-    const board = 'resources/misterySnow/japones/08_Compiladores_.pdf';
+    const board = this.props.routeParams.tag;
     var config = {
         headers: {'Access-Control-Allow-Origin': '*'}
     };

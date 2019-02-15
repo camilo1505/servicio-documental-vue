@@ -24,6 +24,21 @@ Vue.use( {
   tapToToggleControls: false
 })
 
+this.$http.get('http://localhost:8080/api/v1/users',
+      {
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST, GET, PUT, OPTIONS, DELETE',
+            'Access-Control-Allow-Headers': 'Access-Control-Allow-Methods, Access-Control-Allow-Origin, Origin, Accept, Content-Type',
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
+        }
+        ).then(function (response) {
+          // Success
+        }, function (response) {
+          // Error
+        })
 
 Vue.use(Vuetify);
 new Vue({
