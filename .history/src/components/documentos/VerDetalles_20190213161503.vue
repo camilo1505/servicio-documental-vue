@@ -5,18 +5,12 @@
         <v-dialog v-model="dialog" max-width="600px">
             <v-card v-if="shareDoc != null">
                 <v-card-title>
-                    <span class="headline">Detalles del Documento</span>
+                    <span class="headline">Detalles del Documento: <h4>{{shareDoc.nombre}}</h4></span>
                     <v-divider class="mx-2" inset vertical> </v-divider>
                 </v-card-title>
                 <v-card-text>
                     <v-container grid-list-md> 
                         <v-layout wrap column> 
-                            <v-flex xs12 sm6 md10>
-                                <v-card color="brown lighten-5" elevation=1>
-                                    <h4 class="text-to-left">Nombre del Documento:</h4>
-                                    {{shareDoc.nombre}}
-                                </v-card>
-                            </v-flex>
                             <v-flex xs12 sm6 md10>
                                 <v-card color="brown lighten-5" elevation=1>
                                     <h4 class="text-to-left">Descripcion:</h4>
@@ -78,9 +72,7 @@ export default {
             chips: [],
             items: [],
             estadoSolicitud: null,
-            snack: null,
-            snackColor: '',
-            snackText: ''
+            snack: null
         }
     },
     methods: {
@@ -100,7 +92,7 @@ export default {
             }
         },
         isChanged() {
-            if(this.chips.length != this.shareDoc.etiquetas.length) {
+            if(this.chips != this.shareDoc.etiquetas) {
                 return true
             }
             else {

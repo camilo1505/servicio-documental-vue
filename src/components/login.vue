@@ -15,7 +15,7 @@
                             <v-container style="position: relative;top: 13%;" class="text-xs-center">
                                 <v-card flat>
                                     <v-card-title primary-title>
-                                        <h4>Iniciar Secion</h4>
+                                        <h4>Iniciar Sesion</h4>
                                     </v-card-title>
                                     <v-form>
                                         <v-text-field v-model="user" prepend-icon="person" name="Username" label="Usuario"></v-text-field>

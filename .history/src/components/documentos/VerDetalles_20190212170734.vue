@@ -5,7 +5,7 @@
         <v-dialog v-model="dialog" max-width="600px">
             <v-card v-if="shareDoc != null">
                 <v-card-title>
-                    <span class="headline">Detalles del Documento</span>
+                    <span class="headline">Detalles del Documento: {{shareDoc.nombre}}</span>
                     <v-divider class="mx-2" inset vertical> </v-divider>
                 </v-card-title>
                 <v-card-text>
@@ -58,11 +58,6 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
-        <p v-if="estadoSolicitud == 200"> {{manejadorRespuestas()}} </p>
-        <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
-            {{ snackText }}
-            <v-btn flat @click="snack = false">Close</v-btn>
-        </v-snackbar>
     </div>
 </template>
 
@@ -77,10 +72,7 @@ export default {
             dialog: false,
             chips: [],
             items: [],
-            estadoSolicitud: null,
-            snack: null,
-            snackColor: '',
-            snackText: ''
+            estadoSolicitud: null
         }
     },
     methods: {
@@ -100,7 +92,7 @@ export default {
             }
         },
         isChanged() {
-            if(this.chips.length != this.shareDoc.etiquetas.length) {
+            if(this.chips != this.shareDoc.etiquetas) {
                 return true
             }
             else {
@@ -113,16 +105,6 @@ export default {
             Axios
             .put("http://localhost:8080/documento/editarDocumento?usuario=" + localStorage.user, nuevoDocumento)
             .then(Response => (this.estadoSolicitud = Response.status))
-        },
-        manejadorRespuestas() {
-            if(this.estadoSolicitud == 200) {
-                this.correct()
-                this.estadoSolicitud = null
-            }
-            else {
-                this.error()
-                this.estadoSolicitud = null
-            }
         }
     },
 }
