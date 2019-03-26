@@ -2,13 +2,10 @@
   <pdf src="http://localhost:8080/resources/misterySnow/japones/08_Compiladores_.pdf" :page=1></pdf>
 </template>
 
-<script>
-import pdf from 'pdfvuer'
-import axios from 'axios'
+<script>import axios from 'axios'
 
 export default {
   components: {
-    pdf
   },
   mounted(){
     const board = 'resources/misterySnow/japones/08_Compiladores_.pdf';
