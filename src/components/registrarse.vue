@@ -53,7 +53,7 @@ export default {
     methods: {
         guardarUsuario() {
             if(this.usuarioDTO.nombre && this.usuarioDTO.usuario && this.usuarioDTO.password) {
-                Axios.post("http://localhost:8080/crearUsuario", this.usuarioDTO)
+                Axios.post("http://localhost:8080/usuario/crearUsuario", this.usuarioDTO)
                 .then(Response => (this.respuesta = Response.status))
             }
         },

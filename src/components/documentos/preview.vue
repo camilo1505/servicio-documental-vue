@@ -1,65 +1,60 @@
 <template>
-<div>
-  <p v-if="archivo!=null">inicializador()</p>
-    <vue-preview :slides="slide" @close="handleClose"></vue-preview>
-</div>
-    
+  <div class="text-xs-center">
+    <v-dialog
+      v-model="dialog"
+    >
+      <template v-slot:activator="{ on }">
+        <v-btn
+          color="red lighten-2"
+          dark
+          v-on="on"
+        >
+          visualizar
+        </v-btn>
+      </template>
+
+      <v-card>
+        <v-card-title
+          class="headline grey lighten-2"
+          primary-title
+        >
+          {{nombre}}
+        </v-card-title>
+
+        <v-card-text>
+        <iframe :src="url" width="1200" height="800">
+          <p>No se puede mostrar el archivo</p>
+        </iframe>
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            flat
+            @click="dialog = false"
+          >
+            Cerrar
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
 </template>
  
 <script>
-export default {
-  props:{
-    archivo:null
-  },
+  export default {
+    props: {
+        url:null,
+        nombre:null
+    },
     data () {
       return {
-        slide: [],
-        title: "Image Upload",
-        dialog: false,
-        imageName: '',
-        imageUrl: '',
-        imageFile: ''
-      }
-    },
-    methods: {
-      inicializador(){
-        var image = this.archivo;
-        this.slide =
-          {
-            src: "http://localhost:8080"+image.URL,
-            msrc: "http://localhost:8080"+image.URL,
-            alt: image.nombreArchivo,
-            title: image.nombreArchivo,
-            w: 600,
-            h: 400
-          }
-      },
-      pickFile () {
-            this.$refs.fileField
-        },
-		
-		onFilePicked (e) {
-			const files = e.target.files
-			if(files[0] !== undefined) {
-				this.imageName = files[0].name
-				if(this.imageName.lastIndexOf('.') <= 0) {
-					return
-				}
-				const fr = new FileReader ()
-				fr.readAsDataURL(files[0])
-				fr.addEventListener('load', () => {
-					this.imageUrl = fr.result
-					this.imageFile = files[0] // this is an image file that can be sent to server...
-				})
-			} else {
-				this.imageName = ''
-				this.imageFile = ''
-				this.imageUrl = ''
-			}
-		},
-      handleClose () {
-        console.log('close event')
+        archivo:"",
+        dialog: false
       }
     }
   }
-</script> 
+</script>

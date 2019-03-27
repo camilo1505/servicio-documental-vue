@@ -34,7 +34,7 @@
                             </v-flex>
                             <v-flex xs12 class="text-xs-center text-sm-center text-md-center text-lg-center">
                                 <h4 class="text-to-left">Añade archivos*</h4>
-                                <subir-archivos :documento="nuevoDocumento"></subir-archivos>
+                                <subir-archivos :documento="nuevoDocumento" :chips="chips"></subir-archivos>
                             </v-flex>
                             <v-flex xs12 class="text-xs-center text-sm-center text-md-center text-lg-center">
                             </v-flex>
@@ -43,8 +43,7 @@
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" flat @click="dialogo = false">Cancelar</v-btn>
-                    <v-btn color="blue darken-1" flat v-if="todosLosCampos()" @click="guardarDocumento()">Guardar</v-btn>
+                    <v-btn color="blue darken-1" flat @click="guardarDocumento()">Terminar</v-btn>
                 </v-card-actions>
                 <p v-if="documentos">{{enviarDocumentos()}}</p>
                 <p>{{establecerUsuario()}}</p>
@@ -94,13 +93,7 @@ export default {
             }
         },
         guardarDocumento() {
-            var documento = this.nuevoDocumento;
-            documento.etiquetas = this.chips;
-            documento.usuario = localStorage.user;
-
-            Axios
-            .post("http://localhost:8080/documento/crearDocumento",documento);
-
+            this.dialog=false;
             this.cargarDocumentos();
         },
         cargarDocumentos() {

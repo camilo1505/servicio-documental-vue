@@ -19,7 +19,8 @@ import Axios from 'axios';
 export default {
     name:"pruebas",
     props: {
-        documento:null
+        documento:null,
+        chips:null
     },
     data() {
         return{
@@ -31,16 +32,22 @@ export default {
             this.selectedFile = this.$refs.myFiles.files
         },
         onUpload(){
+            var documento = this.documento;
+            documento.etiquetas = this.chips;
+
+            Axios
+            .post("http://localhost:8080/documento/crearDocumento",documento);
+
+
             var formData = new FormData()
             for(var file of this.selectedFile) {
                 formData.append('file', file)
-                Axios.post("http://localhost:8080/documento/guardarArchivo?nombreDocumento=pruebaCamiloArchivos&usuario=camilo&ocr=true", formData, {
+            }
+            Axios.post("http://localhost:8080/documento/guardarArchivo?nombreDocumento="+documento.nombre+"&usuario="+documento.usuario, formData, {
                     onFileChanged: ProgressEvent => {
                         console.log(ProgressEvent.loaded / ProgressEvent.total)
                     }
                 })
-                formData = new FormData()
-            }
         }
     }
 }
