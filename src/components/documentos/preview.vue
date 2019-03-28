@@ -1,39 +1,40 @@
 <template>
-  <div class="text-xs-center">
+  <v-layout row justify-center>
+    <v-btn
+      color="primary"
+      dark
+      @click.stop="dialog = true"
+    >
+      visualizar
+    </v-btn>
+
     <v-dialog
       v-model="dialog"
     >
-      <template v-slot:activator="{ on }">
-        <v-btn
-          color="red lighten-2"
-          dark
-          v-on="on"
-        >
-          visualizar
-        </v-btn>
-      </template>
-
       <v-card>
-        <v-card-title
-          class="headline grey lighten-2"
-          primary-title
-        >
-          {{nombre}}
-        </v-card-title>
-
+        <v-card-title class="headline">{{nombre}}</v-card-title>
         <v-card-text>
-        <iframe :src="url" width="1200" height="800">
-          <p>No se puede mostrar el archivo</p>
-        </iframe>
-        </v-card-text>
+          <div class="embed-container" v-if="frame">
+            <iframe width="1200" height="1000" :src="'http://localhost:8080'+url" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <form>
+            <v-btn
+            dark
+            color="primary"
+              @click="descargar()"
+              >
+              Descargar
+            </v-btn>
 
-        <v-divider></v-divider>
+          </form>
+        </v-card-text>
 
         <v-card-actions>
           <v-spacer></v-spacer>
+
           <v-btn
-            color="primary"
-            flat
+            color="green darken-1"
+            flat="flat"
             @click="dialog = false"
           >
             Cerrar
@@ -41,9 +42,8 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </div>
+  </v-layout>
 </template>
- 
 <script>
   export default {
     props: {
@@ -53,8 +53,38 @@
     data () {
       return {
         archivo:"",
-        dialog: false
+        dialog: false,
+        extension:"",
+        frame:false
+      }
+    },
+    mounted(){
+    const type = this.url.split(".");
+      this.extension = type[1];
+      if(this.extension=="pdf" || this.extension=="png" || this.extension=="jpg"){
+        this.frame=true;
+      }
+    },
+    methods:{
+      descargar(){
+        window.location.href="http://localhost:8080"+this.url;
       }
     }
+    
   }
 </script>
+<style>
+.embed-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+.embed-container iframe {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+</style>

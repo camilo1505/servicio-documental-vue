@@ -21,7 +21,7 @@
       </v-toolbar>
       <!--Etiqueta seleccionada-->
       <div>
-        <p v-if="etiqueta">Etiqueta Seleccionada: {{etiqueta}} <v-icon small class="mr-3" v-if="etiqueta" @click="showEtiqueta()" >close</v-icon> </p>
+        <p v-if="etiqueta">Etiqueta Seleccionada: <v-chip dark primary><v-icon left>label</v-icon>{{etiqueta}} <v-icon right small dark v-if="etiqueta" @click="showEtiqueta()" >close</v-icon> </v-chip>   </p>
       </div>
       <!--Tabla con los documentos-->
       <v-layout row wrap>

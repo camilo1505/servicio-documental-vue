@@ -24,10 +24,13 @@
                     <v-text-field slot="input" v-model="nuevoNombre" label="Nombre Archivo" single-line counter></v-text-field>
                 </v-edit-dialog>
             </td>
-            <td>{{ props.item.textoCompleto }}</td>
             <td>
-                <preview :url="'http://localhost:8080'+props.item.url" :nombre="props.item.nombreArchivo"/>
-                <a :href="'http://localhost:8080'+props.item.url">ver archivo</a>
+                <div class="short">
+                    <p class="break">{{ props.item.textoCompleto }}</p>
+                </div>
+            </td>
+            <td>
+                <preview :url="props.item.url" :nombre="props.item.nombreArchivo"/>
             </td>
 
             <td class="text-xs-left">
@@ -147,5 +150,13 @@ export default {
 </script>
 
 <style>
-
+.break {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.short{
+    
+    width:600px;
+}
 </style>
