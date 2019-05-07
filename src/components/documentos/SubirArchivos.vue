@@ -1,17 +1,20 @@
 <template>
-    <div id="app">
-            <v-layout column wrap>
-                <v-flex xs5>
-                    <input type="file" id="file" ref="myFiles" class="custom-file-input" @change="onFileChanged()" multiple>
-                    <v-btn @click="onUpload()">Guardar</v-btn>
-                    <ul>
-                        <li v-for="archivo in selectedFile" :key="archivo.id">
-                            <h3>Archivo: {{archivo.name}} Listo para subir</h3>
-                        </li>
-                    </ul>
-                </v-flex>
-            </v-layout>
-    </div>
+    <v-layout column wrap>
+        <v-flex xs5>
+            <input type="file" id="file" ref="myFiles" class="custom-file-input" @change="onFileChanged()" multiple>
+            <v-btn @click="onUpload()">Guardar</v-btn>
+            <ul>
+                <li v-for="archivo in selectedFile" :key="archivo.id">
+                    <h3>Archivo: {{archivo.name}} Listo para subir</h3>
+                </li>
+            </ul>
+            <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
+                {{ snackText }}
+                <v-btn flat @click="snack = false">Close</v-btn>
+            </v-snackbar>
+        </v-flex>
+
+    </v-layout>
 </template>
 
 <script>
@@ -20,7 +23,10 @@ export default {
     name:"pruebas",
     props: {
         documento:null,
-        chips:null
+        chips:null,
+        snack: false,
+        snackColor: '',
+        snackText: ''
     },
     data() {
         return{
@@ -48,7 +54,13 @@ export default {
                         console.log(ProgressEvent.loaded / ProgressEvent.total)
                     }
                 })
-        }
+            this.archivoGuardado()
+        },
+            archivoGuardado() {
+                this.snack = true
+                this.snackColor = 'success'
+                this.snackText = 'Archivos guardados'
+            }
     }
 }
 </script>
