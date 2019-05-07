@@ -9,21 +9,20 @@
                 </li>
             </ul>
         </v-flex>
-
     </v-layout>
 </template>
 
 <script>
 import Axios from 'axios';
 export default {
-    name:"pruebas",
     props: {
-        documento:null,
-        chips:null
+        documento: null
     },
     data() {
         return{
-            selectedFile: []
+            nombre: '',
+            selectedFile: [],
+            usuario:null
         }
     },
     methods: {
@@ -31,27 +30,21 @@ export default {
             this.selectedFile = this.$refs.myFiles.files
         },
         onUpload(){
-            var documento = this.documento;
-            documento.etiquetas = this.chips;
-
-            Axios
-            .post("http://localhost:8080/documento/crearDocumento",documento);
-
-
+            this.usuario = localStorage.user;
+            this.nombre = this.documento;
             var formData = new FormData()
             for(var file of this.selectedFile) {
                 formData.append('file', file)
             }
-            Axios.post("http://localhost:8080/documento/guardarArchivo?nombreDocumento="+documento.nombre+"&usuario="+documento.usuario, formData, {
+            Axios.post("http://localhost:8080/documento/guardarArchivo?nombreDocumento="+this.nombre+"&usuario="+this.usuario, formData, {
                     onFileChanged: ProgressEvent => {
-                        console.log(ProgressEvent.loaded / ProgressEvent.total)
+                        console.log(ProgressEvent.loaded / ProgressEvent.total);
                     }
-                })
+                });
+            
+            this.$router.go();
+            
         }
     }
 }
 </script>
-
-<style>
-
-</style>

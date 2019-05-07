@@ -34,16 +34,6 @@ export default new Router({
       path: '/cloud',
       name: 'cloud',
       component: cloudTag
-    },
-    {
-      path: '/pruebas',
-      name: 'pruebas',
-      component: SubirArchivos
-    },
-    {
-      path: '/previ',
-      name: 'previ',
-      component: previ
-    },
+    }
   ]
 })

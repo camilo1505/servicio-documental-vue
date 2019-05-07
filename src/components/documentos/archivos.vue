@@ -42,9 +42,7 @@
 
         <v-card-actions>
             <td class="text-xs-left">
-
-                <v-btn color="green darken-1" flat small v-if="propietario()" @click="agregarArchivos()"><v-icon  small="" > add_circle </v-icon> Añadir archivos</v-btn>
-                <subir-archivos :documento="shareDoc" :chips="chips"></subir-archivos>
+                <agregar-archivos :documento="nombreDocumento"></agregar-archivos>
             </td>
           <v-spacer></v-spacer>
           <v-btn color="green darken-1" flat="flat" @click="dialog=false"> cerrar </v-btn>
@@ -65,6 +63,7 @@
 <script>
 import Axios from 'axios';
 import preview from './preview.vue';
+import agregarArchivos from './agregarArchivos.vue';
 
 export default {
     props: {
@@ -73,7 +72,8 @@ export default {
         shareOwner: null
     },
     components:{
-        preview
+        preview,
+        agregarArchivos
     },
     data () {
         return {
@@ -83,6 +83,8 @@ export default {
                     { text: 'URL', value: 'URL', sortable: false },
                     { text: 'Actions', align: 'center', value: 'name', sortable: false }
                 ],
+            nombreDocumento:null,
+            chips: [],
             dialog:false,
             archivos:[],
             usuario: null,
@@ -95,7 +97,8 @@ export default {
     },
         methods: {
             initialize(){
-                this.archivos = this.shareDoc
+                this.nombreDocumento = this.shareName;
+                this.archivos = this.shareDoc;
                 if(localStorage.user != '') {
                     this.usuario = localStorage.user;
                 }
