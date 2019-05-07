@@ -22,7 +22,6 @@
                                             <v-btn primary large block @click="registrarse()">Registrarse</v-btn>
                                             <p v-if="respuesta">{{usuario()}}</p>
                                             <p v-if="respuesta == 200">{{redirigir()}}</p>
-                                            <p v-if="respuesta >> 200">Error!</p>
                                         </v-card-actions>
                                     </v-form>
                                 </v-card>
@@ -78,15 +77,13 @@ export default {
         comprobarUsuario() {
             Axios
             .get("http://localhost:8080/usuario/consultarUsuario?usuario="+this.user+"&password="+this.password)
-            .then(Response =>(this.respuesta = Response.status))
+            .then(Response =>(this.respuesta = Response.status ));
         },
         usuario() {
-            console.log(this.respuesta)
-            if(this.respuesta == 200) {
+            if(this.respuesta == '200') {
                 console.log("Login correcto.");
                 localStorage.user = this.user;
-            }
-            else {
+            }else{
                 console.log("Login incorrecto.");
             }
         },

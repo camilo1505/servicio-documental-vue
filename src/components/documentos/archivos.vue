@@ -25,7 +25,7 @@
                 </v-edit-dialog>
             </td>
             <td>
-                <div class="short">
+                <div class="short" style="overflow-wrap: break-word;">
                     <p class="break">{{ props.item.textoCompleto }}</p>
                 </div>
             </td>
@@ -49,7 +49,6 @@
     </v-dialog>
         <p v-if="shareDoc != null">{{initialize()}}</p>
         <p>{{actualizarDocumentos()}}</p>
-        <p v-if="estadoSolicitud == 200"> {{manejadorRespuestas()}} </p>
   </v-layout>
     <v-snackbar v-model="snack" :timeout="3000" :color="snackColor">
         {{ snackText }}
@@ -106,7 +105,7 @@ export default {
                 Axios
                 .put("http://localhost:8080/documento/eliminarArchivo?documento=" + this.shareName + "&archivo="+ archivo.nombreArchivo + "&usuario=" + localStorage.user)
                 .then(Response => (this.estadoSolicitud = Response.status))
-                this.save()
+                this.archivoBorrado()
             },
             eliminarArchivo(archivo){
                 const index = this.archivos.indexOf(archivo)
@@ -116,6 +115,11 @@ export default {
                 this.snack = true
                 this.snackColor = 'success'
                 this.snackText = 'Guardado'
+            },
+            archivoBorrado() {
+                this.snack = true
+                this.snackColor = 'success'
+                this.snackText = 'Archivo eliminado'
             },
             cancel () {
                 this.snack = true

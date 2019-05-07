@@ -15,7 +15,7 @@
         <!-- Buscar Documento -->
         <buscar-documentos slot="extension" @cambioMensage="documentos = $event" :switchMios="tipoConsulta"></buscar-documentos>
         <v-spacer></v-spacer>
-        <v-btn dark>
+        <v-btn @click="salirSesion()" dark>
           <v-icon dark left>power_settings_new</v-icon>Salir de la sesion
         </v-btn>
       </v-toolbar>
@@ -75,6 +75,11 @@ import cloudTag from './cloudTag.vue';
         else {
           this.$router.push({name:'login'})
         }
+      },
+      salirSesion(){
+          localStorage.user = "";
+          this.usuario = "";
+          this.$router.push({name:'login'})
       },
       redirigir() {
             this.$router.push({name:'cloud'})
