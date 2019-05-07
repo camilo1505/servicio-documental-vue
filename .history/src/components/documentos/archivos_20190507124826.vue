@@ -42,9 +42,7 @@
 
         <v-card-actions>
             <td class="text-xs-left">
-
-                <v-btn color="green darken-1" flat small v-if="propietario()" @click="agregarArchivos()"><v-icon  small="" > add_circle </v-icon> Añadir archivos</v-btn>
-                <subir-archivos :documento="shareDoc" :chips="chips"></subir-archivos>
+                <v-btn flat small v-if="propietario()" @click="agregarArchivos()"><v-icon  small="" > add_circle_outline </v-icon></v-btn>
             </td>
           <v-spacer></v-spacer>
           <v-btn color="green darken-1" flat="flat" @click="dialog=false"> cerrar </v-btn>
