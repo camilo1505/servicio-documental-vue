@@ -117,10 +117,10 @@ export default {
         todosLosCampos() {
             if(this.nuevoDocumento.nombre != '' && this.nuevoDocumento.descripcion != ''
                && this.chips.length >> 0){
-                return true;
+                return true
             }
             else {
-                return false;
+                return false
             }
         },
         establecerUsuario() {

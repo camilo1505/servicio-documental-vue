@@ -57,7 +57,6 @@ export default {
                 .then(Response => (this.respuesta = Response.status))
             }
             alert("usuario creado satisfactoriamente");
-            this.redirigir();
         },
 
         redirigir() {

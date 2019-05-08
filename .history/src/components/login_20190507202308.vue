@@ -18,7 +18,7 @@
                                         <v-text-field v-model="user" prepend-icon="person" name="Username" label="Usuario"></v-text-field>
                                         <v-text-field v-model="password" prepend-icon="lock" name="Password" label="Contraseña" type="password"></v-text-field>
                                         <v-card-actions>
-                                            <v-btn class="cyan lighten-3" primary large block @click="comprobarUsuario()">Iniciar</v-btn>
+                                            <v-btn color="dark" primary large block @click="comprobarUsuario()">Iniciar</v-btn>
                                             <v-btn primary large block @click="registrarse()">Registrarse</v-btn>
                                             <p v-if="respuesta">{{usuario()}}</p>
                                             <p v-if="respuesta == 200">{{redirigir()}}</p>

@@ -1,8 +1,6 @@
 <template>
     <v-layout column wrap>
         <v-flex xs5>
-            El conjunto de archivos no deben superar los 100MB de espacio en una sola subida de archivos
-            <br>
             <input type="file" id="file" ref="myFiles" class="custom-file-input" @change="onFileChanged()" multiple>
             <v-btn @click="crearDocumento()">Guardar</v-btn>
             <ul>
@@ -18,6 +16,7 @@
 <script>
 import Axios from 'axios';
 export default {
+    name:"pruebas",
     props: {
         documento:null,
         chips:null
@@ -52,8 +51,8 @@ export default {
                         console.log(ProgressEvent.loaded / ProgressEvent.total)
                     }
                 })
-            alert("Documento guardado, si quiere puede terminar o crear un nuevo documento");
-            this.selectedFile = [];
+            alert("Documento y archivo guardado, si quiere puede terminar o crear un nuevo documento");
+            this.
         }
     }
 }

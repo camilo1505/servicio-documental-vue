@@ -21,7 +21,7 @@
             <td>
                 <v-edit-dialog :return-value.sync="props.item.nombreArchivo" lazy @save="editarArchivo(props.item)" @cancel="cancel" @open="open" @close="close">
                     {{ props.item.nombreArchivo}}
-                    <v-text-field v-if="propietario()" slot="input" v-model="nuevoNombre" label="Nombre Archivo" single-line counter></v-text-field>
+                    <v-text-field slot="input" v-model="nuevoNombre" label="Nombre Archivo" single-line counter></v-text-field>
                 </v-edit-dialog>
             </td>
             <td>
@@ -135,18 +135,16 @@ export default {
                 this.snackText = 'Cancelado'
             },
             open () {
-                if(this.propietario()){    
-                    this.snack = true
-                    this.snackColor = 'info'
-                    this.snackText = 'Editar Abierto'
-                }
+                this.snack = true
+                this.snackColor = 'info'
+                this.snackText = 'Editar Abierto'
             },
             close () {
                 console.log('Dialogo cerrado')
             },
             editarArchivo(archivo) {
                 Axios
-                .put("http://localhost:8080/documento/editarArchivo?usuario=" + localStorage.user + "&documento=" + this.shareName + "&nombreViejo=" + archivo.nombreArchivo + "&nombreNuevo="+ this.nuevoNombre)
+                .put("http://localhost:8080/documento/editarArchivo?nombreDocumento=" + this.shareName + "&nombreActual=" + archivo.nombreArchivo + "&nombreNuevo="+ this.nuevoNombre + "&usuario=" + localStorage.user)
                 .then(Response => (this.estadoSolicitud = Response.status))
                 archivo.nombreArchivo = this.nuevoNombre
                 this.save()

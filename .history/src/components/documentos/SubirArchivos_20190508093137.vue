@@ -1,7 +1,7 @@
 <template>
     <v-layout column wrap>
         <v-flex xs5>
-            El conjunto de archivos no deben superar los 100MB de espacio en una sola subida de archivos
+            El conjunto de archivos no deben superar los 100MB de espacio
             <br>
             <input type="file" id="file" ref="myFiles" class="custom-file-input" @change="onFileChanged()" multiple>
             <v-btn @click="crearDocumento()">Guardar</v-btn>
