@@ -67,9 +67,7 @@
         this.frame=true;
       }
       this.archivo = Axios.get(this.url).then(function (response) {
-        //return  response.request.responseURL;
-        console.log(
-          `${Object.values(response.request)}`)
+        return  response.request.responseURL;
       });
       console.log(this.archivo);
 

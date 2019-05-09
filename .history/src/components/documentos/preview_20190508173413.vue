@@ -66,17 +66,17 @@
       if(this.extension=="pdf" || this.extension=="png" || this.extension=="jpg"){
         this.frame=true;
       }
-      this.archivo = Axios.get(this.url).then(function (response) {
-        //return  response.request.responseURL;
-        console.log(
-          `${Object.values(response.request)}`)
-      });
-      console.log(this.archivo);
+
+      var response = await this.getSrc( this.url );
+      console.log(response.data);
 
     },
     methods:{
       descargar(){
         window.location.href=this.archivo.value;
+      },
+      async getSrc(url){
+        return await Axios.get(url)
       }
     }
     

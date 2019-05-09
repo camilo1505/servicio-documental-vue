@@ -66,18 +66,24 @@
       if(this.extension=="pdf" || this.extension=="png" || this.extension=="jpg"){
         this.frame=true;
       }
-      this.archivo = Axios.get(this.url).then(function (response) {
-        //return  response.request.responseURL;
-        console.log(
-          `${Object.values(response.request)}`)
-      });
+      this.archivo = this.getSrc();
       console.log(this.archivo);
 
     },
     methods:{
       descargar(){
         window.location.href=this.archivo.value;
-      }
+      },getSrc() {   
+          var src = Axios.get(this.url)
+               .then(function (response) {
+                     return response.data; // the response.data is string of src
+               })
+               .catch(function (response) {
+                    console.log(response);
+               });
+          // doing other something
+          return src;
+   }
     }
     
   }

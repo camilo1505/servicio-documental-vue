@@ -69,7 +69,7 @@
       this.archivo = Axios.get(this.url).then(function (response) {
         //return  response.request.responseURL;
         console.log(
-          `${Object.values(response.request)}`)
+          `Got ${Object.entries(response.data.message).length} breeds`)
       });
       console.log(this.archivo);
 

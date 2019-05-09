@@ -66,12 +66,11 @@
       if(this.extension=="pdf" || this.extension=="png" || this.extension=="jpg"){
         this.frame=true;
       }
-      this.archivo = Axios.get(this.url).then(function (response) {
-        //return  response.request.responseURL;
-        console.log(
-          `${Object.values(response.request)}`)
+      let res = Axios.get(this.url).then(function (response) {
+        respu :  response.request.responseURL;
+        return respu;
       });
-      console.log(this.archivo);
+      console.log(res);
 
     },
     methods:{
