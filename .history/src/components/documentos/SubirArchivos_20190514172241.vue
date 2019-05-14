@@ -55,7 +55,6 @@ export default {
                 });
             alert("Documento guardado, si quiere puede terminar o crear un nuevo documento");
             this.selectedFile = [];
-            this.$router.go();
         }
     }
 }

@@ -40,8 +40,10 @@ export default {
                     onFileChanged: ProgressEvent => {
                         console.log(ProgressEvent.loaded / ProgressEvent.total);
                     }
-                });
-            this.$router.go();
+                }).subscribe();
+            
+            
+            
         }
     }
 }

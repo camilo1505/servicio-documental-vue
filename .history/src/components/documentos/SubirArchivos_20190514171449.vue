@@ -5,12 +5,11 @@
             <br>
             <input type="file" id="file" ref="myFiles" class="custom-file-input" @change="onFileChanged()" multiple>
             <v-btn @click="crearDocumento()">Guardar</v-btn>
-            <div v-for="archivo in selectedFile" :key="archivo.id">
-                <v-chip color="indigo" text-color="white">
-                    {{archivo.name}}
-                    <v-icon right>done</v-icon>
-                </v-chip>
-            </div>
+            <ul>
+                <li v-for="archivo in selectedFile" :key="archivo.id">
+                    <h3>Archivo: {{archivo.name}} Listo para subir</h3>
+                </li>
+            </ul>
         </v-flex>
 
     </v-layout>
@@ -55,7 +54,6 @@ export default {
                 });
             alert("Documento guardado, si quiere puede terminar o crear un nuevo documento");
             this.selectedFile = [];
-            this.$router.go();
         }
     }
 }

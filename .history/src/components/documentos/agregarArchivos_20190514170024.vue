@@ -41,7 +41,7 @@ export default {
                         console.log(ProgressEvent.loaded / ProgressEvent.total);
                     }
                 });
-            this.$router.go();
+            
         }
     }
 }
