@@ -25,7 +25,7 @@
                 </v-edit-dialog>
             </td>
             <td>
-                <v-edit-dialog class="short" :return-value.sync="props.item.textoCompleto"  @save="editarCompleto(props.item)"  lazy  @open="open" @close="close">
+                <v-edit-dialog class="short" :return-value.sync="props.item.textoCompleto" lazy  @open="open" @close="close">
                     {{ props.item.textoCompleto}}
                     <v-text-field class="break" v-if="propietario()" slot="input" v-model="textoCompleto" label="Nombre Archivo" single-line counter></v-text-field>
                 </v-edit-dialog>
@@ -93,8 +93,7 @@ export default {
             snack: false,
             snackColor: '',
             snackText: '',
-            nuevoNombre: null,
-            textoCompleto: null
+            nuevoNombre: null
         }
     },
         methods: {
@@ -152,9 +151,6 @@ export default {
                 .then(Response => (this.estadoSolicitud = Response.status))
                 archivo.nombreArchivo = this.nuevoNombre
                 this.save()
-            },
-            editarCompleto(archivo) {
-                archivo.textoCompleto = this.textoCompleto;
             },
             propietario() {
                 if(this.shareOwner == localStorage.user) {
