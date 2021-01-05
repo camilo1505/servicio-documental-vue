@@ -11,7 +11,7 @@
     "@blackywkl/vuewordcloud": "^1.0.3",
     "@johmun/vue-tags-input": "^2.0.0",
     "@updivision/vue2-multi-uploader": "^1.6.2",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bootstrap-vue": "^2.0.0-rc.11",
     "mdbvue": "^4.10.1",
     "src": "^1.1.2",
